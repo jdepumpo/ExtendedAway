@@ -1,14 +1,26 @@
 class TasksController < ApplicationController
   def create
-    @trip = Trip.find(params[:id])
+    @trip = Trip.find(params[:trip_id])
     @task = Task.new(task_params)
-    @task.save
-    redirect_to trip_path(@trip)
+    @task.trip = @trip
+    @task.user = current_user
+    @task.category = Category.find(params[:task][:category])
+    if @task.save
+      redirect_to trip_path(@trip)
+    else
+      render "trips/show", status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @task = Task.find(params[:task_id])
+    @task.destroy
+    redirect_to trips_path, status: :see_other
   end
 
   private
 
   def task_params
-    params.require(:task).permit(:name, :description, :done, :repeat_every)
+    params.require(:task).permit(:name, :description)
   end
 end
