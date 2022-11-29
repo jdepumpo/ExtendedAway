@@ -6,6 +6,8 @@ class TripsController < ApplicationController
 
   def show
     @trip = Trip.find(params[:id])
+    @task = Task.new
+    @categories = Category.all
   end
 
   def update
