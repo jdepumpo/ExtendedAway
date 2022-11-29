@@ -1,7 +1,8 @@
+<main class="container mt-4">
 <% @trips.each do |trip| %>
 
-<div class="card">
-  <h5 class="card-header">Trip #<%= trip.id %></h5>
+<div class="card mt-3">
+  <h5 class="card-header"><i class="fa-solid fa-calendar-days text-primary"></i>  <%= trip.start_date %> - <%= trip.end_date %></h5>
   <div class="card-body">
     <h5 class="card-title"><%= trip.name %></h5>
     <p class="card-text"><%= trip.description %></p>
@@ -10,3 +11,4 @@
 </div>
 
 <% end %>
+</main>
