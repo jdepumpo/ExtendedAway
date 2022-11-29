@@ -1,0 +1,12 @@
+<% @trips.each do |trip| %>
+
+<div class="card">
+  <h5 class="card-header">Trip #<%= trip.id %></h5>
+  <div class="card-body">
+    <h5 class="card-title"><%= trip.name %></h5>
+    <p class="card-text"><%= trip.description %></p>
+    <%= link_to "Open", trip_path(trip.id), class: "btn btn-primary" %>
+  </div>
+</div>
+
+<% end %>
