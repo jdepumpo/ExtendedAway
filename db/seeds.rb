@@ -71,27 +71,27 @@ puts "_______________________"
 puts "Toasting some sweet & indulgent tasks!"
 
 tasks_array = [
-  ["Bring in Mail", "Bring in the mail, remove any doorknob ads, or any mail or packages that have been left at the front door."],
-  ["Water Plants", "Please fill up the watering can near the sink and water the various and sundry house plants. The monsterra needs to drraaaaannnkkkk!!"],
-  ["Check on Car", "Start cars and run them for 15 minutes to charge battery if needed."],
-  ["Anti-Burglar Activities", "Any activities that will make the house look occupied, such as tramping around after new snow, and driving the cars in and out of the driveway or changing their positions in the parking lot."],
-  ["Check on Pool", "Check pool chemical levels and add accordingly."],
-  ["A/C Off", "Ensure that the thermostat is set to 'off.'"],
-  ["General Inspection", "Inspect the house for damage or signs of intruders."],
-  ["Remove Insects", "Remove spiderwebs and spray insect repellant near motion detectors."],
-  ["Check Security Measures", "Check security lights and lights on timers and and replace light bulbs that have burnt out."],
-  ["Remove Trash", "Ensure that trash is taken to the curb. Trash days are Wedensday and Friday."],
-  ["Feed Goldfish", "Use two pinches of ExtraGold3000 fish food."],
-  ["Wind Grandfather Clock", "Please be careful, this is a precious family heirloom."],
-  ["Check Ceiling for Leaks", "Roof has been leaking for awhile, please check for new wet spots."],
-  ["Look for Important Package", "Expecting important documents in the mail - please look for Fedex box."],
-  ["Check Cat", "Ensure that Suzie has not brought in another rat"],
-  ["Check Smoke Detectors", "Ensure they have enough battery"],
-  ["Ensure the Outside Gate is Locked", "Use the padlock to lock the outside gate."],
-  ["Lock the Side Door", "Please make sure the side door in the kitchen is locked."],
-  ["Feed the Cat", "One Fancy Feast for Matilda, refill dry food."],
-  ["Ensure Windows are Closed", "No drafts, please!"],
-  ["Feed Gerbil", "Fill up food bowl and change water."]
+  ["Bring in Mail", "Bring in the mail, remove any doorknob ads, or any mail or packages that have been left at the front door.", "Mail"],
+  ["Water Plants", "Please fill up the watering can near the sink and water the various and sundry house plants. The monsterra needs to drraaaaannnkkkk!!", "Plants"],
+  ["Check on Car", "Start cars and run them for 15 minutes to charge battery if needed.", "General"],
+  ["Anti-Burglar Activities", "Any activities that will make the house look occupied, such as tramping around after new snow, and driving the cars in and out of the driveway or changing their positions in the parking lot.", "Security"],
+  ["Check on Pool", "Check pool chemical levels and add accordingly.", "Maintanance"],
+  ["A/C Off", "Ensure that the thermostat is set to 'off.'", "General"],
+  ["General Inspection", "Inspect the house for damage or signs of intruders.", "General"],
+  ["Remove Insects", "Remove spiderwebs and spray insect repellant near motion detectors.", "General"],
+  ["Check Security Measures", "Check security lights and lights on timers and and replace light bulbs that have burnt out.", "Security"],
+  ["Remove Trash", "Ensure that trash is taken to the curb. Trash days are Wedensday and Friday.", "General"],
+  ["Feed Goldfish", "Use two pinches of ExtraGold3000 fish food.", "Animals"],
+  ["Wind Grandfather Clock", "Please be careful, this is a precious family heirloom.", "Maintanance"],
+  ["Check Ceiling for Leaks", "Roof has been leaking for awhile, please check for new wet spots.", "General"],
+  ["Look for Important Package", "Expecting important documents in the mail - please look for Fedex box.", "Mail"],
+  ["Check Cat", "Ensure that Suzie has not brought in another rat", "Animals"],
+  ["Check Smoke Detectors", "Ensure they have enough battery", "Maintanance"],
+  ["Ensure the Outside Gate is Locked", "Use the padlock to lock the outside gate.", "Security"],
+  ["Lock the Side Door", "Please make sure the side door in the kitchen is locked.", "Security"],
+  ["Feed the Cat", "One Fancy Feast for Matilda, refill dry food.", "Animals"],
+  ["Ensure Windows are Closed", "No drafts, please!", "Security"],
+  ["Feed Gerbil", "Fill up food bowl and change water.", "Animals"]
 ]
 
 20.times do |i|
@@ -102,6 +102,7 @@ tasks_array = [
   })
   task.user = caretaker_array.sample
   task.trip = trip_array.sample
+  task.category = tasks[2]
   task.save
   puts "+++ #{task.name}"
 end
