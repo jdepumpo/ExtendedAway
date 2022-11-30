@@ -6,8 +6,12 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
   resources :trips do
-    resources :tasks, only: %i[create update]
+    resources :tasks, only: %i[create]
   end
-  resources :tasks, only: :delete
+
+  resources :tasks, only: %i[delete update]
+
   get "users/:id/profile", to: "pages#profile", as: :user_profile
+  # patch "trips/:trip_id/tasks/:id", to: "tasks#complete", as: :task_complete
+  # patch "trips/:trip_id/tasks/:id", to: "tasks#uncomplete", as: :task_uncomplete
 end

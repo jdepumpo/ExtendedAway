@@ -10,13 +10,17 @@
 </button>
 
 
-<div class="task-list accordion my-5" id="accordionPanelsStayOpenExample">
-  <% @trip.tasks.each_with_index do |task, i| %>
+<div class="task-list accordion m-5" id="accordionPanelsStayOpenExample" data-controller="task-done">
+  <% @trip.tasks.order(:id).each_with_index do |task, i| %>
     <div class="accordion-item">
       <div class="accordion-header d-flex align-items-center" id="panelsStayOpen-heading<%=i.to_s%>">
-        <input class="form-check-input m-3" type="checkbox" value="">
+        <!-- <input class="form-check-input m-3" type="checkbox" id="task-<%=i.to_s%>" data-action="change->task-done#changeDone"> checkbox -->
+        <%# <input type="checkbox" class="btn-check" id="btn-check-outlined" autocomplete="off"> %>
+        <%# <label class="btn btn-outline-primary" for="btn-check-outlined">Single toggle</label><br> %>
+        <%= link_to "Mark incomplete", task_path(task), data: {turbo_method: :patch}, class: "btn btn-primary" %>
+
         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse<%=i.to_s%>" aria-expanded="true" aria-controls="panelsStayOpen-collapse<%=i.to_s%>">
-          <h5 class="m-0"><%= task.name %></h5><span class="badge bg-primary rounded-pill ms-5"><%= task.category.name %></span>
+          <h5 class="m-0"><%= task.name + task.done.to_s %></h5><span class="badge bg-primary rounded-pill ms-5"><%= task.category.name %></span>
         </button>
       </div>
       <div id="panelsStayOpen-collapse<%=i.to_s%>" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-heading<%=i.to_s%>">
@@ -27,3 +31,28 @@
     </div>
   <% end %>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Create a new Task</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%= simple_form_for [@trip, @task] do |f| %>
+          <%= f.error_notification %>
+          <%= f.input :name %>
+          <%= f.input :category, collection: @categories %>
+          <%= f.input :description %>
+          <%= f.check_box :done %>
+          <%= f.button :submit, value: "Create Task", class: "btn-primary" %>
+          <!-- <%= f.button :button, 'Reset', type: :reset, class: 'btn btn-secundary' %> Reset button-->
+          <%= link_to 'Cancel', trip_path(@trip), class: 'btn btn-secundary' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
