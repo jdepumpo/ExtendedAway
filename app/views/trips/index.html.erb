@@ -1,18 +1,20 @@
 <%= render "shared/modals", modal: "trip", model: @new_trip %>
 
-<button type="button" class="btn btn-primary my-5" data-bs-toggle="modal" data-bs-target="#newModal">
-  Add a new trip
-</button>
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+  <h1 class="h2">My Trips</h1>
+  <div class="btn-toolbar mb-2 mb-md-0">
+    <button type="button" class="btn btn-primary my-2" data-bs-toggle="modal" data-bs-target="#newModal">
+      Add a new trip
+    </button>
+  </div>
+</div>
 
 <% @trips.each do |trip| %>
 
 <div class="card mt-3">
   <div class="card-header d-flex align-items-center">
     <div class="flex-grow-1">
-      <h5>
-        <i class="fa-solid fa-calendar-days text-primary"></i>
-        <%= trip.start_date.strftime('%a %d %b %Y') %> — <%= trip.end_date.strftime('%a %d %b %Y') %>
-      </h5>
+    <h5><strong><%= trip.name %></strong></h5>
     </div>
     <div>
       <%= link_to trip_path(trip.id), class: "card-link btn btn-primary", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
@@ -24,7 +26,10 @@
     </div>
   </div>
   <div class="card-body">
-    <h5 class="card-title"><%= trip.name %></h5>
+    <h5>
+      <i class="fa-solid fa-calendar-days text-primary"></i>
+      <%= trip.start_date.strftime('%a %d %b %Y') %> — <%= trip.end_date.strftime('%a %d %b %Y') %>
+    </h5>
     <p class="card-text"><%= trip.description %></p>
     <%= link_to "Open", trip_path(trip.id), class: "btn btn-primary" %>
   </div>
