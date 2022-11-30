@@ -10,3 +10,68 @@
 .navbar-lewagon .navbar-brand img {
   width: 40px;
 }
+
+.icon{
+  background: white;
+  border-radius: 30px;
+  padding: 6px;
+  border: solid;
+  border-color:rgba(0, 0, 0, 0.17);
+  border-width: thin;font-size: 14px;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.navlogin{
+  gap: 10px;
+  align-items: center;
+}
+
+.navsearch{
+  border-radius: 13px;
+}
+
+.navbartotal{
+  margin: 5px;
+  border-radius: 13px;
+  margin-bottom: 13px;
+  margin-left: 5%;
+}
+
+.formbox{
+  width: 37%;
+}
+
+//SIDE NAVBAR/
+
+.sidebar {
+  z-index: 1;
+  top: 0;
+  height: 100%;
+  background: white;
+  width: 52px;
+  position: fixed;
+  margin-bottom: 17px;
+}
+
+
+.sidebar > nav > button {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 80%;
+  height: 45%;
+  padding: 0;
+  background: white;
+  border-radius: 30px;
+  border: solid;
+  border-color:rgba(0, 0, 0, 0.17);
+  border-width: thin;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.7);
+  margin: 0 auto 30% auto;
+  }
+
+  .sidebaricon{
+    padding: 30%;
+    font-size: 16px;
+  }
