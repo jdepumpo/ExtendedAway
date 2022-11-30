@@ -1,11 +1,10 @@
 <%= render "shared/modals", modal: "task", model: [@trip, @task], categories: @categories, trip: @trip %>
 <h1><%= @trip.name %></h1>
-<h2><%= @trip.description %></h2>
-<h2><%= @trip.start_date %></h2>
-<h2><%= @trip.end_date %></h2>
-<h2><%= @trip.user.email %></h2>
+<h3><%= @trip.description %></h3>
+<h3><%= @trip.start_date.strftime('%a %d %b %Y') %> — <%= @trip.end_date.strftime('%a %d %b %Y') %></h3>
+<h3><%= @trip.user.email %></h3>
 
-<button type="button" class="btn btn-primary ms-5" data-bs-toggle="modal" data-bs-target="#newModal">
+<button type="button" class="btn btn-primary my-4" data-bs-toggle="modal" data-bs-target="#newModal">
   Add a new task
 </button>
 
