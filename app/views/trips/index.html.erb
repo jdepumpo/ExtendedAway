@@ -1,10 +1,8 @@
 <%= render "shared/modals", modal: "trip", model: @new_trip %>
 
-
-<button type="button" class="btn btn-primary ms-5" data-bs-toggle="modal" data-bs-target="#newModal">
+<button type="button" class="btn btn-primary my-5" data-bs-toggle="modal" data-bs-target="#newModal">
   Add a new trip
 </button>
-
 
 <% @trips.each do |trip| %>
 
@@ -13,7 +11,7 @@
     <div class="flex-grow-1">
       <h5>
         <i class="fa-solid fa-calendar-days text-primary"></i>
-        <%= trip.start_date %> - <%= trip.end_date %>
+        <%= trip.start_date.strftime('%a %d %b %Y') %> — <%= trip.end_date.strftime('%a %d %b %Y') %>
       </h5>
     </div>
     <div>
@@ -21,7 +19,7 @@
         <i class="fa-regular fa-trash-can"></i>
       <% end %>
       <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newModal">
-          <i class="fa-regular fa-pen-to-square"></i>
+        <i class="fa-regular fa-pen-to-square"></i>
       </button>
     </div>
   </div>
