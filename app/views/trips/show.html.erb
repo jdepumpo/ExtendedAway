@@ -42,8 +42,8 @@
           <%= f.input :category, collection: @categories %>
           <%= f.input :description %>
           <%= f.button :submit, value: "Create Task", class: "btn-primary" %>
-          <%= link_to "Cancel", :back, class: 'btn btn-secundary' %>
-          <%= f.button :button, 'Reset', type: :reset, class: 'btn btn-secundary' %>
+          <!-- <%= f.button :button, 'Reset', type: :reset, class: 'btn btn-secundary' %> Reset button-->
+          <%= link_to 'Cancel', trip_path(@trip), class: 'btn btn-secundary' %>
         <% end %>
       </div>
     </div>
