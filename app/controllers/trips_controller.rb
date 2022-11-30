@@ -1,4 +1,5 @@
 class TripsController < ApplicationController
+
   def index
     @trips = Trip.all
     @new_trip = Trip.new
