@@ -1,4 +1,5 @@
 class TripsController < ApplicationController
+
   def index
     @trips = Trip.all
     @new_trip = Trip.new
@@ -12,15 +13,31 @@ class TripsController < ApplicationController
 
   def update
     @trip = Trip.find(params[:id])
+    @trip.update(trip_params)
+    if @trip.save
+      redirect_to trips_path
+    else
+      render :index, status: :unprocessable_entity
+    end
   end
 
   def destroy
+    @trip = Trip.find(params[:id])
+    if @trip.destroy
+      redirect_to trips_path
+    else
+      render :index, status: :unprocessable_entity
+    end
   end
 
   def create
     @trip = Trip.new(trip_params)
     @trip.user = current_user
-    @trip.save
+    if @trip.save
+      redirect_to trips_path
+    else
+      render :index, status: :unprocessable_entity
+    end
   end
 
   private
@@ -28,5 +45,4 @@ class TripsController < ApplicationController
   def trip_params
     params.require(:trip).permit(:name, :description, :start_date, :end_date)
   end
-
 end

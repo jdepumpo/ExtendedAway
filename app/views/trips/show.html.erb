@@ -1,22 +1,32 @@
+<%= render "shared/modals", modal: "task", model: [@trip, @task], categories: @categories, trip: @trip %>
 <h1><%= @trip.name %></h1>
-<h2><%= @trip.description %></h2>
-<h2><%= @trip.start_date %></h2>
-<h2><%= @trip.end_date %></h2>
-<h2><%= @trip.user.email %></h2>
+<h3><%= @trip.description %></h3>
+<h3><%= @trip.start_date.strftime('%a %d %b %Y') %> — <%= @trip.end_date.strftime('%a %d %b %Y') %></h3>
+<h3><%= @trip.user.email %></h3>
 
-<button type="button" class="btn btn-primary ms-5" data-bs-toggle="modal" data-bs-target="#exampleModal">
+<button type="button" class="btn btn-primary my-4" data-bs-toggle="modal" data-bs-target="#newModal">
   Add a new task
 </button>
 
 
-<div class="task-list accordion m-5" id="accordionPanelsStayOpenExample">
-  <% @trip.tasks.each_with_index do |task, i| %>
+<div class="task-list accordion m-5" id="accordionPanelsStayOpenExample" data-controller="task-done">
+  <% @trip.tasks.order(:id).each_with_index do |task, i| %>
     <div class="accordion-item">
       <div class="accordion-header d-flex align-items-center" id="panelsStayOpen-heading<%=i.to_s%>">
-        <input class="form-check-input m-3" type="checkbox" value="">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse<%=i.to_s%>" aria-expanded="true" aria-controls="panelsStayOpen-collapse<%=i.to_s%>">
-          <h5 class="m-0"><%= task.name %></h5><span class="badge bg-primary rounded-pill ms-5"><%= task.category.name %></span>
-        </button>
+        <!-- <input class="form-check-input m-3" type="checkbox" id="task-<%=i.to_s%>" data-action="change->task-done#changeDone"> checkbox -->
+        <%# <input type="checkbox" class="btn-check" id="btn-check-outlined" autocomplete="off"> %>
+        <%# <label class="btn btn-outline-primary" for="btn-check-outlined">Single toggle</label><br> %>
+        <% if task.done? %>
+          <%= link_to "Task Completed", task_path(task), data: {turbo_method: :patch}, class: "btn btn-primary disabled" %>
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse<%=i.to_s%>" aria-expanded="true" aria-controls="panelsStayOpen-collapse<%=i.to_s%>">
+            <h5 class="m-0"><%= task.name %></h5><span class="badge bg-primary rounded-pill ms-5"><%= task.category.name %></span>
+          </button>
+        <% else %>
+          <%= link_to "Mark complete", task_path(task), data: {turbo_method: :patch}, class: "btn btn-secundary" %>
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse<%=i.to_s%>" aria-expanded="true" aria-controls="panelsStayOpen-collapse<%=i.to_s%>">
+            <h5 class="m-0"><%= task.name %></h5><span class="badge bg-primary rounded-pill ms-5"><%= task.category.name %></span>
+          </button>
+        <% end %>
       </div>
       <div id="panelsStayOpen-collapse<%=i.to_s%>" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-heading<%=i.to_s%>">
         <div class="accordion-body">
@@ -41,9 +51,10 @@
           <%= f.input :name %>
           <%= f.input :category, collection: @categories %>
           <%= f.input :description %>
+          <%= f.check_box :done %>
           <%= f.button :submit, value: "Create Task", class: "btn-primary" %>
-          <%= link_to "Cancel", :back, class: 'btn btn-secundary' %>
-          <%= f.button :button, 'Reset', type: :reset, class: 'btn btn-secundary' %>
+          <!-- <%= f.button :button, 'Reset', type: :reset, class: 'btn btn-secundary' %> Reset button-->
+          <%= link_to 'Cancel', trip_path(@trip), class: 'btn btn-secundary' %>
         <% end %>
       </div>
     </div>
