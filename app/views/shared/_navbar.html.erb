@@ -1,36 +1,40 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
-  <div class="container-fluid">
-    <%= link_to "#", class: "navbar-brand" do %>
-      <%= image_tag "https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/logo.png" %>
-    <% end %>
+<div class="container">
+    <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+      <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+        <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+        <span class="fs-4">Simple header</span>
+      </a>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto">
+      <ul class="nav nav-pills">
+        <li class="nav-item"><a href="#" class="nav-link active" aria-current="page">Home</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">Features</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">Pricing</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">FAQs</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">About</a></li>
         <% if user_signed_in? %>
-          <li class="nav-item active">
-            <%= link_to "Home", "#", class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Messages", "#", class: "nav-link" %>
-          </li>
-          <li class="nav-item dropdown">
-            <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <%= link_to "Action", "#", class: "dropdown-item" %>
-              <%= link_to "Another action", "#", class: "dropdown-item" %>
-              <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
-            </div>
-          </li>
+          <div class="dropdown dropstart">
+            <button id="login-button" class=" btn btn-secondary" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fa-solid fa-bars" style="margin-right: 14px"></i> <%= image_tag "https://res.cloudinary.com/dxfg68ykv/image/upload/w_1000,c_fill,ar_1:1,g_auto,r_max,b_rgb:262c35/v1669222812/jeffrey-keenan-pUhxoSapPFA-unsplash_nthk0z.jpg", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+            </button>
+            <ul class="dropdown-menu">
+              <li class="menu_item" style="font-size:13px"><%= link_to "#{current_user.first_name} #{current_user.last_name}", user_profile_path(current_user), class: "dropdown-item" %></li>
+              <li class="menu_item" style="font-size:13px"><%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %></li>
+            </ul>
+          </div>
         <% else %>
-          <li class="nav-item">
-            <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+          <li>
+            <button id="login-button" class="btn d-flex" type="submit" role="login" style="align-items:center">
+              <div class="d-flex" style="align-items:center;">
+                <%= link_to new_user_session_path, class: "nav-link", style: "color:white; padding:0" do %>
+                  <i class="fa-solid fa-bars" style="margin-right: 14px; color: var(--bs-primary);"></i>
+                  <i class="fa-solid fa-user" style="color: var(--bs-primary);"></i>
+                <% end %>
+              </div>
+            </button>
           </li>
         <% end %>
       </ul>
     </div>
+      </ul>
+    </header>
   </div>
-</div>
