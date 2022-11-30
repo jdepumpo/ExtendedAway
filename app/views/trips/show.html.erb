@@ -1,10 +1,11 @@
+<%= render "shared/modals", modal: "task", model: [@trip, @task], categories: @categories, trip: @trip %>
 <h1><%= @trip.name %></h1>
 <h2><%= @trip.description %></h2>
 <h2><%= @trip.start_date %></h2>
 <h2><%= @trip.end_date %></h2>
 <h2><%= @trip.user.email %></h2>
 
-<button type="button" class="btn btn-primary ms-5" data-bs-toggle="modal" data-bs-target="#exampleModal">
+<button type="button" class="btn btn-primary ms-5" data-bs-toggle="modal" data-bs-target="#newModal">
   Add a new task
 </button>
 
@@ -54,3 +55,4 @@
     </div>
   </div>
 </div>
+
