@@ -17,11 +17,17 @@
         <!-- <input class="form-check-input m-3" type="checkbox" id="task-<%=i.to_s%>" data-action="change->task-done#changeDone"> checkbox -->
         <%# <input type="checkbox" class="btn-check" id="btn-check-outlined" autocomplete="off"> %>
         <%# <label class="btn btn-outline-primary" for="btn-check-outlined">Single toggle</label><br> %>
-        <%= link_to "Mark incomplete", task_path(task), data: {turbo_method: :patch}, class: "btn btn-primary" %>
-
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse<%=i.to_s%>" aria-expanded="true" aria-controls="panelsStayOpen-collapse<%=i.to_s%>">
-          <h5 class="m-0"><%= task.name + task.done.to_s %></h5><span class="badge bg-primary rounded-pill ms-5"><%= task.category.name %></span>
-        </button>
+        <% if task.done? %>
+          <%= link_to "Task Completed", task_path(task), data: {turbo_method: :patch}, class: "btn btn-primary disabled" %>
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse<%=i.to_s%>" aria-expanded="true" aria-controls="panelsStayOpen-collapse<%=i.to_s%>">
+            <h5 class="m-0"><%= task.name %></h5><span class="badge bg-primary rounded-pill ms-5"><%= task.category.name %></span>
+          </button>
+        <% else %>
+          <%= link_to "Mark complete", task_path(task), data: {turbo_method: :patch}, class: "btn btn-secundary" %>
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse<%=i.to_s%>" aria-expanded="true" aria-controls="panelsStayOpen-collapse<%=i.to_s%>">
+            <h5 class="m-0"><%= task.name %></h5><span class="badge bg-primary rounded-pill ms-5"><%= task.category.name %></span>
+          </button>
+        <% end %>
       </div>
       <div id="panelsStayOpen-collapse<%=i.to_s%>" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-heading<%=i.to_s%>">
         <div class="accordion-body">
@@ -55,4 +61,3 @@
     </div>
   </div>
 </div>
-
