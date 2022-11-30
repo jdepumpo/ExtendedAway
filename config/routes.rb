@@ -9,4 +9,5 @@ Rails.application.routes.draw do
     resources :tasks, only: %i[create update]
   end
   resources :tasks, only: :delete
+  get "users/:id/profile", to: "pages#profile", as: :user_profile
 end
