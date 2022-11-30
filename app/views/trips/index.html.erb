@@ -1,8 +1,31 @@
 <main class="container mt-4">
+<%= render "shared/modals", modal: "trip", model: @new_trip %>
+
+
+<button type="button" class="btn btn-primary ms-5" data-bs-toggle="modal" data-bs-target="#newModal">
+  Add a new trip
+</button>
+
+
 <% @trips.each do |trip| %>
 
 <div class="card mt-3">
-  <h5 class="card-header"><i class="fa-solid fa-calendar-days text-primary"></i>  <%= trip.start_date %> - <%= trip.end_date %></h5>
+  <div class="card-header d-flex align-items-center">
+    <div class="flex-grow-1">
+      <h5>
+        <i class="fa-solid fa-calendar-days text-primary"></i>
+        <%= trip.start_date %> - <%= trip.end_date %>
+      </h5>
+    </div>
+    <div>
+      <%= link_to trip_path(trip.id), class: "card-link btn btn-primary", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
+        <i class="fa-regular fa-trash-can"></i>
+      <% end %>
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newModal">
+          <i class="fa-regular fa-pen-to-square"></i>
+      </button>
+    </div>
+  </div>
   <div class="card-body">
     <h5 class="card-title"><%= trip.name %></h5>
     <p class="card-text"><%= trip.description %></p>

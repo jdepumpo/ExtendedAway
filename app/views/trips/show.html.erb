@@ -1,10 +1,11 @@
+<%= render "shared/modals", modal: "task", model: [@trip, @task], categories: @categories, trip: @trip %>
 <h1><%= @trip.name %></h1>
 <h2><%= @trip.description %></h2>
 <h2><%= @trip.start_date %></h2>
 <h2><%= @trip.end_date %></h2>
 <h2><%= @trip.user.email %></h2>
 
-<button type="button" class="btn btn-primary ms-5" data-bs-toggle="modal" data-bs-target="#exampleModal">
+<button type="button" class="btn btn-primary ms-5" data-bs-toggle="modal" data-bs-target="#newModal">
   Add a new task
 </button>
 
@@ -25,27 +26,4 @@
       </div>
     </div>
   <% end %>
-</div>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Create a new Task</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <%= simple_form_for [@trip, @task] do |f| %>
-          <%= f.error_notification %>
-          <%= f.input :name %>
-          <%= f.input :category, collection: @categories %>
-          <%= f.input :description %>
-          <%= f.button :submit, value: "Create Task", class: "btn-primary" %>
-          <!-- <%= f.button :button, 'Reset', type: :reset, class: 'btn btn-secundary' %> Reset button-->
-          <%= link_to 'Cancel', trip_path(@trip), class: 'btn btn-secundary' %>
-        <% end %>
-      </div>
-    </div>
-  </div>
 </div>
