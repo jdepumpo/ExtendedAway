@@ -8,6 +8,7 @@ class TripsController < ApplicationController
   def show
     @trip = Trip.find(params[:id])
     @task = Task.new
+    @dates = ((Date.new(@trip.start_date.year, @trip.start_date.month, @trip.start_date.day))..(Date.new(@trip.end_date.year, @trip.end_date.month, @trip.end_date.day))).to_a
     @categories = Category.all
     caretaker_array = []
     @trip.tasks.each do |task|
