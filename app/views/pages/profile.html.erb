@@ -1,9 +1,16 @@
 <div class="row">
   <div class="col-12">
-    <div class="card shadow w-100" style="border-radius: 10px!important;">
+    <div class="card shadow w-100 rounded">
       <div class="card-body p-0">
-        <div class="card-header py-3" style="border-radius: 10px 10px 0 0;">
-          <h4 class="my-0 fw-normal">My Profile</h4>
+        <div class="card-header py-3">
+          <div class="flex-grow-1">
+            <h5><strong>My Profile</strong></h5>
+          </div>
+          <div>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal">
+              <i class="fa-regular fa-pen-to-square"></i>
+            </button>
+          </div>
         </div>
         <h5 class="card-title p-3 m-0">
           <strong>Email:</strong>
@@ -13,29 +20,6 @@
           <strong>Last Name:</strong>
           <p><%= @user.last_name %></p>
         </h5>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<div class="row mt-4">
-  <div class="col-12">
-    <div class="card shadow w-100" style="border-radius: 10px!important;">
-      <div class="card-body p-0">
-        <div class="card-header py-3" style="border-radius: 10px 10px 0 0;">
-          <h4 class="my-0 fw-normal">My Trips</h4>
-        </div>
-        <% @user.trips.each do |trip| %>
-        <h5 class="card-title p-3 m-0">
-          <strong>Name:</strong>
-          <p><%= trip.name %></p>
-          <strong>Dates:</strong>
-          <p><%= trip.start_date.strftime('%a %d %b %Y') %> — <%= trip.end_date.strftime('%a %d %b %Y') %></p>
-          <%= link_to "Open", trip_path(trip.id), class: "btn btn-primary" %>
-        </h5>
-        <hr />
-        <% end %>
       </div>
     </div>
   </div>
