@@ -1,8 +1,20 @@
-<%= render render "shared/modals/new_modal", modal: "task", model: [@trip, @task], categories: @categories, trip: @trip %>
+<%= render "shared/modals/new_modal", modal: "task", model: [@trip, @task], categories: @categories, trip: @trip %>
+<%= render "shared/modals/edit_modal", modal: "trip", model: @trip %>
+
 
 <div class="card mt-3">
-  <div class="card-header d-flex align-items-center">
+    <div class="card-header d-flex align-items-center">
+    <div class="flex-grow-1">
     <h5><strong><%= @trip.name %></strong></h5>
+    </div>
+    <div>
+      <%= link_to trip_path(@trip), class: "card-link btn btn-primary", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
+        <i class="fa-regular fa-trash-can"></i>
+      <% end %>
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal">
+        <i class="fa-regular fa-pen-to-square"></i>
+      </button>
+    </div>
   </div>
   <div class="card-body">
     <h5>
@@ -54,7 +66,7 @@
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 my-3 border-bottom">
   <h1 class="h2">Caretakers</h1>
   <div class="btn-toolbar mb-2 mb-md-0">
-    <button type="button" class="btn btn-primary my-2" data-bs-toggle="modal" data-bs-target="#newModal">
+    <button type="button" class="btn btn-primary my-2" <%# data-bs-toggle="modal" data-bs-target="#newModal" %>>
       Add a new caretaker
     </button>
   </div>
