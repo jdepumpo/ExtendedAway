@@ -14,22 +14,26 @@
 
   <body>
 
-    <% unless params[:controller] == "pages" && params[:action] == "home" %>
+    <% if params[:controller] == "pages" && params[:action] == "home" %>
+     <%= yield %>
+    <% else %>
+      <main class="container mt-4">
+      <%= yield %>
       <%= render "shared/navbar" %>
     <% end %>
-    
-      <main class="container mt-4">
+
+      <%# <main class="container mt-4">
         <%= yield %>
-      </main>
+      <%# </main> %>
 
     <%= render "shared/flashes" %>
 
 
 
 
-    <% unless params[:controller] == "pages" && params[:action] == "home" %>
-       <%= render "shared/footer" %>
-    <% end %>
+    <%# <% unless params[:controller] == "pages" && params[:action] == "home" %>
+       <%#= render "shared/footer" %>
+    <%# end %>
 
   </body>
 </html>
