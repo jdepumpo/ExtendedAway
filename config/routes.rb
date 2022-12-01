@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     resources :tasks, only: %i[create]
   end
 
-  resources :tasks, only: %i[delete update]
+  resources :tasks, only: %i[destroy update]
 
   get "users/:id/profile", to: "pages#profile", as: :user_profile
   # patch "trips/:trip_id/tasks/:id", to: "tasks#complete", as: :task_complete
