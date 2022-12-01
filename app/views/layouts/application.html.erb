@@ -13,11 +13,23 @@
   </head>
 
   <body>
-    <%= render "shared/navbar" %>
-    <%= render "shared/flashes" %>
+
+    <% unless params[:controller] == "pages" && params[:action] == "home" %>
+      <%= render "shared/navbar" %>
+    <% end %>
+    
       <main class="container mt-4">
         <%= yield %>
       </main>
-    <%= render "shared/footer" %>
+
+    <%= render "shared/flashes" %>
+
+
+
+
+    <% unless params[:controller] == "pages" && params[:action] == "home" %>
+       <%= render "shared/footer" %>
+    <% end %>
+
   </body>
 </html>
