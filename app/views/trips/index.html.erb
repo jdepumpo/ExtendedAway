@@ -1,4 +1,4 @@
-<%= render "shared/modals", modal: "trip", model: @new_trip %>
+<%= render "shared/modals/new_modal", modal: "trip", model: @new_trip %>
 
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
   <h1 class="h2">My Trips</h1>
@@ -13,17 +13,7 @@
 
 <div class="card mt-3">
   <div class="card-header d-flex align-items-center">
-    <div class="flex-grow-1">
     <h5><strong><%= trip.name %></strong></h5>
-    </div>
-    <div>
-      <%= link_to trip_path(trip.id), class: "card-link btn btn-primary", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
-        <i class="fa-regular fa-trash-can"></i>
-      <% end %>
-      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newModal">
-        <i class="fa-regular fa-pen-to-square"></i>
-      </button>
-    </div>
   </div>
   <div class="card-body">
     <h5>
@@ -34,5 +24,4 @@
     <%= link_to "Open", trip_path(trip.id), class: "btn btn-primary" %>
   </div>
 </div>
-
 <% end %>
