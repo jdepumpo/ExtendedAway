@@ -7,6 +7,6 @@ export default class extends Controller {
   }
 
   changeDone(event) {
-    console.log(event.target.checked);
+    console.log(event);
   }
 }
