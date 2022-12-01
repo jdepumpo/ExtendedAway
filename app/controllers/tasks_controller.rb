@@ -31,8 +31,9 @@ class TasksController < ApplicationController
 
   def destroy
     @task = Task.find(params[:id])
+    @trip = @task.trip
     @task.destroy
-    redirect_to trips_path, status: :see_other
+    redirect_to trip_path(@trip), status: :see_other
   end
 
   private
