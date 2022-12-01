@@ -1,0 +1,56 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+
+a{
+  text-decoration: none;
+}
+
+footer{
+  background-color: white;
+  text-align: center;
+  text-transform: uppercase;
+  padding: 18px;
+  margin-top: auto;
+}
+
+footer li{
+  list-style: none;
+  margin: 10px;
+  display: inline-block;
+}
+
+footer li:hover{
+transform: scale(1.2);
+transition: 0.8s;
+}
+
+.footericon{
+  background-color: rgba(227, 241, 234, 0.4);
+  color: #333333;
+  padding: 12px;
+  font-size: 20px;
+  border-radius: 100%;
+  display: flex;
+
+
+
+}
+.icons a:hover{
+  color: #ffffff;
+  transition: 0.5s;
+
+}
+
+.copywrite{
+  color: #333333;
+  padding: 15px;
+  margin-top: 14px;
+  text-transform: capitalize;
+  margin-top: 0px;
+  margin-bottom: -8px;
+  font-size: 13px;
+}
