@@ -23,7 +23,7 @@ homeowner_array = []
     last_name: Faker::Name.last_name,
     location: Faker::Address.full_address,
     role: "homeowner",
-    email: "#{i}@homeowner.com",
+    email: "#{i + 1}@homeowner.com",
     password: "123456"
   })
   homeowner_array << homeowner
@@ -40,7 +40,7 @@ puts "Grilling a few users with the role 'caretaker'"
     last_name: Faker::Name.last_name,
     location: Faker::Address.full_address,
     role: "caretaker",
-    email: "#{i}@caretaker.com",
+    email: "#{i + 1}@caretaker.com",
     password: "123456"
   })
   caretaker_array << caretaker
