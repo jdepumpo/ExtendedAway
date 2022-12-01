@@ -1,7 +1,14 @@
 class TripsController < ApplicationController
 
   def index
-    @trips = Trip.where(user_id: current_user.id)
+    case current_user.role
+    when "homeowner"
+      @trips = Trip.where(user_id: current_user.id)
+    when "caretaker"
+      task_array = []
+      Task.where(user_id: current_user.id).each { |task| task_array << task.trip }
+      @trips = task_array.uniq
+    end
     @new_trip = Trip.new
   end
 
