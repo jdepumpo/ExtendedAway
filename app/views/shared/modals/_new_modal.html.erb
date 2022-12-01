@@ -1,0 +1,36 @@
+<!-- new Modal -->
+<% raise %>
+<div class="modal fade" id="newModal" tabindex="-1" aria-labelledby="newModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="newModalLabel">New <%= p modal.capitalize %></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <% case modal %>
+      <% when "task" %>
+        <%= simple_form_for model do |f| %>
+          <%= f.error_notification %>
+          <%= f.input :name %>
+          <%= f.input :category, collection: categories %>
+          <%= f.input :description %>
+          <%= f.button :submit, value: "Create Task", class: "btn-primary" %>
+          <!-- <%= f.button :button, 'Reset', type: :reset, class: 'btn btn-secundary' %> Reset button-->
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
+        <% end %>
+      <% when "trip" %>
+          <%= simple_form_for model do |f| %>
+            <%= f.error_notification %>
+            <%= f.input :name %>
+            <%= f.input :start_date, as: :date, html5: true %>
+            <%= f.input :end_date, as: :date, html5: true %>
+            <%= f.button :submit, value: "Create Trip", class: "btn-primary" %>
+            <!-- <%= f.button :button, 'Reset', type: :reset, class: 'btn btn-secundary' %> Reset button-->
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
+        <% end %>
+      <% end %>
+      </div>
+    </div>
+  </div>
+</div>
