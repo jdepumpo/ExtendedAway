@@ -43,7 +43,7 @@
         <%# <input type="checkbox" class="btn-check" id="btn-check-outlined" autocomplete="off"> %>
         <%# <label class="btn btn-outline-primary" for="btn-check-outlined">Single toggle</label><br> %>
         <% if task.done? %>
-          <%= link_to "☑️", task_path(task), data: {turbo_method: :patch}, class: "btn btn-primary disabled" %>
+          <%= link_to "☑️", task_path(task), data: {turbo_method: :patch}, class: "btn btn-primary" %>
           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse<%=i.to_s%>" aria-expanded="true" aria-controls="panelsStayOpen-collapse<%=i.to_s%>">
             <h5 class="m-0"><%= task.name %></h5><span class="badge bg-primary rounded-pill ms-5"><%= task.category.name %></span>
           </button>
