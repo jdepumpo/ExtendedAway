@@ -1,7 +1,7 @@
 class TripsController < ApplicationController
 
   def index
-    @trips = Trip.all
+    @trips = Trip.where(user_id: current_user.id)
     @new_trip = Trip.new
   end
 
@@ -9,6 +9,11 @@ class TripsController < ApplicationController
     @trip = Trip.find(params[:id])
     @task = Task.new
     @categories = Category.all
+    caretaker_array = []
+    @trip.tasks.each do |task|
+      caretaker_array << task.user
+    end
+    @caretakers = caretaker_array.uniq
   end
 
   def update

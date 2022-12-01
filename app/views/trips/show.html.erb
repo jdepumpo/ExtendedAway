@@ -1,15 +1,29 @@
 <%= render "shared/modals", modal: "task", model: [@trip, @task], categories: @categories, trip: @trip %>
-<h1><%= @trip.name %></h1>
-<h3><%= @trip.description %></h3>
-<h3><%= @trip.start_date.strftime('%a %d %b %Y') %> — <%= @trip.end_date.strftime('%a %d %b %Y') %></h3>
-<h3><%= @trip.user.email %></h3>
 
-<button type="button" class="btn btn-primary my-4" data-bs-toggle="modal" data-bs-target="#newModal">
-  Add a new task
-</button>
+<div class="card mt-3">
+  <div class="card-header d-flex align-items-center">
+    <h5><strong><%= @trip.name %></strong></h5>
+  </div>
+  <div class="card-body">
+    <h5>
+      <i class="fa-solid fa-calendar-days text-primary"></i>
+      <%= @trip.start_date.strftime('%a %d %b %Y') %> — <%= @trip.end_date.strftime('%a %d %b %Y') %>
+    </h5>
+    <p class="card-text"><%= @trip.description %></p>
+  </div>
+</div>
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 my-3 border-bottom">
+  <h1 class="h2">Trip Tasks</h1>
+  <div class="btn-toolbar mb-2 mb-md-0">
+    <button type="button" class="btn btn-primary my-2" data-bs-toggle="modal" data-bs-target="#newModal">
+      Add a new task
+    </button>
+  </div>
+</div>
 
 
-<div class="task-list accordion m-5" id="accordionPanelsStayOpenExample" data-controller="task-done">
+<div class="task-list accordion my-2" id="accordionPanelsStayOpenExample" data-controller="task-done">
   <% @trip.tasks.order(:id).each_with_index do |task, i| %>
     <div class="accordion-item">
       <div class="accordion-header d-flex align-items-center" id="panelsStayOpen-heading<%=i.to_s%>">
@@ -37,26 +51,25 @@
   <% end %>
 </div>
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Create a new Task</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <%= simple_form_for [@trip, @task] do |f| %>
-          <%= f.error_notification %>
-          <%= f.input :name %>
-          <%= f.input :category, collection: @categories %>
-          <%= f.input :description %>
-          <%= f.check_box :done %>
-          <%= f.button :submit, value: "Create Task", class: "btn-primary" %>
-          <!-- <%= f.button :button, 'Reset', type: :reset, class: 'btn btn-secundary' %> Reset button-->
-          <%= link_to 'Cancel', trip_path(@trip), class: 'btn btn-secundary' %>
-        <% end %>
-      </div>
-    </div>
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 my-3 border-bottom">
+  <h1 class="h2">Caretakers</h1>
+  <div class="btn-toolbar mb-2 mb-md-0">
+    <button type="button" class="btn btn-primary my-2" data-bs-toggle="modal" data-bs-target="#newModal">
+      Add a new caretaker
+    </button>
   </div>
 </div>
+
+<% @caretakers.each do |caretaker| %>
+  <div class="card mt-3">
+    <div class="card-header d-flex align-items-center">
+      <h5><strong><%= caretaker.first_name %> <%= caretaker.last_name %></strong></h5>
+    </div>
+    <div class="card-body">
+      <h5>
+        <i class="fa-solid fa-user text-primary"></i>
+      </h5>
+      <p class="card-text"><%= caretaker.email %></p>
+    </div>
+  </div>
+<% end %>
