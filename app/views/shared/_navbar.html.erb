@@ -24,7 +24,7 @@
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
               <%= link_to "#{current_user.first_name} #{current_user.last_name}", user_profile_path(current_user), class: "dropdown-item" %>
               <%= link_to "My trips", "#should_go_to_user_trips_page", class: "dropdown-item" %>
-              <%= link_to "Log out", "#", class: "dropdown-item", data: {turbo_method: :delete} %>
+              <%= link_to "Log out", destroy_user_session_path, class: "dropdown-item", data: {turbo_method: :delete} %>
             </div>
           </li>
         <% else %>
