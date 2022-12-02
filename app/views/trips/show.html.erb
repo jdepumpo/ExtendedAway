@@ -117,7 +117,9 @@
           <div id="calendar">
             <h4 class="fst-italic">Calendar</h4>
             <%= month_calendar do |date| %>
-              <%= date.strftime('%d') %>
+              <%= link_to trip_path(@trip, dates: date), class: "text-decoration-none link-dark" do %>
+                <%= date.strftime('%d') %>
+              <% end %>
             <% end %>
           </div>
           <div id="chat" class="p-4 my-3 bg-light rounded">
