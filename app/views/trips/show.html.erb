@@ -38,7 +38,7 @@
       </div>
 
       <div class="task-list accordion my-2" id="accordionPanelsStayOpenExample" data-controller="task-done">
-        <% @trip.tasks.order(:id).each_with_index do |task, i| %>
+        <% @tasks.order(:id).each_with_index do |task, i| %>
           <div class="accordion-item">
             <div class="accordion-header d-flex align-items-center" id="panelsStayOpen-heading<%=i.to_s%>">
               <!-- <input class="form-check-input m-3" type="checkbox" id="task-<%=i.to_s%>" data-action="change->task-done#changeDone"> checkbox -->
@@ -122,14 +122,14 @@
               <div class="card-body flex">
                 <div class="mb-4 justify-self-end text-end">
                   <div class="text-bg-primary p-3 justify-self-end rounded">
-                  Howdy doo buckaroo?
+                  Hey, thanks for agreeing to stop by!
                   </div>
                   <span class="badge rounded text-bg-primary">Me</span>
                   <small>16:30</small>
                 </div>
                 <div class="my-4 justify-self-end text-start">
                   <div class="text-bg-secondary p-3 justify-self-start rounded">
-                  Right back at'cha!
+                  No problem!
                   </div>
                   <span class="badge rounded text-bg-secondary">Loreta</span>
                   <small>16:34</small>
