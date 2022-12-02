@@ -2,7 +2,7 @@
 <%= render "shared/modals/edit_modal", modal: "trip", model: @trip %>
 
 <div class="row g-4">
-    <div class="col-md-7">
+  <div class="col-md-7">
 
       <div class="card mb-3">
         <%= image_tag "cancun.jpg", class: "card-img", style: "max-height: 400px; object-fit: cover;" %>
@@ -107,17 +107,55 @@
         </div>
         <% end %>
       </div>
-
-      <%= week_calendar(number_of_weeks: 1) do |date| %>
-        <%= date %>
-      <% end %>
     </div>
+
+
 
     <div class="col-md-4">
       <div class="position-sticky">
-        <div class="p-4 mb-3 bg-light rounded">
-          <h4 class="fst-italic">Calendar</h4>
-          <p class="mb-0">Calendar</p>
+        <div class="p-4 mb-3 bg-white rounded">
+          <div id="calendar">
+            <h4 class="fst-italic">Calendar</h4>
+            <%= month_calendar do |date| %>
+              <%= link_to trip_path(@trip, dates: date), class: "text-decoration-none link-dark" do %>
+                <%= date.strftime('%d') %>
+              <% end %>
+            <% end %>
+          </div>
+          <div id="chat" class="p-4 my-3 bg-light rounded">
+            <div class="card">
+              <div class="card-header">
+                Chat
+              </div>
+              <div class="card-body flex">
+                <div class="mb-4 justify-self-end text-end">
+                  <div class="text-bg-primary p-3 justify-self-end rounded">
+                  Howdy doo buckaroo?
+                  </div>
+                  <span class="badge rounded text-bg-primary">Me</span>
+                  <small>16:30</small>
+                </div>
+                <div class="my-4 justify-self-end text-start">
+                  <div class="text-bg-secondary p-3 justify-self-start rounded">
+                  Right back at'cha!
+                  </div>
+                  <span class="badge rounded text-bg-secondary">Loreta</span>
+                  <small>16:34</small>
+                </div>
+                <div class="mb-4 justify-self-end text-end">
+                  <div class="text-bg-primary p-3 justify-self-end rounded">
+                  Did you scrub the floorboards?
+                  </div>
+                  <span class="badge rounded text-bg-primary">Me</span>
+                  <small>16:38</small>
+                </div>
+                <div class="input-group mt-4">
+                  <input type="text" class="form-control" placeholder="New Message" aria-label="Message" aria-describedby="button-addon2">
+                  <button class="btn btn-outline-primary" type="button" id="button-addon2"><i class="fa-regular fa-paper-plane"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
