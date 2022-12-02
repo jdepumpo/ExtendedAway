@@ -11,7 +11,7 @@
       <% when "task" %>
         <%= simple_form_for model do |f| %>
           <%= f.error_notification %>
-          <%= f.input :name %>
+          <%= f.input :name, input_html: { class: "p-0" } %>
           <%= f.input :category, collection: categories %>
           <%= f.input :description %>
           <%= f.input :date, collection: @dates %>
