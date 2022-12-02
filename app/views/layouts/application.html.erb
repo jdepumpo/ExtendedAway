@@ -13,27 +13,17 @@
   </head>
 
   <body>
+    <%= render "shared/flashes" %>
 
     <% if params[:controller] == "pages" && params[:action] == "home" %>
      <%= yield %>
     <% else %>
-      <main class="container">
       <%= render "shared/navbar" %>
-      <%= yield %>
-    <% end %>
-
-      <%# <main class="container mt-4">
+      <main class="container mt-4" style="margin-left: 63px">
         <%= yield %>
-      <%# </main> %>
-
+      </main>
+      <%= render "shared/footer" %>
+    <% end %>
     <%= render "shared/flashes" %>
-
-
-
-
-    <%# <% unless params[:controller] == "pages" && params[:action] == "home" %>
-       <%#= render "shared/footer" %>
-    <%# end %>
-
   </body>
 </html>

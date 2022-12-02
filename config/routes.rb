@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users
+  namespace :users do
+    root to: "trips#index"
+  end
+
   root to: "pages#home"
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
@@ -14,4 +19,5 @@ Rails.application.routes.draw do
   get "users/:id/profile", to: "pages#profile", as: :user_profile
   # patch "trips/:trip_id/tasks/:id", to: "tasks#complete", as: :task_complete
   # patch "trips/:trip_id/tasks/:id", to: "tasks#uncomplete", as: :task_uncomplete
+
 end

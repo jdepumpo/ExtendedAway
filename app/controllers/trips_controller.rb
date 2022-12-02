@@ -22,6 +22,11 @@ class TripsController < ApplicationController
       caretaker_array << task.user
     end
     @caretakers = caretaker_array.uniq
+    if current_user.role == "homeowner"
+      @tasks = @trip.tasks
+    elsif current_user.role == "caretaker"
+      @tasks = @trip.tasks.where(user_id: current_user)
+    end
   end
 
   def update

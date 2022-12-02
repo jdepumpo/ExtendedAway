@@ -1,0 +1,6 @@
+.accordion-button::after {
+  margin-left: var(--bs-accordion-btn-padding-x);
+}
+.accordion-body{
+  padding: 16px calc(40px + var(--bs-accordion-btn-padding-x)) 16px calc(40px + var(--bs-accordion-btn-padding-x));
+}
