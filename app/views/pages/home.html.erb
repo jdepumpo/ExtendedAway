@@ -1,16 +1,49 @@
 <div class="d-flex">
-        <div class="left bg-light">
-            <%= image_tag "logo3", class: "homepagelogo" %>
-          <div>
-            <p style="font-size: 16px; margin: 10px 62px 10px 55px;">Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.</p>
-          </div>
-            <div class="homepagebuttons">
-              <button class="btn loginlandingpage" type="submit">Login</button>
-              <button class="btn loginlandingpage" type="submit">Learn more</button>
-            </div>
-        </div>
-
-        <div class="right">
-            <h1></h1>
-        </div>
+  <div class="left-pannel bg-light">
+     <%= image_tag "logo3", class: "homepagelogo" %>
+      <div>
+        <p style="font-size: 16px; margin: 10px 62px 10px 55px;">Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.</p>
+        <p style="font-size: 14px; margin: 0px 62px 3px 55px; text-decoration: underline;"><%= link_to "Learn more", root_path(anchor: "aboutus") %></p>
+      </div>
+      <div class="homepagebuttons">
+        <% if current_user %>
+          <%= link_to "My trips", trips_path, class:"btn loginlandingpage1" %>
+        <% else %>
+          <%= link_to "Login", new_user_session_path, class:"btn loginlandingpage1" %>
+          <%= link_to "Sign up", new_user_registration_path, class:"btn loginlandingpage2" %>
+        <% end %>
+      </div>
     </div>
+  <div class="right-pannel">
+  </div>
+</div>
+<div id="aboutus">
+    <h1 style="width: 245px;">About us and our mission</h1>
+    <p>Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups</p>
+
+  </div>
+<div id="features">
+  <h1 style="justify-content: center; display:flex">All you need to enjoy some peaceful days off</h1>
+    <div class="features-table">
+
+      <div class="featureinfo">
+        <%= image_tag "home", class: "featureicons" %>
+        <h4>Personal</h4>
+        <p>some info</p>
+      </div>
+
+      <div class="featureinfo">
+        <%= image_tag "friends", class: "featureicons" %>
+        <h4>Personal</h4>
+        <p>some info</p>
+      </div>
+
+      <div class="featureinfo">
+        <%= image_tag "login", class: "featureicons" %>
+        <h4>Personal</h4>
+        <p>some info</p>
+      </div>
+
+
+  </div>
+</div>
