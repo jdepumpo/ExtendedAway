@@ -17,9 +17,9 @@
     <% if params[:controller] == "pages" && params[:action] == "home" %>
      <%= yield %>
     <% else %>
-      <main class="container mt-4">
-      <%= yield %>
+      <main class="container">
       <%= render "shared/navbar" %>
+      <%= yield %>
     <% end %>
 
       <%# <main class="container mt-4">
