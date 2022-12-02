@@ -19,10 +19,11 @@
      <%= yield %>
     <% else %>
       <%= render "shared/navbar" %>
-        <main class="container mt-4" style="margin-left: 63px">
-          <%= yield %>
-        <%# </main> %>
-        <%#= render "shared/footer" %>
+      <main class="container mt-4" style="margin-left: 63px">
+        <%= yield %>
+      </main>
+      <%= render "shared/footer" %>
     <% end %>
+    <%= render "shared/flashes" %>
   </body>
 </html>
