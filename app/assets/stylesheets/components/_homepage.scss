@@ -9,7 +9,7 @@
 
 .left-pannel{
   width: 55%;
-  height: 5vw;
+  height: 50vw;
   background-color: #F5FAF7!important;
   display: flex;
   flex-direction: column;
@@ -68,7 +68,7 @@
 
 #aboutus{
   display: flex;
-  height: 500px;
+  height: 25vw;
   align-items: center;
   flex-direction: row;
   justify-content: flex-end;
@@ -87,25 +87,37 @@
 .features-table{
   display: flex;
   justify-content: space-evenly;
+  margin: 30px auto 30px auto;
+  width: 100%
 }
 
 .featureinfo{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 300px;
 
+  p{
+    text-align: center;
+    font-size: 15px;
+  }
 }
 
 .featureicons{
   margin-bottom: 25px;
-  width: 40px;
+  width: 60px;
 }
 
 #features{
   display: flex;
   flex-direction: column;
   margin-top: 20px;
+  background-color: rgba(227, 241, 234, 1.9);
+  height: 34vw;
+  justify-content: center;
 
   h1{
     justify-content: center;
-    margin-bottom: 34px;
     display: flex;
   }
 }
