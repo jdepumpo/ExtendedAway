@@ -1,1 +1,37 @@
 // Specific CSS for your home-page
+.right{
+  background-image: url("landpage2");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  width: 55%;
+  height: 45vw;
+}
+.left{
+  width: 55%;
+  height: 45vw;
+  background-color: #F5FAF7!important;
+  display: flex;
+  flex-direction: column;
+}
+.homepagelogo{
+  width: 350px;
+  margin: 152px 10px 14px 55px;
+}
+.homepagebuttons{
+  margin-left: 27px;
+}
+.loginlandingpage{
+  border: solid;
+  border-color: #008285;
+  color: #333333;
+  font-size: 14px;
+  border-radius: 13px;
+  margin: 15px 10px 10px 25px;
+}
+.loginlandingpage:hover{
+  background-color: rgba(0, 130, 133, 0.5);
+  border-radius: 13px;
+  color: white;
+  width: 83px;
+}
