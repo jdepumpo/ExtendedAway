@@ -37,7 +37,7 @@
       </div>
 
       <div class="task-list accordion my-2" id="accordionPanelsStayOpenExample" data-controller="task-done">
-        <% @tasks.order(:id).each_with_index do |task, i| %>
+        <% @tasks.order(:date).each_with_index do |task, i| %>
           <div class="accordion-item">
             <div class="accordion-header d-flex align-items-center" id="panelsStayOpen-heading<%=i.to_s%>">
               <!-- <input class="form-check-input m-3" type="checkbox" id="task-<%=i.to_s%>" data-action="change->task-done#changeDone"> checkbox -->
