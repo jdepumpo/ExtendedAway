@@ -2,9 +2,6 @@
   <div class="accordion-item" id="<%= "#{dom_id(task)}_container" %>">
     <%= turbo_frame_tag dom_id(task) do %>
     <div class="accordion-header d-flex align-items-center px-2" id="panelsStayOpen-heading<%=i.to_s + 0.to_s + day.to_s%>">
-      <!-- <input class="form-check-input m-3" type="checkbox" id="task-<%=i.to_s + 0.to_s + day.to_s%>" data-action="change->task-done#changeDone"> checkbox -->
-      <%# <input type="checkbox" class="btn-check" id="btn-check-outlined" autocomplete="off"> %>
-      <%# <label class="btn btn-outline-primary" for="btn-check-outlined">Single toggle</label><br> %>
       <% if task.done? %>
         <%= link_to task_path(task), data: {turbo_method: :patch}, class: "btn btn-success rounded" do %>
           <svg xmlns="http://www.w3.org/2000/svg" class="text-light" style="width: 22px;" viewBox="0 0 20 20" fill="white">
