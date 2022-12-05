@@ -1,0 +1,26 @@
+<%= simple_form_for @trip do |f| %>
+  <%= f.error_notification %>
+  <div class="card rounded mb-3">
+    <div class="card-header">
+      <h5 class="card-title"><i class="fa-solid fa-plane-departure"></i> Trip</h5>
+    </div>
+    <div class="card-body p-3">
+      <%= f.input :name %>
+      <%= f.input :description %>
+      <%= f.input :start_date, as: :date, html5: true %>
+      <%= f.input :end_date, as: :date, html5: true %>
+    </div>
+  </div>
+  <div class="card rounded mb-3">
+    <div class="card-header">
+      <h5 class="card-title"><i class="fa-solid fa-location-dot"></i> Home</h5>
+    </div>
+    <div class="card-body p-3">
+      <%= f.input :location %>
+      <%= f.input :entry_type, collection: ["Lockbox", "Digital Lock", "Hidden Key", "Other"], as: :radio_buttons %>
+      <%= f.input :entry_key, as: :password %>
+      <%= f.input :entry_description %>
+    </div>
+  </div>
+  <%= f.button :submit, value: "Save Trip", class: "btn-primary" %>
+<% end %>
