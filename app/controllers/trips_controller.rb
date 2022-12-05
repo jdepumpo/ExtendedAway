@@ -24,9 +24,10 @@ class TripsController < ApplicationController
       caretaker_array << task.user
     end
     @caretakers = caretaker_array.uniq
-    if current_user.role == "homeowner"
+    case current_user.role
+    when "homeowner"
       @tasks = @trip.tasks
-    elsif current_user.role == "caretaker"
+    when "caretaker"
       @tasks = @trip.tasks.where(user_id: current_user)
     end
     @picture_array = ["https://images.pexels.com/photos/2356059/pexels-photo-2356059.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2", "https://images.pexels.com/photos/208701/pexels-photo-208701.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2", "https://images.pexels.com/photos/1285625/pexels-photo-1285625.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2", "https://images.pexels.com/photos/176395/pexels-photo-176395.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2", "https://images.pexels.com/photos/209878/pexels-photo-209878.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"]
