@@ -36,15 +36,15 @@
           </button>
         </div>
       </div>
-      <div class="day-cards">
-        <%= @dates.each_with_index do |date, i| %>
-          <div class="card" style="width: 18rem;">
+      <div class="card-deck d-flex align-content-start justify-content-between flex-wrap">
+        <% @dates.each_with_index do |date, i| %>
+          <div class="card m-2" style="width: 20rem; border-radius: 13px; overflow: auto;" >
             <div class="card-body">
               <% if @dates.count <= 10 %>
-                <h5 class="card-title">Day <%= i + 1 %></h5>
+                <h5 class="card-title my-2">Day <%= i + 1 %></h5>
                 <h6 class="card-subtitle mb-2 text-muted"><%= date.to_s %></h6>
               <% else %>
-                <h5 class="card-title"><%= date.to_s %></h5>
+                <h5 class="card-title my-2"><%= date.to_s %></h5>
                 <h6 class="card-subtitle mb-2 text-muted">Day <%= i + 1 %></h6>
               <% end %>
                 <div class="task-list accordion my-2" id="accordionPanelsStayOpenExample">
@@ -52,10 +52,9 @@
                     <p class="mb-2 text-muted">No tasks today...</p>
                   <% else %>
                     <%= render "trips/task", tasks: @trip.tasks.where(date: date), day: i+1 %>
+                    <p class="card-text mt-2">Who's coming: <%=link_to 'Caretaker name', '#', class: "card-link"%></p>
                   <% end %>
                 </div>
-              <p class="card-text">Hwo's coming:</p>
-              <a href="#" class="card-link"></a>
             </div>
           </div>
         <% end %>

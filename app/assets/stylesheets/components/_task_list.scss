@@ -1,6 +1,44 @@
 .accordion-button::after {
-  margin-left: var(--bs-accordion-btn-padding-x);
+  // margin-left: var(--bs-accordion-btn-padding-x);
+  margin-left: 0.5rem;
 }
 .accordion-body{
-  padding: 16px calc(40px + var(--bs-accordion-btn-padding-x)) 16px calc(40px + var(--bs-accordion-btn-padding-x));
+  padding: 0.5rem 24px 0.5rem 24px;
+  font-size: 0.9rem;
+}
+.task-list {
+ p{
+  font-size: 0.9rem;
+ }
+}
+.accordion-button{
+  h5 {
+    font-size: medium;
+  }
+  span{
+    font-size: x-small;
+  }
+}
+.accordion-button:not(.collapsed) {
+  color: $gray;
+  background-color: $accordion-bg;
+  border: none;
+  box-shadow: none;
+}
+.accordion-item{
+  border: none;
+  color: #6c757d;
+}
+.checkmark-done:hover{
+  fill: darkgreen;
+}
+.checkmark-undone:hover{
+  fill: darkgrey;
+}
+.card-title {
+  font-size: 2rem;
+  font-family: $headers-font;;
+}
+.card{
+
 }
