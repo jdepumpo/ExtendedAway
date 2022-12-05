@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_01_152816) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_05_141342) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -23,7 +23,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_01_152816) do
   create_table "tasks", force: :cascade do |t|
     t.string "name"
     t.text "description"
-    t.boolean "done", default: false
+    t.boolean "done"
     t.integer "repeat_every"
     t.bigint "trip_id", null: false
     t.bigint "user_id", null: false
@@ -44,6 +44,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_01_152816) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "location"
+    t.string "entry_type"
+    t.string "entry_key"
+    t.text "entry_description"
+    t.string "entry_image"
     t.index ["user_id"], name: "index_trips_on_user_id"
   end
 

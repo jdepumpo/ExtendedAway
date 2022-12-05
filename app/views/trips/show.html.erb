@@ -4,29 +4,29 @@
 
 <div class="row g-4">
   <div class="col-md-8">
-      <div class="card">
-        <%= image_tag @picture_array.sample, class: "card-img", style: "max-height: 400px; object-fit: cover;" %>
-          <div class="card-header d-flex align-items-center">
-          <div class="flex-grow-1">
-          <h5><strong><%= @trip.name %></strong></h5>
-          </div>
-          <div>
-            <%= link_to trip_path(@trip), class: "card-link btn btn-secondary", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
-              <i class="fa-regular fa-trash-can"></i>
-            <% end %>
-            <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#editModal">
-              <i class="fa-regular fa-pen-to-square"></i>
-            </button>
-          </div>
-        </div>
-        <div class="card-body">
-          <h5>
-            <i class="fa-solid fa-calendar-days text-primary"></i>
-            <%= @trip.start_date.strftime('%a %d %b %Y') %> — <%= @trip.end_date.strftime('%a %d %b %Y') %>
-          </h5>
-          <p class="card-text"><%= @trip.description %></p>
-        </div>
+
+    <div class="card">
+    <div class="p-4 p-md-5 rounded text-bg-dark position-relative" style="background: center / cover no-repeat url('<%= image_path @picture_array.sample %>');">
+        <span class="position-absolute top-0 end-0 badge rounded-start bg-secondary">
+          Starting in <%= (@trip.start_date - Date.today).to_i %> days
+        </span>
+      <div class="col-md-8 px-0">
+        <h2 class="display-4 fst-italic text-shadow"><%= @trip.name %></h2>
+        <p class="lead my-3 text-shadow"><%= @trip.description %></p>
+        <h3 class="mb-0 lead">
+          <span class="badge bg-secondary">
+            <i class="fa-solid fa-calendar-days text-light"></i>
+            <span class="px-2"><%= @trip.start_date.strftime('%a %d %b %Y') %> — <%= @trip.end_date.strftime('%a %d %b %Y') %></span>
+          </span>
+        </h3>
       </div>
+    </div>
+      <div class="card-footer bg-white rounded-bottom d-flex justify-content-end">
+        <%= link_to trip_path(@trip), class: "btn btn-light", data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this task?" } do %>
+          <i class="fa-regular fa-trash-can"></i>
+        <% end %>
+      </div>
+    </div>
 
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 my-3 border-bottom">
         <h1 class="h2">Tasks</h1>
