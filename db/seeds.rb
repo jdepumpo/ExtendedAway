@@ -1,3 +1,4 @@
+require "open-uri"
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
 #
@@ -12,13 +13,16 @@ puts "Sweeping away trips..."
 Trip.delete_all
 puts "Mopping up users"
 User.delete_all
+puts "Wiping away categories"
+Category.delete_all
 
 puts "_______________________"
 
 puts "Baking up two users with the role 'homeowner'"
 homeowner_array = []
 2.times do |i|
-  homeowner = User.create({
+  prof_pic = URI.open(Faker::LoremFlickr.image(size: "100x100", search_terms: ['profile']))
+  homeowner = User.new({
                             first_name: Faker::Name.first_name,
                             last_name: Faker::Name.last_name,
                             location: Faker::Address.full_address,
@@ -26,6 +30,8 @@ homeowner_array = []
                             email: "#{i + 1}@homeowner.com",
                             password: "123456"
                           })
+  homeowner.photo.attach(io: prof_pic, filename: "homeowner#{i}.jpg", content_type: "image/jpg")
+  homeowner.save
   homeowner_array << homeowner
   puts "+++ #{homeowner.first_name} #{homeowner.last_name}"
 end
@@ -35,6 +41,7 @@ puts "_______________________"
 caretaker_array = []
 puts "Grilling a few users with the role 'caretaker'"
 6.times do |i|
+  prof_pic = URI.open(Faker::LoremFlickr.image(size: "100x100", search_terms: ['profile']))
   caretaker = User.create({
                             first_name: Faker::Name.first_name,
                             last_name: Faker::Name.last_name,
@@ -44,6 +51,8 @@ puts "Grilling a few users with the role 'caretaker'"
                             password: "123456"
                           })
   caretaker_array << caretaker
+  caretaker.photo.attach(io: prof_pic, filename: "caretaker#{i}.jpg", content_type: "image/jpg")
+  caretaker.save
   puts "+++ #{caretaker.first_name} #{caretaker.last_name}"
 end
 
@@ -57,8 +66,9 @@ trip_array = []
   trip = Trip.new({
                     name: "#{city} #{Faker::Verb.ing_form} trip",
                     description: Faker::Lorem.sentences(number: 3).join(" "),
-                    start_date: "2023-01-#{rand(10..27)}",
-                    end_date: "2023-02-#{rand(1..20)}"
+                    start_date: Date.parse("2023-01-#{rand(10..27)}"),
+                    end_date: Date.parse("2023-02-#{rand(1..20)}"),
+                    entry_type: ["Lockbox", "Digital Lock", "Hidden Key", "Other"].sample
                   })
   trip.user = homeowner_array.sample
   trip.save
@@ -76,7 +86,6 @@ categories_array.each do |e|
   puts e
   Category.create({ name: e })
 end
-
 
 puts "_______________________"
 
@@ -111,8 +120,8 @@ tasks_array = [
                     name: tasks[0],
                     description: tasks[1]
                   })
-  task.user = caretaker_array.sample
   task.trip = trip_array.sample
+  task.user = caretaker_array.sample
   trip_dates = ((Date.new(task.trip.start_date.year, task.trip.start_date.month, task.trip.start_date.day))..(Date.new(task.trip.end_date.year, task.trip.end_date.month, task.trip.end_date.day))).to_a
   task.date = trip_dates.sample
   task.category = Category.find_by({ name: tasks[2] })
