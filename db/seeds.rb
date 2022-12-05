@@ -19,13 +19,13 @@ puts "Baking up two users with the role 'homeowner'"
 homeowner_array = []
 2.times do |i|
   homeowner = User.create({
-    first_name: Faker::Name.first_name,
-    last_name: Faker::Name.last_name,
-    location: Faker::Address.full_address,
-    role: "homeowner",
-    email: "#{i + 1}@homeowner.com",
-    password: "123456"
-  })
+                            first_name: Faker::Name.first_name,
+                            last_name: Faker::Name.last_name,
+                            location: Faker::Address.full_address,
+                            role: "homeowner",
+                            email: "#{i + 1}@homeowner.com",
+                            password: "123456"
+                          })
   homeowner_array << homeowner
   puts "+++ #{homeowner.first_name} #{homeowner.last_name}"
 end
@@ -36,13 +36,13 @@ caretaker_array = []
 puts "Grilling a few users with the role 'caretaker'"
 6.times do |i|
   caretaker = User.create({
-    first_name: Faker::Name.first_name,
-    last_name: Faker::Name.last_name,
-    location: Faker::Address.full_address,
-    role: "caretaker",
-    email: "#{i + 1}@caretaker.com",
-    password: "123456"
-  })
+                            first_name: Faker::Name.first_name,
+                            last_name: Faker::Name.last_name,
+                            location: Faker::Address.full_address,
+                            role: "caretaker",
+                            email: "#{i + 1}@caretaker.com",
+                            password: "123456"
+                          })
   caretaker_array << caretaker
   puts "+++ #{caretaker.first_name} #{caretaker.last_name}"
 end
@@ -55,11 +55,11 @@ trip_array = []
 5.times do
   city = Faker::Address.city
   trip = Trip.new({
-    name: "#{city} #{Faker::Verb.ing_form} trip",
-    description: Faker::Lorem.sentences(number: 3).join(" "),
-    start_date: "2023-01-#{(10..27)}",
-    end_date: "2023-02-#{(10..27)}"
-  })
+                    name: "#{city} #{Faker::Verb.ing_form} trip",
+                    description: Faker::Lorem.sentences(number: 3).join(" "),
+                    start_date: "2023-01-#{rand(10..27)}",
+                    end_date: "2023-02-#{rand(1..20)}"
+                  })
   trip.user = homeowner_array.sample
   trip.save
   trip_array << trip
@@ -74,7 +74,7 @@ categories_array = ["Mail", "Plants", "General", "Security", "Animals", "Mainten
 
 categories_array.each do |e|
   puts e
-  Category.create({name: e})
+  Category.create({ name: e })
 end
 
 
@@ -108,12 +108,14 @@ tasks_array = [
 20.times do |i|
   tasks = tasks_array[i - 1]
   task = Task.new({
-    name: tasks[0],
-    description: tasks[1],
-  })
+                    name: tasks[0],
+                    description: tasks[1]
+                  })
   task.user = caretaker_array.sample
   task.trip = trip_array.sample
-  task.category = Category.find_by({name: tasks[2]})
+  trip_dates = ((Date.new(task.trip.start_date.year, task.trip.start_date.month, task.trip.start_date.day))..(Date.new(task.trip.end_date.year, task.trip.end_date.month, task.trip.end_date.day))).to_a
+  task.date = trip_dates.sample
+  task.category = Category.find_by({ name: tasks[2] })
   task.save
   puts "+++ #{task.name}"
 end
