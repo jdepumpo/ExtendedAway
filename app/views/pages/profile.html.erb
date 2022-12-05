@@ -2,7 +2,7 @@
   <div class="col-12">
     <div class="card shadow w-100 rounded">
       <div class="card-body p-0">
-        <div class="card-header py-3">
+        <div class="card-header py-3 d-flex align-items-center">
           <div class="flex-grow-1">
             <h5><strong>My Profile</strong></h5>
           </div>
@@ -12,7 +12,9 @@
             </button>
           </div>
         </div>
-        <h5 class="card-title p-3 m-0">
+        <div class="card-body p-3 m-0">
+          <%= cl_image_tag @user.photo.key, width: 100, crop: :fill, class: "img-thumbnail rounded-circle mb-2" %>
+        <h5>
           <strong>Email:</strong>
           <p><%= @user.email %></p>
           <strong>First Name:</strong>
@@ -20,6 +22,7 @@
           <strong>Last Name:</strong>
           <p><%= @user.last_name %></p>
         </h5>
+        </div>
       </div>
     </div>
   </div>

@@ -1,0 +1,40 @@
+<% tasks.order(:date).each_with_index do |task, i| %>
+  <div class="accordion-item" id="<%= "#{dom_id(task)}_container" %>">
+    <%= turbo_frame_tag dom_id(task) do %>
+    <div class="accordion-header d-flex align-items-center px-2" id="panelsStayOpen-heading<%=i.to_s + 0.to_s + day.to_s%>">
+      <% if task.done? %>
+        <%= link_to task_path(task), data: {turbo_method: :patch}, class: "btn btn-success rounded" do %>
+          <svg xmlns="http://www.w3.org/2000/svg" class="text-light" style="width: 22px;" viewBox="0 0 20 20" fill="white">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+          </svg>
+        <% end %>
+        <button class="accordion-button collapsed d-flex" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse<%=i.to_s + 0.to_s + day.to_s%>" aria-expanded="true" aria-controls="panelsStayOpen-collapse<%=i.to_s + 0.to_s + day.to_s%>">
+            <h5 class="flex-grow-1 m-0 text-secondary text-decoration-line-through"><%= task.name %></h5>
+            <span class="badge bg-secondary rounded-pill"><%= task.category.name %></span>
+        </button>
+        <%= link_to task_path(task), class: "btn btn-body-color", data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this task?" } do %>
+          <i class="fa-regular fa-trash-can"></i>
+        <% end %>
+      <% else %>
+        <%= link_to task_path(task), data: {turbo_method: :patch}, class: "btn btn-secondary rounded" do %>
+          <svg xmlns="http://www.w3.org/2000/svg" class="text-light" style="width: 22px;" viewBox="0 0 20 20" fill="lightgrey">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+          </svg>
+        <% end %>
+        <button class="accordion-button collapsed d-flex" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse<%=i.to_s + 0.to_s + day.to_s%>" aria-expanded="true" aria-controls="panelsStayOpen-collapse<%=i.to_s + 0.to_s + day.to_s%>">
+            <h5 class="flex-grow-1 m-0"><%= task.name %></h5>
+            <span class="badge bg-secondary rounded-pill"><%= task.category.name %></span>
+        </button>
+        <%= link_to task_path(task), class: "btn btn-body-color", data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this task?" } do %>
+          <i class="fa-regular fa-trash-can"></i>
+        <% end %>
+      <% end %>
+    </div>
+    <div id="panelsStayOpen-collapse<%=i.to_s + 0.to_s + day.to_s%>" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-heading<%=i.to_s + 0.to_s + day.to_s%>">
+      <div class="accordion-body">
+        <%= task.description %>
+      </div>
+    </div>
+  <% end %>
+  </div>
+<% end %>
