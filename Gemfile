@@ -84,4 +84,3 @@ gem 'omniauth-facebook'
 gem 'figaro'
 gem 'omniauth'
 gem "cloudinary"
-
