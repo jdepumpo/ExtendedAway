@@ -3,7 +3,7 @@
 
 
 <div class="row g-4">
-  <div class="col-md-8">
+ <!-- <div class="col-md-8"> -->
 
     <div class="card">
     <div class="p-4 p-md-5 rounded text-bg-dark position-relative" style="background: center / cover no-repeat url('<%= image_path @picture_array.sample %>');">
@@ -67,33 +67,23 @@
         <h1 class="h2">Caretakers</h1>
         <div class="btn-toolbar mb-2 mb-md-0">
           <button type="button" class="btn btn-primary my-2" <%# data-bs-toggle="modal" data-bs-target="#newModal" %>>
-            Add a new caretaker
+            +
           </button>
         </div>
       </div>
 
-      <div class="row row-cols-1 row-cols-md-3 g-2 mb-4">
+      <div class="d-flex justify-content-evenly">
         <% @caretakers.each do |caretaker| %>
-          <div class="col">
-            <div class="card mt-3">
-              <div class="card-header d-flex align-items-center">
-                <h5><strong><%= caretaker.first_name %> <%= caretaker.last_name %></strong></h5>
-              </div>
-              <div class="card-body">
-                <h5>
-                  <i class="fa-solid fa-user text-primary"></i>
-                </h5>
-                <p class="card-text"><%= caretaker.email %></p>
-              </div>
-            </div>
-          </div>
+          <%= link_to user_profile_path(caretaker), data: { "bs-toggle": "tooltip", "bs-placement": "top", "bs-title": "#{caretaker.first_name} #{caretaker.last_name}" } do %>
+            <%= cl_image_tag caretaker.photo.key, style: "width: 100px;", class: "rounded-circle" %>
+          <% end %>
         <% end %>
       </div>
     </div>
 
 
 
-    <div class="col-md-4">
+   <!-- <div class="col-md-4">
       <div class="position-sticky">
         <div class="p-4 mb-3 bg-white rounded">
           <div id="calendar">
@@ -140,5 +130,5 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
