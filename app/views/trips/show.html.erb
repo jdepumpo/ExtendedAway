@@ -11,10 +11,11 @@
           <h5><strong><%= @trip.name %></strong></h5>
           </div>
           <div>
-            <%= link_to trip_path(@trip), class: "card-link btn btn-primary", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
+
+            <%= link_to trip_path(@trip), class: "card-link btn clickshow, data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
               <i class="fa-regular fa-trash-can"></i>
             <% end %>
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal">
+            <button type="button" class="btn clickshow" data-bs-toggle="modal" data-bs-target="#editModal">
               <i class="fa-regular fa-pen-to-square"></i>
             </button>
           </div>
@@ -31,7 +32,7 @@
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 my-3 border-bottom">
         <h1 class="h2">Tasks</h1>
         <div class="btn-toolbar mb-2 mb-md-0">
-          <button type="button" class="btn btn-primary my-4" data-bs-toggle="modal" data-bs-target="#newModal">
+          <button type="button" class="btn clickshow" data-bs-toggle="modal" data-bs-target="#newModal">
             Add a new task
           </button>
         </div>
@@ -45,21 +46,21 @@
               <%# <input type="checkbox" class="btn-check" id="btn-check-outlined" autocomplete="off"> %>
               <%# <label class="btn btn-outline-primary" for="btn-check-outlined">Single toggle</label><br> %>
               <% if task.done? %>
-                <%= link_to "☑️", task_path(task), data: {turbo_method: :patch}, class: "btn btn-primary" %>
+                <%= link_to "☑️", task_path(task), data: {turbo_method: :patch}, class: "btn clickshow" %>
                 <button class="accordion-button collapsed d-flex" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse<%=i.to_s%>" aria-expanded="true" aria-controls="panelsStayOpen-collapse<%=i.to_s%>">
                     <h5 class="flex-grow-1 m-0"><%= task.name %></h5>
                     <span class="badge bg-primary rounded-pill"><%= task.category.name %></span>
                 </button>
-                <%= link_to task_path(task), class: "btn btn-body-color", data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this task?" } do %>
+                <%= link_to task_path(task), class: "btn clickshow", data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this task?" } do %>
                   <i class="fa-regular fa-trash-can"></i>
                 <% end %>
               <% else %>
-                <%= link_to "☐", task_path(task), data: {turbo_method: :patch}, class: "btn btn-secundary" %>
+                <%= link_to "☐", task_path(task), data: {turbo_method: :patch}, class: "btn clickshow" %>
                 <button class="accordion-button collapsed d-flex" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse<%=i.to_s%>" aria-expanded="true" aria-controls="panelsStayOpen-collapse<%=i.to_s%>">
                     <h5 class="flex-grow-1 m-0"><%= task.name %></h5>
                     <span class="badge bg-primary rounded-pill"><%= task.category.name %></span>
                 </button>
-                <%= link_to task_path(task), class: "btn btn-body-color", data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this task?" } do %>
+                <%= link_to task_path(task), class: "btn clickshow", data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this task?" } do %>
                   <i class="fa-regular fa-trash-can"></i>
                 <% end %>
               <% end %>
