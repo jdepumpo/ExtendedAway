@@ -79,3 +79,8 @@ group :test do
 end
 
 gem "simple_calendar", "~> 2.4"
+
+gem 'omniauth-facebook'
+gem 'figaro'
+gem 'omniauth'
+gem "cloudinary"
