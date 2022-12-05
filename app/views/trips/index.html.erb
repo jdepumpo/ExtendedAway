@@ -10,6 +10,23 @@
 </div>
 
 <% @trips.order(:start_date).each do |trip| %>
+  <%= link_to trip_path(trip.id), class: "text-decoration-none text-reset" do %>
+    <div class="p-4 p-md-5 mb-5 rounded text-bg-dark position-relative" style="background: center / cover no-repeat url('<%= image_path @picture_array.sample %>');">
+      <div class="col-md-8 px-0">
+        <h2 class="display-4 fst-italic text-shadow"><%= trip.name %></h2>
+        <p class="lead my-3 text-shadow"><%= trip.description %></p>
+        <h3 class="mb-0 lead">
+          <span class="badge bg-secondary">
+            <i class="fa-solid fa-calendar-days text-primary"></i>
+            <%= trip.start_date.strftime('%a %d %b %Y') %> — <%= trip.end_date.strftime('%a %d %b %Y') %>
+          </span>
+        </h3>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+
+<% @trips.order(:start_date).each do |trip| %>
 <%= link_to trip_path(trip.id), class: "text-decoration-none text-reset" do %>
 <div class="card mt-3 shadow-hover:hover">
 <%= image_tag @picture_array.sample, class: "card-img", style: "max-height: 200px; object-fit: cover;" %>
