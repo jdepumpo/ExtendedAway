@@ -9,19 +9,18 @@
   </div>
 </div>
 
-<% @trips.each do |trip| %>
-
-<div class="card mt-3">
-  <div class="card-header d-flex align-items-center">
-    <h5><strong><%= trip.name %></strong></h5>
+<% @trips.order(:start_date).each do |trip| %>
+  <div class="card mt-3">
+    <div class="card-header d-flex align-items-center">
+      <h5><strong><%= trip.name %></strong></h5>
+    </div>
+    <div class="card-body">
+      <h5>
+        <i class="fa-solid fa-calendar-days text-primary"></i>
+        <%= trip.start_date.strftime('%a %d %b %Y') %> — <%= trip.end_date.strftime('%a %d %b %Y') %>
+      </h5>
+      <p class="card-text"><%= trip.description %></p>
+      <%= link_to "Open", trip_path(trip.id), class: "btn btn-primary" %>
+    </div>
   </div>
-  <div class="card-body">
-    <h5>
-      <i class="fa-solid fa-calendar-days text-primary"></i>
-      <%= trip.start_date.strftime('%a %d %b %Y') %> — <%= trip.end_date.strftime('%a %d %b %Y') %>
-    </h5>
-    <p class="card-text"><%= trip.description %></p>
-    <%= link_to "Open", trip_path(trip.id), class: "btn btn-primary" %>
-  </div>
-</div>
 <% end %>
