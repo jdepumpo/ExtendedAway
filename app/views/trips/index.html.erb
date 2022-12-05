@@ -9,11 +9,17 @@
   </div>
 </div>
 
-<% @trips.each do |trip| %>
-
-<div class="card mt-3">
+<% @trips.order(:start_date).each do |trip| %>
+<%= link_to trip_path(trip.id), class: "text-decoration-none text-reset" do %>
+<div class="card mt-3 shadow-hover:hover">
+<%= image_tag @picture_array.sample, class: "card-img", style: "max-height: 200px; object-fit: cover;" %>
   <div class="card-header d-flex align-items-center">
-    <h5><strong><%= trip.name %></strong></h5>
+    <div class="flex-grow-1">
+      <h5><strong><%= trip.name %></strong></h5>
+      </div>
+      <div>
+        <p>Starting in <%= (trip.start_date - Date.today).to_i %> days</p>
+      </div>
   </div>
   <div class="card-body">
     <h5>
@@ -21,7 +27,7 @@
       <%= trip.start_date.strftime('%a %d %b %Y') %> — <%= trip.end_date.strftime('%a %d %b %Y') %>
     </h5>
     <p class="card-text"><%= trip.description %></p>
-    <%= link_to "Open", trip_path(trip.id), class: "btn btn-primary" %>
   </div>
 </div>
+<% end %>
 <% end %>
