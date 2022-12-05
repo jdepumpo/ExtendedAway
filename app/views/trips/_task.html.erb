@@ -1,8 +1,8 @@
 <% tasks.order(:date).each_with_index do |task, i| %>
   <div class="accordion-item" id="<%= "#{dom_id(task)}_container" %>">
     <%= turbo_frame_tag dom_id(task) do %>
-    <div class="accordion-header d-flex align-items-center px-2" id="panelsStayOpen-heading<%=i.to_s%>">
-      <!-- <input class="form-check-input m-3" type="checkbox" id="task-<%=i.to_s%>" data-action="change->task-done#changeDone"> checkbox -->
+    <div class="accordion-header d-flex align-items-center px-2" id="panelsStayOpen-heading<%=i.to_s + 0.to_s + day.to_s%>">
+      <!-- <input class="form-check-input m-3" type="checkbox" id="task-<%=i.to_s + 0.to_s + day.to_s%>" data-action="change->task-done#changeDone"> checkbox -->
       <%# <input type="checkbox" class="btn-check" id="btn-check-outlined" autocomplete="off"> %>
       <%# <label class="btn btn-outline-primary" for="btn-check-outlined">Single toggle</label><br> %>
       <% if task.done? %>
@@ -11,7 +11,7 @@
             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
           </svg>
         <% end %>
-        <button class="accordion-button collapsed d-flex" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse<%=i.to_s%>" aria-expanded="true" aria-controls="panelsStayOpen-collapse<%=i.to_s%>">
+        <button class="accordion-button collapsed d-flex" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse<%=i.to_s + 0.to_s + day.to_s%>" aria-expanded="true" aria-controls="panelsStayOpen-collapse<%=i.to_s + 0.to_s + day.to_s%>">
             <h5 class="flex-grow-1 m-0 text-secondary text-decoration-line-through"><%= task.name %></h5>
             <span class="badge bg-secondary rounded-pill"><%= task.category.name %></span>
         </button>
@@ -24,7 +24,7 @@
             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
           </svg>
         <% end %>
-        <button class="accordion-button collapsed d-flex" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse<%=i.to_s%>" aria-expanded="true" aria-controls="panelsStayOpen-collapse<%=i.to_s%>">
+        <button class="accordion-button collapsed d-flex" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse<%=i.to_s + 0.to_s + day.to_s%>" aria-expanded="true" aria-controls="panelsStayOpen-collapse<%=i.to_s + 0.to_s + day.to_s%>">
             <h5 class="flex-grow-1 m-0"><%= task.name %></h5>
             <span class="badge bg-secondary rounded-pill"><%= task.category.name %></span>
         </button>
@@ -33,7 +33,7 @@
         <% end %>
       <% end %>
     </div>
-    <div id="panelsStayOpen-collapse<%=i.to_s%>" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-heading<%=i.to_s%>">
+    <div id="panelsStayOpen-collapse<%=i.to_s + 0.to_s + day.to_s%>" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-heading<%=i.to_s + 0.to_s + day.to_s%>">
       <div class="accordion-body">
         <%= task.description %>
       </div>
