@@ -1,20 +1,72 @@
-<h2>Log in</h2>
+<div class="login_container" data-controller="login" id="login_container">
+	<div class="form-container sign-up-container">
 
-<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: :false }) do |f| %>
-  <div class="form-inputs">
+		<form class ="login-form"action="#">
+			<h1 style="display:flex; justify-content:center; color:black">Create Account</h1>
+			<div class="social-container" style="margin: 15px;">
+        <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+				<a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+				<a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+			</div>
+			<input class="sign_in_input" type="text" placeholder="First name" />
+      <input class="sign_in_input" type="text" placeholder="Last name" />
+			<input class="sign_in_input" type="email" placeholder="Email" />
+			<input class="sign_in_input" type="password" placeholder="Password" />
+			<center> <button  class="form_signin_button">Sign Up  </button> </center>
+		</form>
+	</div>
+
+
+	<div class="form-container sign-in-container">
+    <h1>Sign in</h1>
+			<div class="social-container">
+      <%- if devise_mapping.omniauthable? %>
+        <%- resource_class.omniauth_providers.each do |provider| %>
+          <%= link_to omniauth_authorize_path(resource_name, provider), method: :post do %>
+            <i class="fab fa-facebook-f"></i>
+          <% end %>
+        <% end %>
+      <% end %>
+				<a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+				<a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+			</div>
+	<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), class: "form_signin",
+  data: {turbo: false}) do |f| %>
+    <div class="social-container-inputs">
     <%= f.input :email,
                 required: false,
                 autofocus: true,
-                input_html: { autocomplete: "email" } %>
+                input_html: { autocomplete: "email", class: "sign_in_input" } %>
     <%= f.input :password,
                 required: false,
-                input_html: { autocomplete: "current-password" } %>
+                input_html: { autocomplete: "current-password", class: "sign_in_input" }, class: "sign_in_input" %>
     <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
   </div>
-
   <div class="form-actions">
-    <%= f.button :submit, "Log in" %>
-  </div>
+    <%= f.button :submit, "Log in", class: "form_signin_button" %>
 <% end %>
+  </div>
 
-<%= render "devise/shared/links" %>
+	</div>
+	<div class="overlay-container">
+		<div class="overlay">
+			<div class="overlay-panel overlay-left">
+			</div>
+			<div class="overlay-panel overlay-right">
+        <div id="signInMessage"class="sign-in d-none">
+          <h1>Welcome Back!</h1>
+				  <p>To keep connected with us please login with your personal info</p>
+				  <button class=" form_signin_button ghost" id="signIn">Sign In</button>
+        </div>
+        <div id="signUpMessage" class="sign-up">
+        	<h1>Hello, Friend!</h1>
+				  <p>Enter your personal details and start your journey with us</p>
+				  <button class=" form_signin_button ghost" id="signUp">Sign Up</button>
+        </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<%#= render "devise/shared/links" %>
+
