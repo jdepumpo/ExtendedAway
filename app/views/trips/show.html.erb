@@ -71,11 +71,21 @@
         </div>
       </div>
 
-      <div class="d-flex justify-content-evenly">
+      <div class="d-flex justify-content-start px-0">
         <% @caretakers.each do |caretaker| %>
-          <%= link_to user_profile_path(caretaker), data: { "bs-toggle": "tooltip", "bs-placement": "top", "bs-title": "#{caretaker.first_name} #{caretaker.last_name}" } do %>
-            <%= cl_image_tag caretaker.photo.key, style: "width: 100px;", class: "rounded-circle" %>
-          <% end %>
+          <div class="caretaker-item mx-4 d-flex flex-column">
+            <div class="caretaker-pic d-flex justify-content-center">
+              <%= link_to user_profile_path(caretaker) do %>
+                <%= cl_image_tag caretaker.photo.key, style: "width: 100px;", class: "rounded-circle" %>
+              <% end %>
+            </div>
+            <div class="caretaker-name mt-2 ">
+              <%= link_to user_profile_path(caretaker) do %>
+                <%= caretaker.first_name %>
+                <%= caretaker.last_name %>
+              <% end %>
+            </div>
+          </div>
         <% end %>
       </div>
     </div>
