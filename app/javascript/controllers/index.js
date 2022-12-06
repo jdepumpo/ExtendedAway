@@ -4,11 +4,14 @@
 
 import { application } from "./application"
 
+import HelloController from "./hello_controller"
+application.register("hello", HelloController)
+
 import LoginController from "./login_controller"
 application.register("login", LoginController)
 
-import HelloController from "./hello_controller"
-application.register("hello", HelloController)
+import SwiperController from "./swiper_controller"
+application.register("swiper", SwiperController)
 
 import TaskDoneController from "./task_done_controller"
 application.register("task-done", TaskDoneController)
