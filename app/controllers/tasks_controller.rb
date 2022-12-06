@@ -33,8 +33,9 @@ class TasksController < ApplicationController
     @trip = Trip.find(params[:trip_id])
     @tasks = @trip.tasks.where(date: params[:date])
     @tasks.each do |task|
-      task.user = params[:user]
+      task.user = params[:user_id]
     end
+    redirect_to trip_path(@trip)
   end
 
   def destroy

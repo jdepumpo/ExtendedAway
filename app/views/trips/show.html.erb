@@ -59,12 +59,21 @@
                   <% end %>
                 </div>
             </div>
-                  <div class="card-footer mt-2 d-flex justify-content-end">
-                  <div class="btn-group btn-group-sm" role="group">
-                    <%=link_to 'Jenny Smith', '#', class: "btn btn-light"%>
-                    <button type="button" class="btn btn-light dropdown-toggle"></button>
-                  </div>
-                  </div>
+            <div class="card-footer mt-2 d-flex justify-content-end">
+              <div class="btn-group btn-group-sm" role="group">
+                <% if @trip.tasks.where(date: date).first %>
+                  <%=link_to @trip.tasks.where(date: date).first.user.first_name, user_profile_path(@trip.tasks.where(date: date).first.user), class: "btn btn-light"%>
+                <% end %>
+                <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown"></button>
+                  <ul class="dropdown-menu">
+                    <% @caretakers.each do |caretaker| %>
+                      <%= link_to set_caretaker_path(@trip, caretaker), method: :post, date: date do %>
+                        <li><%= cl_image_tag caretaker.photo.key, style: "width:30px;", class: "rounded-circle mx-2 py-2" %><%= "#{caretaker.first_name} #{caretaker.last_name}" %></a></li>
+                      <% end %>
+                  <% end %>
+                  </ul>
+              </div>
+            </div>
           </div>
           </div>
         <% end %>
