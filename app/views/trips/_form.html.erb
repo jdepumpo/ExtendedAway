@@ -7,8 +7,14 @@
     <div class="card-body p-3">
       <%= f.input :name %>
       <%= f.input :description %>
-      <%= f.input :start_date, as: :date, html5: true %>
-      <%= f.input :end_date, as: :date, html5: true %>
+      <div class="d-flex">
+        <div class="flex-fill">
+          <%= f.input :start_date, html5: true %>
+        </div>
+        <div class="flex-fill">
+          <%= f.input :end_date, html5: true %>
+        </div>
+      </div>
     </div>
   </div>
   <div class="card rounded mb-3">
