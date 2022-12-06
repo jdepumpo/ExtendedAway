@@ -9,8 +9,8 @@
   </div>
 </div>
 
-<% if @trips.empty? %>
-  <p>"You have no trips available"</p>
+<% if @trips.nil? %>
+  <p>You have no trips available...</p>
 <% else %>
   <% @trips.order(:start_date).each do |trip| %>
     <%= link_to trip_path(trip.id), class: "text-decoration-none text-reset" do %>
