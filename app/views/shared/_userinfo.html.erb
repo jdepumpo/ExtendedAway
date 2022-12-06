@@ -1,0 +1,86 @@
+<a class="btn toggleButton" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+  <i class="fa-solid fa-angles-left"></i>
+</a>
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+  <div class="offcanvas-header">
+  <div style="margin-left:15px;">
+    <p style="margin-bottom:0; color: #333333">Hello,</p>
+    <p style="margin-bottom:0; font-weight:bold; color: #333333""><%= "#{current_user.first_name}" %></p>
+  </div>
+    <div class="avatar-upload">
+      <div class="avatar-edit">
+        <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" />
+        <label for="imageUpload"></label>
+      </div>
+      <div class="avatar-preview">
+        <div id="imagePreview" style="background-image: url(http://i.pravatar.cc/500?img=7);">
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr style="border-top: 2px solid #A8CEC9; margin: 0 16px;">
+  <div class="offcanvas-body" style="margin: 20px 10px;">
+
+    <div class="flex-grid-pairs">
+      <div class="col">
+        <h6>Number of trips</h6>
+        <div class="userinfo">
+          <p style="font-size:26px; color:#008285;">|</p>
+          <p style="margin-left: 5px;"><%= current_user.trips.count %></p>
+          </div>
+      </div>
+      <div class="col">
+        <h6>Friends</h6>
+        <div class="userinfo">
+          <p style="font-size:26px; color:#008285;">|</p>
+          <p style="margin-left: 5px;"><%= current_user.trips.count %></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex-grid-pairs">
+      <div class="col">
+        <h6>Future Trips</h6>
+            <div class="userinfo">
+              <p style="font-size:26px; color:#FC5757;">|</p>
+              <% futuretrips = 0 %>
+              <% current_user.trips.each do |trip| %>
+                <% if trip.start_date != Date.today %>
+                  <% futuretrips =+ 1  %>
+                <% end %>
+              <% end %>
+              <p style="margin-left: 5px;"><%= futuretrips.to_s %></p>
+            </div>
+      </div>
+      <div class="col">
+        <h6>Friends you've helped</h6>
+          <div class="userinfo">
+            <p style="font-size:26px; color:#7D67A4;">|</p>
+            <p style="margin-left: 5px;"><%= current_user.tasks.pluck(:user_id).uniq.size %></p>
+          </div>
+      </div>
+    </div>
+    <div class="flex-grid-pairs">
+      <div class="col">
+        <h6>Completed tasks</h6>
+          <div class="userinfo">
+            <p style="font-size:26px; color:#A8CEC9;">|</p>
+            <p style="margin-left: 5px;"><%= current_user.tasks.count %></p>
+          </div>
+      </div>
+    </div>
+    <hr style="border-top: 2px solid #A8CEC9; margin: 0 16px;">
+    <div class="mostvaluablehelper d-flex flex-column align-items-center">
+      <h5>Your most valuable helper</h5>
+      <% users = current_user.tasks.pluck(:user_id) %>
+      <% friend = User.find(users.max_by {|i| users.count(i)}) %>
+      <p><%= friend.first_name %> helped you X times</p>
+      <%= image_tag 'helper.jpg', size: '69x69', class:"kingofhelpers" %>
+      <p style="font-size: 13px; color: rgba(51, 51, 51, 0.5); margin-top:10px;">A road to a friend’s house is never long.</p>
+    </div>
+    </div>
+  <div>
+    </div>
+  </div>
+</div>

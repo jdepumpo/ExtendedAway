@@ -14,7 +14,7 @@
 
   <body>
     <%= render "shared/flashes" %>
-
+    <%= render "shared/userinfo" %>
     <% if (params[:controller] == "pages" && params[:action] == "home") || (controller_name == "sessions" && action_name == "new") %>
      <%= yield %>
     <% else %>
