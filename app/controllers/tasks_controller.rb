@@ -29,6 +29,14 @@ class TasksController < ApplicationController
     end
   end
 
+  def set_caretaker
+    @trip = Trip.find(params[:trip_id])
+    @tasks = @trip.tasks.where(date: params[:date])
+    @tasks.each do |task|
+      task.user = params[:user]
+    end
+  end
+
   def destroy
     @task = Task.find(params[:id])
     @trip = @task.trip
