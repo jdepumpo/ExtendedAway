@@ -12,6 +12,9 @@
 @import "swiper/swiper.min.css";
 @import "swiper/modules/pagination/pagination.min.css";
 
+@import "flatpickr/dist/flatpickr";
+@import "flatpickr/dist/themes/airbnb";
+
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
