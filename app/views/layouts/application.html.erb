@@ -14,11 +14,12 @@
 
   <body>
     <%= render "shared/flashes" %>
-    <%= render "shared/userinfo" %>
+    
     <% if (params[:controller] == "pages" && params[:action] == "home") || (controller_name == "sessions" && action_name == "new") %>
      <%= yield %>
     <% else %>
       <%= render "shared/navbar" %>
+      <%= render "shared/userinfo" %>
       <main class="container my-4">
         <%= yield %>
       </main>
