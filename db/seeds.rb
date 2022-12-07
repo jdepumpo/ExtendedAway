@@ -21,7 +21,7 @@ puts "_______________________"
 puts "Baking up two users with the role 'homeowner'"
 homeowner_array = []
 2.times do |i|
-  prof_pic = URI.open(Faker::LoremFlickr.image(size: "100x100", search_terms: ['profile']))
+  prof_pic = URI.open(Faker::LoremFlickr.image(size: "200x200", search_terms: ['avatar']))
   homeowner = User.new({
                          first_name: Faker::Name.first_name,
                          last_name: Faker::Name.last_name,
@@ -41,7 +41,7 @@ puts "_______________________"
 caretaker_array = []
 puts "Grilling a few users with the role 'caretaker'"
 6.times do |i|
-  prof_pic = URI.open(Faker::LoremFlickr.image(size: "100x100", search_terms: ['profile']))
+  prof_pic = URI.open(Faker::LoremFlickr.image(size: "200x200", search_terms: ['avatar']))
   caretaker = User.create({
                             first_name: Faker::Name.first_name,
                             last_name: Faker::Name.last_name,
