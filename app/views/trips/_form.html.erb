@@ -2,24 +2,38 @@
   <%= f.error_notification %>
   <div class="card rounded mb-3">
     <div class="card-header">
-      <h5 class="card-title"><i class="fa-solid fa-plane-departure"></i> Trip</h5>
+      <i class="fa-solid fa-plane-departure"></i> Trip
     </div>
     <div class="card-body p-3">
       <%= f.input :name %>
       <%= f.input :description %>
-      <%= f.input :start_date, as: :date, html5: true %>
-      <%= f.input :end_date, as: :date, html5: true %>
+      <div class="d-flex">
+        <div class="flex-fill">
+          <%= f.input :start_date, as: :date, html5: true %>
+        </div>
+        <div class="flex-fill">
+          <%= f.input :end_date, as: :date, html5: true %>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="card rounded mb-3">
+    <div class="card rounded mb-3">
     <div class="card-header">
-      <h5 class="card-title"><i class="fa-solid fa-location-dot"></i> Home</h5>
+     <i class="fa-solid fa-location-dot"></i> Home
     </div>
     <div class="card-body p-3">
       <%= f.input :location, value: current_user.location %>
+    </div>
+  </div>
+  <div class="card rounded mb-3 border-danger">
+    <div class="card-header">
+      <i class="fa-solid fa-key"></i> Secure Access
+    </div>
+    <div class="card-body p-3">
       <%= f.input :entry_type, collection: ["Lockbox", "Digital Lock", "Hidden Key", "Other"], as: :radio_buttons %>
-      <%= f.input :entry_key, as: :password, placeholder: "Lockbox or door code" %>
+      <%= f.input :entry_key, as: :hidden, placeholder: "Lockbox or door code" %>
       <%= f.input :entry_description, placeholder: "Lockbox is attached to the railing underneath the front stairs." %>
+      <%= f.input :entry_photo, as: :file, label: "Photo of the location of your lockbox/hidden key (optional)" %>
     </div>
   </div>
   <%= f.button :submit, value: "Save Trip", class: "btn-primary" %>

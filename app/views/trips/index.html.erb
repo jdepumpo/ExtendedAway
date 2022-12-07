@@ -9,10 +9,10 @@
   </div>
 </div>
 
-<% if @trips.empty? %>
-  <p>"You have no trips available"</p>
+<% if @trips.nil? %>
+  <p>You have no trips available...</p>
 <% else %>
-  <% @trips.order(:start_date).each do |trip| %>
+  <% @trips.each do |trip| %>
     <%= link_to trip_path(trip.id), class: "text-decoration-none text-reset" do %>
       <div class="p-4 p-md-5 mb-5 rounded text-bg-dark position-relative" style="background: center / cover no-repeat url('<%= image_path @picture_array.sample %>');">
           <span class="position-absolute top-0 end-0 badge rounded-start bg-secondary">

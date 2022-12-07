@@ -20,16 +20,10 @@
     <% else %>
       <%= render "shared/navbar" %>
       <%= render "shared/userinfo" %>
-      <main class="container my-4" style="margin-left: 63px">
+      <main class="container my-4">
         <%= yield %>
       </main>
     <% end %>
-
-
-
-
-
-
 
     <%= render "shared/footer" %>
     <%= render "shared/flashes" %>

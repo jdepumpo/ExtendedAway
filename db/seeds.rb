@@ -23,15 +23,15 @@ homeowner_array = []
 2.times do |i|
   prof_pic = URI.open(Faker::LoremFlickr.image(size: "100x100", search_terms: ['profile']))
   homeowner = User.new({
-                            first_name: Faker::Name.first_name,
-                            last_name: Faker::Name.last_name,
-                            location: Faker::Address.full_address,
-                            role: "homeowner",
-                            email: "#{i + 1}@homeowner.com",
-                            password: "123456"
-                          })
-  homeowner.photo.attach(io: prof_pic, filename: "homeowner#{i}.jpg", content_type: "image/jpg")
-  homeowner.save
+                         first_name: Faker::Name.first_name,
+                         last_name: Faker::Name.last_name,
+                         location: Faker::Address.full_address,
+                         role: "homeowner",
+                         email: "#{i + 1}@homeowner.com",
+                         password: "123456"
+                       })
+  homeowner.photo.attach(io: prof_pic, filename: "homeowner#{i}.jpeg", content_type: "image/jpeg")
+  homeowner.save!
   homeowner_array << homeowner
   puts "+++ #{homeowner.first_name} #{homeowner.last_name}"
 end
@@ -51,7 +51,7 @@ puts "Grilling a few users with the role 'caretaker'"
                             password: "123456"
                           })
   caretaker_array << caretaker
-  caretaker.photo.attach(io: prof_pic, filename: "caretaker#{i}.jpg", content_type: "image/jpg")
+  caretaker.photo.attach(io: prof_pic, filename: "caretaker#{i}.jpeg", content_type: "image/jpeg")
   caretaker.save
   puts "+++ #{caretaker.first_name} #{caretaker.last_name}"
 end
@@ -66,12 +66,13 @@ trip_array = []
   trip = Trip.new({
                     name: "#{city} #{Faker::Verb.ing_form} trip",
                     description: Faker::Lorem.sentences(number: 3).join(" "),
-                    start_date: Date.parse("2023-01-#{rand(10..27)}"),
-                    end_date: Date.parse("2023-02-#{rand(1..20)}"),
+                    start_date: Date.parse("2023-01-#{rand(24..27)}"),
+                    end_date: Date.parse("2023-02-#{rand(1..5)}"),
+                    location: Faker::Address.full_address,
                     entry_type: ["Lockbox", "Digital Lock", "Hidden Key", "Other"].sample
                   })
   trip.user = homeowner_array.sample
-  trip.save
+  trip.save!
   trip_array << trip
   puts "+++ #{trip.name}"
 end
@@ -111,20 +112,26 @@ tasks_array = [
   ["Lock the Side Door", "Please make sure the side door in the kitchen is locked.", "Security"],
   ["Feed the Cat", "One Fancy Feast for Matilda, refill dry food.", "Animals"],
   ["Ensure Windows are Closed", "No drafts, please!", "Security"],
-  ["Feed Gerbil", "Fill up food bowl and change water.", "Animals"]
+  ["Feed Gerbil", "Fill up food bowl and change water.", "Animals"],
+  ["Sing to the plants", "Sing beautifuly to the plants in the basement. They are lonely and cold.", "Plants"],
+  ["Water the cactus", "Water the cactus. The cactus is thirsty. The cactus needs water. Cactus.", "Plants"],
+  ["Check the food in the fridge", "Look for expired food inside, and remove it if there's any", "Maintenance"],
+  ["Scrub the floorboards", "Please scrub the floorboards, so they look like new.", "Maintenance"],
+  ["Wipe all the bulbs", "Dust of all of the light bulbs, so they don't look as dim.", "Maintenance"],
+  ["Clean the driveway", "Clean the driveway, and remove any leaves laying around, so the house looks more maintained", "Maintenance"]
 ]
 
-20.times do |i|
-  tasks = tasks_array[i - 1]
+50.times do
+  current_task = tasks_array.sample
   task = Task.new({
-                    name: tasks[0],
-                    description: tasks[1]
+                    name: current_task[0],
+                    description: current_task[1]
                   })
   task.trip = trip_array.sample
   task.user = caretaker_array.sample
   trip_dates = ((Date.new(task.trip.start_date.year, task.trip.start_date.month, task.trip.start_date.day))..(Date.new(task.trip.end_date.year, task.trip.end_date.month, task.trip.end_date.day))).to_a
   task.date = trip_dates.sample
-  task.category = Category.find_by({ name: tasks[2] })
+  task.category = Category.find_by({ name: current_task[2] })
   task.save
   puts "+++ #{task.name}"
 end

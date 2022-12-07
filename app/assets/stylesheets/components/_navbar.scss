@@ -61,7 +61,7 @@
 }
 
 
-.sidebar > nav > button {
+.sidebar > nav > .sidebutton {
   position: relative;
   display: grid;
   place-items: center;
@@ -78,7 +78,7 @@
   margin: 0 auto 30% auto;
   }
 
-  .sidebar > nav > button:hover {
+  .sidebar > nav > .sidebutton:hover {
     background-color: rgba(227, 241, 234, 0.4);
     box-shadow: 0px 0px 22px -2px rgba(0,0,0,0.62);
   }
