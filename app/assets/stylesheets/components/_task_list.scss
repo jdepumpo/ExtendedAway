@@ -32,10 +32,21 @@
 .checkmark-done:hover{
   fill: darkgreen;
 }
+
+.checkmark-undone{
+  margin-right: 9px;
+}
+
 .checkmark-undone:hover{
   fill: darkgrey;
 }
 .card-title-task {
   font-size: 2rem;
   font-family: $headers-font;
+}
+
+.accordion-button {
+  &::after {
+    background-image: url("acordion.svg") !important;
+  }
 }
