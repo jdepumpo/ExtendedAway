@@ -1,32 +1,33 @@
+<%# ------------------ Trip image and details------------------------ %>
 <%= render "shared/modals/new_modal", modal: "task", model: [@trip, @task], categories: @categories, trip: @trip %>
 <div class="row g-4" style="padding: 0 20px;">
   <div class="col-md-8">
-
     <div class="card px-0">
-    <div class="p-4 p-md-5 rounded-top text-bg-dark position-relative" style="background: center / cover no-repeat url('<%= image_path @picture_array.sample %>');">
-        <span class="position-absolute top-0 end-0 badge rounded-start bg-secondary">
-          Starting in <%= (@trip.start_date - Date.today).to_i %> days
-        </span>
-      <div class="col-md-8 px-0">
-        <h2 class="display-4 fst-italic text-shadow"><%= @trip.name %></h2>
-        <p class="lead my-3 text-shadow"><%= @trip.description %></p>
-        <h3 class="mb-0 lead">
-          <span class="badge bg-secondary">
-            <i class="fa-solid fa-calendar-days text-light"></i>
-            <span class="px-2"><%= @trip.start_date.strftime('%a %d %b %Y') %> — <%= @trip.end_date.strftime('%a %d %b %Y') %></span>
+      <div class="p-4 p-md-5 rounded-top text-bg-dark position-relative" style="background: center / cover no-repeat url('<%= image_path @picture_array.sample %>');">
+          <span class="position-absolute top-0 end-0 badge rounded-start bg-secondary">
+            Starting in <%= (@trip.start_date - Date.today).to_i %> days
           </span>
-        </h3>
+        <div class="col-md-8 px-0">
+          <h2 class="display-4 fst-italic text-shadow"><%= @trip.name %></h2>
+          <p class="lead my-3 text-shadow"><%= @trip.description %></p>
+          <h3 class="mb-0 lead">
+            <span class="badge bg-secondary">
+              <i class="fa-solid fa-calendar-days text-light"></i>
+              <span class="px-2"><%= @trip.start_date.strftime('%a %d %b %Y') %> — <%= @trip.end_date.strftime('%a %d %b %Y') %></span>
+            </span>
+          </h3>
+        </div>
       </div>
     </div>
-
-    <!-- add to gcal -->
+    
       <div class="card-footer bg-white rounded-bottom d-flex justify-content-end">
         <%= link_to trip_path(@trip), class: "btn btn-white", data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this task?" } do %>
           <i class="fa-regular fa-trash-can"></i>
         <% end %>
       </div>
     </div>
-<%= render "shared/modals/edit_modal", modal: "trip", model: @trip %>
+    <%= render "shared/modals/edit_modal", modal: "trip", model: @trip %>
+</div>
 
   <div class="col">
   <!--
@@ -46,79 +47,27 @@
 
 <%# ---------------------------NEW CODE HERE ---------------------------------------------- %>
 
- <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 my-3 border-bottom">
+ <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 my-3">
+        <div class="btn mb-md-0" style="display: flex; height: 63px">
         <h1 class="h2">Tasks</h1>
-        <div class="btn-toolbar mb-2 mb-md-0">
           <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#newModal">
             <i class="fa-solid fa-plus"></i>
           </button>
         </div>
       </div>
 
-
-
-
-  <div class="wrapper">
-    <div class="column">
-      <h1>TODO</h1>
-      <div class="cnt"></div>
-      <div class="item" draggable="true">Task 1</div>
-      <div class="item" draggable="true">Task 2</div>
-      <div class="item" draggable="true">Task 3</div>
-    </div>
-    <div class="column">
-      <h1>IN PROGRESS</h1>
-      <div class="cnt"></div>
-    </div>
-    <div class="column">
-      <h1>DONE</h1>
-      <div class="cnt"></div>
-    </div>
-  </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <%# --------------------------- PAST CODE HERE ---------------------------------------------- %>
-
-
-
-
-
-
-
-
-
-      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 my-3 border-bottom">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center my-3 border-bottom">
         <h1 class="h2">Tasks</h1>
         <% if current_user.role == "homeowner" %>
           <div class="btn-toolbar mb-2 mb-md-0">
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newModal">
-              Add a new task
+              +
             </button>
           </div>
         <% end %>
       </div>
+
 
 <div class="swiper" data-controller="swiper">
   <!-- Additional required wrapper -->
@@ -127,29 +76,33 @@
 
   <% @dates.in_groups_of(4, false) do |dates| %>
     <div class="swiper-slide">
-     <div class="wrapper">
-      <div class="column">
+
+      <div class="card-deck mx-5 mb-5">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
         <% dates.each_with_index do |date, i| %>
-
-
-
         <div class="col">
           <div class="card h-100">
-            <div class="card-body">
+            <div class="card-body" style="height: 20vw; padding: 30px 25px;">
               <% if @dates.count <= 10 %>
-                <h5 class="card-title mb-2">Day <%= (date - @trip.start_date).to_i  %></h5>
+                <h6 class="card-title mb-2">Day <%= (date - @trip.start_date).to_i  %></h5>
                 <h6 class="card-subtitle mb-2 text-muted"><%= date.to_s %></h6>
               <% else %>
                 <h5 class="card-title mb-2"><%= date.strftime("%a, %B %d") %></h5>
                 <h6 class="card-subtitle mb-2 text-muted">Day <%= (date - @trip.start_date).to_i %></h6>
               <% end %>
-                <div class="task-list accordion mt-2" id="accordionPanelsStayOpenExample">
+        <hr class="horizontalLine">
+            <%# <span class="badge bg-secondary rounded-pill"><%= task.category.name </span> %>
+
+
+                <div class="task-list accordion mt-2" id="accordionPanelsStayOpenExample" style="margin: 10px 0;">
                   <% if  @tasks.where(date: date).count == 0 %>
                     <p class="mb-2 text-muted">No tasks today...</p>
                   <% else %>
                     <%= render "trips/task", tasks: @tasks.where(date: date), day: i+1 %>
                   <% end %>
                 </div>
+
+
             </div>
             <div class="card-footer mt-2 d-flex justify-content-end bg-light">
               <% if @tasks.where(date: date).first %>

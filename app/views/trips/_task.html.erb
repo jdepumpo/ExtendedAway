@@ -1,7 +1,7 @@
 <% tasks.order(:date).each_with_index do |task, i| %>
   <div class="accordion-item" id="<%= "#{dom_id(task)}_container" %>">
     <%= turbo_frame_tag dom_id(task) do %>
-    <div class="accordion-header d-flex align-items-center p-0" id="panelsStayOpen-heading<%=task.id%>">
+    <div class="accordion-header d-flex align-items-center p-0" id="panelsStayOpen-heading<%=task.id%>" style="margin: 10px 0;">
       <% if task.done? %>
         <%= link_to task_path(task), data: {turbo_method: :patch}, class: "" do %>
           <svg xmlns="http://www.w3.org/2000/svg" class="text-light checkmark-done" style="width: 20px;" viewBox="0 0 20 20" fill="green">
@@ -10,7 +10,6 @@
         <% end %>
         <button class="accordion-button collapsed d-flex px-1 py-0" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse<%=task.id%>" aria-expanded="true" aria-controls="panelsStayOpen-collapse<%=task.id%>">
             <h5 class="flex-grow-1 m-0 text-secondary text-decoration-line-through"><%= task.name %></h5>
-            <span class="badge bg-secondary rounded-pill"><%= task.category.name %></span>
         </button>
         <%= link_to task_path(task), class: "btn btn-body-color p-0", data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this task?" } do %>
           <i class="fa-regular fa-trash-can"></i>
@@ -23,7 +22,6 @@
         <% end %>
         <button class="accordion-button collapsed d-flex px-1 py-0" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse<%=task.id%>" aria-expanded="true" aria-controls="panelsStayOpen-collapse<%=task.id%>">
             <h5 class="flex-grow-1 m-0"><%= task.name %></h5>
-            <span class="badge bg-secondary rounded-pill"><%= task.category.name %></span>
         </button>
         <%= link_to task_path(task), class: "btn btn-body-color p-0", data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this task?" } do %>
           <i class="fa-regular fa-trash-can"></i>
