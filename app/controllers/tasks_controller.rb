@@ -33,7 +33,8 @@ class TasksController < ApplicationController
     @trip = Trip.find(params[:trip_id])
     @tasks = @trip.tasks.where(date: params[:date])
     @tasks.each do |task|
-      task.user = params[:user_id]
+      task.user = User.find(params[:user_id])
+      task.save
     end
     redirect_to trip_path(@trip)
   end
