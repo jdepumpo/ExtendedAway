@@ -4,8 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   devise :omniauthable, omniauth_providers: [:facebook]
-  has_many :tasks
   has_many :trips
+  has_many :tasks, through: :trips
+  has_many :my_tasks, foreign_key: 'user_id', class_name: 'Task'
   has_one_attached :photo
 
   def self.find_for_facebook_oauth(auth)

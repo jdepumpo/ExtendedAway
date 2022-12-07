@@ -1,3 +1,5 @@
+<!-- NAVBAR -->
+
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon navbartotal">
   <div class="container-fluid">
     <%# <%= link_to "#", class: "navbar-brand" do %>
@@ -15,7 +17,6 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto navlogin">
         <% if user_signed_in? %>
-
           <li class="nav-item">
             <i class="fa-solid fa-bell icon"></i>
           </li>
@@ -40,28 +41,33 @@
 <!-- Icons: https://iconoir.com/ -->
 
 
+<!-- SIDEBAR -->
 
 <div class="sidebar">
-    <nav style="margin-top: 72px;">
-      <button type="button" class="sidebutton" style="margin-top: 72px;">
-        <i class="fa-solid fa-user sidebaricon"></i>
-      </button>
+  <nav style="margin-top: 72px;">
 
-      <button type="button" class="sidebutton">
-        <i class="fa-solid fa-table-list sidebaricon"></i>
-      </button>
+    <%= link_to root_path, class: "sidebutton", style:"margin-top: 72px;" do %>
+      <i class="fa-solid fa-house-chimney sidebaricon"></i>
+    <% end %>
 
-      <button type="button" class="sidebutton">
-        <i class="fa-solid fa-plane-departure sidebaricon"></i>
-      </button>
+    <%= link_to user_profile_path(current_user), class: "sidebutton" do %>
+      <i class="fa-solid fa-user sidebaricon"></i>
+    <% end %>
 
-      <button type="button" class="sidebutton">
-        <i class="fa-solid fa-comments sidebaricon"></i>
-      </button>
+    <%= link_to trips_path, class: "sidebutton" do %>
+      <i class="fa-solid fa-plane-departure sidebaricon"></i>
+    <% end %>
 
-      <button type="button" class="sidebutton">
-        <i class="fa-solid fa-gear sidebaricon"></i>
-      </button>
-    </nav>
+    <%= link_to root_path(anchor: "aboutus"), class: "sidebutton" do %>
+      <i class="fa-solid fa-info sidebaricon"></i>
+    <% end %>
 
+    <%= link_to destroy_user_session_path, class: "sidebutton" do %>
+      <i class="fa-solid fa-arrow-right-from-bracket sidebaricon"></i>
+    <% end %>
+
+    <!-- <button type="button" class="sidebutton">
+      <i class="fa-solid fa-table-list sidebaricon"></i>
+    </button> -->
+  </nav>
 </div>

@@ -1,0 +1,145 @@
+.offcanvas{
+  width: 332px!important;
+  background-color: #F5F5F5;
+  transition-duration: 0.8s;
+}
+
+.userinfo{
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+
+  h6{
+    font-size: 14px;
+    font-weight:500;
+  }
+}
+
+.flex-grid .col {
+  flex: 1;
+}
+.flex-grid-pairs {
+  display: flex;
+  gap: 10px;
+}
+
+
+.toggleButton{
+  display: flex;
+  position: absolute;
+  right: 15px;
+  font-size: 14px;
+  margin-top: 72px;
+}
+
+#toggleButton:focus {
+  border:none;
+}
+
+
+
+
+.fa-angles-left{
+  border-radius: 28px;
+  font-size: 12px;
+  padding: 10px;
+  background-color: white;
+  box-shadow: 0px 0px 17px -1px rgba(0, 0, 0, 0.30);
+}
+
+
+
+
+
+
+.mostvaluablehelper{
+  margin: 30px 10px;
+  h5{
+    color: #333333;
+    font-size: 15px;
+    font-weight: bold;
+  }
+
+  p{
+    color: #AEAEAE;
+    font-size: 12px;
+    font-weight:500;
+
+  }
+}
+
+
+.offcanvas-body{
+  h6{
+    font-size: 13px;
+    color: rgba(51, 51, 51, 0.50);
+    font-weight: 600;
+  }
+}
+
+
+
+.kingofhelpers{
+  border: solid 2px;
+  border-radius: 50%;
+  border-color: #E3F1EA;
+  margin-bottom: 10px;
+}
+
+
+.avatar-upload {
+  position: relative;
+  max-width: 205px;
+  margin: 1px 10px;
+  .avatar-edit {
+      position: absolute;
+      z-index: 1;
+      input {
+          display: none;
+          + label {
+              border-radius: 100%;
+              background: #FFFFFF;
+              border: 1px solid transparent;
+              box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
+              padding: 19px;
+              cursor: pointer;
+              font-weight: normal;
+              transition: all .2s ease-in-out;
+              display: flex;
+              position: absolute;
+              left: 70px;
+              &:hover {
+                  background: #f1f1f1;
+                  border-color: #d6d6d6;
+              }
+              &:after {
+                  content: "\f040";
+                  font-family: 'FontAwesome';
+                  color: #757575;
+                  position: absolute;
+                  top: 10px;
+                  left: 0;
+                  right: 0;
+                  text-align: center;
+                  margin: auto;
+              }
+          }
+      }
+  }
+  .avatar-preview {
+      width: 100px;
+      height: 100px;
+      position: relative;
+      border-radius: 100%;
+      border: 2px solid #F8F8F8;
+      box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
+      > div {
+          width: 100%;
+          height: 100%;
+          border-radius: 100%;
+          background-size: cover;
+          background-repeat: no-repeat;
+          background-position: center;
+      }
+  }
+}
