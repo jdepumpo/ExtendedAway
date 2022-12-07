@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_05_165553) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_07_183233) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -77,6 +77,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_05_165553) do
     t.string "entry_key"
     t.text "entry_description"
     t.string "entry_image"
+    t.string "photo"
     t.index ["user_id"], name: "index_trips_on_user_id"
   end
 
