@@ -3,7 +3,12 @@ class TasksController < ApplicationController
     @trip = Trip.find(params[:trip_id])
     @task = Task.new(task_params)
     @task.trip = @trip
-    @task.user = current_user
+    # raise
+    if @trip.tasks.where(date: params[:task][:date]).first
+      @task.user = @trip.tasks.where(date: params[:task][:date]).first.user
+    else
+      @task.user = current_user
+    end
     @task.category = Category.find(params[:task][:category])
     if @task.save
       redirect_to trip_path(@trip)

@@ -1,9 +1,11 @@
 <%# ------------------ Trip image and details------------------------ %>
+
 <div data-controller="flatpickr">
 
 <%= render "shared/modals/new_modal", modal: "task", model: [@trip, @task], categories: @categories, trip: @trip %>
 <div class="row g-4">
   <div class="col-7">
+
     <div class="card px-0">
       <div class="p-4 p-md-5 rounded-top text-bg-dark position-relative" style="background: center / cover no-repeat url('<%= image_path @picture_array.sample %>');">
         <span class="position-absolute top-0 end-0 badge rounded-start">
@@ -15,6 +17,7 @@
 
         </div>
       </div>
+
       <div class="card-footer bg-white rounded-bottom d-flex" style="justify-content:space-between">
         <h3 class="lead" style="margin: auto 2px;">
           <span class="badge" style="background-color:#A8CEC9">
@@ -53,6 +56,20 @@
           <% end  %>
         </div>
       </div>
+    </div>
+
+<%# ---------------------------NEW CODE HERE ---------------------------------------------- %>
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 my-3">
+  <div class="btn mb-md-0" style="display: flex; height: 63px">
+    <h1 class="h2">Tasks</h1>
+    <% if current_user.role == "homeowner" %>
+      <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#newModal">
+        <i class="fa-solid fa-plus"></i>
+      </button>
+    <% end  %>
+  </div>
+</div>
 
 <%# --------------------------- PAST CODE HERE ---------------------------------------------- %>
 
@@ -65,6 +82,7 @@
     <div class="swiper-slide">
       <div class="card-deck mx-5 mb-5">
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
+
           <% dates.each_with_index do |date, i| %>
               <div class="col" <%= date %>" data-slide-index="<%= slide_index %>" data-start-date="<%= @trip.start_date %>" data-end-date="<%= @trip.end_date %>">
                 <div class="card h-100">
@@ -84,6 +102,7 @@
                       <h6 class="card-subtitle mb-2 text-muted">Day <%= (date - @trip.start_date).to_i %></h6>
                     <% end %>
                     <hr class="horizontalLine">
+
             <%# <span class="badge bg-secondary rounded-pill"><%= task.category.name </span> %>
                     <div class="task-list accordion mt-2" id="accordionPanelsStayOpenExample" style="margin: 10px 0;">
                       <% if  @tasks.where(date: date).count == 0 %>
@@ -92,6 +111,7 @@
                         <%= render "trips/task", tasks: @tasks.where(date: date), day: i+1 %>
                       <% end %>
                     </div>
+
                   </div>
                   <div class="card-footer mt-2 d-flex justify-content-end bg-light">
                     <% if @tasks.where(date: date).first %>
@@ -115,11 +135,13 @@
                 </div>
               </div>
             <% end %>
+
         </div>
       </div>
     </div>
   <% end %>
 </div>
+
 
   <!-- If we need pagination -->
   <div class="swiper-pagination"></div>
@@ -128,6 +150,7 @@
   <div class="swiper-button-prev"></div>
   <div class="swiper-button-next"></div>
 </div>
+
       <div class="d-flex align-items-center border-bottom" style="margin-top: 0; ">
         <h1 class="h2" style="margin-bottom:15px; margin-right:10px">Caretakers</h1>
         <% if current_user.role == "homeowner" %>
@@ -135,6 +158,7 @@
               <i class="fa-solid fa-plus" style="margin-bottom:15px"></i>
             <% end  %>
           <% end %>
+
       </div>
       <div class="d-flex justify-content-center px-0">
         <% @caretakers.each do |caretaker| %>
@@ -144,7 +168,7 @@
                 <%= cl_image_tag caretaker.photo.key, style: "width: 50px; font-size:12px", class: "rounded-circle" %>
               <% end %>
             </div>
-            <div class="caretaker-name mt-2 ">
+            <div class="caretaker-name mt-2">
               <%= link_to user_profile_path(caretaker) do %>
                 <%= caretaker.first_name %>
                 <%= caretaker.last_name %>
