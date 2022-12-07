@@ -28,12 +28,12 @@
       </div>
     </div>
 
-      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 my-3 border-bottom">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center my-3 border-bottom">
         <h1 class="h2">Tasks</h1>
         <% if current_user.role == "homeowner" %>
           <div class="btn-toolbar mb-2 mb-md-0">
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newModal">
-              Add a new task
+              +
             </button>
           </div>
         <% end %>

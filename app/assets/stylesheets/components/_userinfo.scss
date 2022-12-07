@@ -34,9 +34,10 @@
 .toggleButton{
   display: flex;
   position: absolute;
-  right: 15px;
+  right: 19px;
   font-size: 14px;
-  margin-top: 72px;
+  margin-top: 2px;
+  padding: 0;
 }
 
 #toggleButton:focus {
