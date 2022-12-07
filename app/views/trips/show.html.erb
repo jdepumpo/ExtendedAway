@@ -20,14 +20,18 @@
           </h3>
         </div>
       </div>
+
       <div class="card-footer bg-white rounded-bottom d-flex justify-content-end">
         <%= link_to trip_path(@trip), class: "btn btn-white", data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this task?" } do %>
           <i class="fa-regular fa-trash-can"></i>
         <% end %>
       </div>
     </div>
+
+
   </div>
   <%= render "shared/modals/edit_modal", modal: "trip", model: @trip %>
+
 
 <%# CARDS %>
 
@@ -73,10 +77,12 @@
 <% slide_index = 0 %>
   <% @dates.in_groups_of(4, false) do |dates| %>
     <div class="swiper-slide">
+
       <div class="card-deck mx-5 mb-5">
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
         <% dates.each_with_index do |date, i| %>
         <div class="col" <%= date %>" data-slide-index="<%= slide_index %>" data-start-date="<%= @trip.start_date %>" data-end-date="<%= @trip.end_date %>">
+
           <div class="card h-100">
             <div class="card-body" style="height: 20vw; padding: 30px 25px;">
               <% if @dates.count <= 10 %>
