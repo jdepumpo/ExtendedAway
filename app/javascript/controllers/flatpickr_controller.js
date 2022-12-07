@@ -25,7 +25,8 @@ export default class extends Controller {
     const slideIndex = swiperCard.dataset.slideIndex
     console.log(slideIndex)
     this.swiper.slideTo(parseInt(slideIndex), 500, true)
-
+    this.swiper.updateProgress()
+    this.swiper.pagination.update()
   }
 
   #getSwiper() {
