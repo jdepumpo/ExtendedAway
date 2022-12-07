@@ -13,12 +13,8 @@ export default class extends Controller {
       maxDate: this.element.dataset.endDate
       // more options available on the documentation!
     });
-
     this.#getSwiper()
-  }
-
-  disconnect() {
-    flatpickr.clear()
+    console.log("swiper")
   }
 
   highlightTask() {
