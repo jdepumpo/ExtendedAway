@@ -1,108 +1,125 @@
 <%# ------------------ Trip image and details------------------------ %>
+<div data-controller="flatpickr">
+
 <%= render "shared/modals/new_modal", modal: "task", model: [@trip, @task], categories: @categories, trip: @trip %>
-<div class="row g-4 col-8" style="padding: 0 20px;">
+<div class="row g-4">
+  <div class="col-7">
     <div class="card px-0">
       <div class="p-4 p-md-5 rounded-top text-bg-dark position-relative" style="background: center / cover no-repeat url('<%= image_path @picture_array.sample %>');">
-          <span class="position-absolute top-0 end-0 badge rounded-start bg-secondary">
-            Starting in <%= (@trip.start_date - Date.today).to_i %> days
-          </span>
+        <span class="position-absolute top-0 end-0 badge rounded-start">
+          Starting in <%= (@trip.start_date - Date.today).to_i %> days
+        </span>
         <div class="col-md-8 px-0">
           <h2 class="display-4 fst-italic text-shadow"><%= @trip.name %></h2>
           <p class="lead my-3 text-shadow"><%= @trip.description %></p>
-          <h3 class="mb-0 lead">
-            <span class="badge bg-secondary">
-              <i class="fa-solid fa-calendar-days text-light"></i>
-              <span class="px-2"><%= @trip.start_date.strftime('%a %d %b %Y') %> — <%= @trip.end_date.strftime('%a %d %b %Y') %></span>
-            </span>
-          </h3>
+
         </div>
       </div>
-      <div class="card-footer bg-white rounded-bottom d-flex justify-content-end">
-        <%= link_to trip_path(@trip), class: "btn btn-white", data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this task?" } do %>
-          <i class="fa-regular fa-trash-can"></i>
-        <% end %>
+      <div class="card-footer bg-white rounded-bottom d-flex" style="justify-content:space-between">
+        <h3 class="lead" style="margin: auto 2px;">
+          <span class="badge" style="background-color:#A8CEC9">
+            <i class="fa-solid fa-calendar-days text-light"></i>
+            <span class="px-2" style="font-size:12px;"><%= @trip.start_date.strftime('%a %d %b %Y') %> — <%= @trip.end_date.strftime('%a %d %b %Y') %></span>
+          </span>
+        </h3>
+        <div>
+          <%= link_to trip_path(@trip), class: "btn btn-white", data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this task?" } do %>
+          <i class="fa-solid fa-pen"></i>
+          <% end %>
+          <%= link_to trip_path(@trip), class: "btn btn-white", data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this task?" } do %>
+            <i class="fa-regular fa-trash-can"></i>
+          <% end %>
+        </div>
       </div>
     </div>
-    <%= render "shared/modals/edit_modal", modal: "trip", model: @trip %>
-</div>
+  </div>
+  <%= render "shared/modals/edit_modal", modal: "trip", model: @trip %>
 
-
+<%# CARDS %>
+    <div class="col-md-5">
+      <div class="card d-flex justify-content-center align-content-center w-100 h-100">
+        <input placeholder="Select Dates" name="dates" data-flatpickr-target="calendarInput" class="" data-action="change->flatpickr#highlightTask">
+      </div>
+    </div>
 <%# ---------------------------NEW CODE HERE ---------------------------------------------- %>
 
- <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 my-3">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3">
         <div class="btn mb-md-0" style="display: flex; height: 63px">
         <h1 class="h2">Tasks</h1>
+        <% if current_user.role == "homeowner" %>
           <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#newModal">
             <i class="fa-solid fa-plus"></i>
           </button>
+          <% end  %>
         </div>
       </div>
 
 <%# --------------------------- PAST CODE HERE ---------------------------------------------- %>
 
-<div class="swiper" data-controller="swiper">
+<div class="swiper mt-0" data-controller="swiper">
   <!-- Additional required wrapper -->
   <div class="swiper-wrapper">
     <!-- Slides -->
-
+  <% slide_index = 0 %>
   <% @dates.in_groups_of(4, false) do |dates| %>
     <div class="swiper-slide">
-
       <div class="card-deck mx-5 mb-5">
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
-        <% dates.each_with_index do |date, i| %>
-        <div class="col">
-          <div class="card h-100">
-            <div class="card-body" style="height: 20vw; padding: 30px 25px;">
-              <% if @dates.count <= 10 %>
-                <h6 class="card-title mb-2">Day <%= (date - @trip.start_date).to_i  %></h5>
-                <h6 class="card-subtitle mb-2 text-muted"><%= date.to_s %></h6>
-              <% else %>
-                <h5 class="card-title mb-2"><%= date.strftime("%a, %B %d") %></h5>
-                <h6 class="card-subtitle mb-2 text-muted">Day <%= (date - @trip.start_date).to_i %></h6>
-              <% end %>
-        <hr class="horizontalLine">
-            <%# <span class="badge bg-secondary rounded-pill"><%= task.category.name </span> %>
-
-
-                <div class="task-list accordion mt-2" id="accordionPanelsStayOpenExample" style="margin: 10px 0;">
-                  <% if  @tasks.where(date: date).count == 0 %>
-                    <p class="mb-2 text-muted">No tasks today...</p>
-                  <% else %>
-                    <%= render "trips/task", tasks: @tasks.where(date: date), day: i+1 %>
-                  <% end %>
-                </div>
-
-
-            </div>
-            <div class="card-footer mt-2 d-flex justify-content-end bg-light">
-              <% if @tasks.where(date: date).first %>
-              <div class="btn-group btn-group-sm" role="group">
-                <% if @tasks.where(date: date).first %>
-                  <%=link_to @tasks.where(date: date).first.user.first_name, user_profile_path(@tasks.where(date: date).first.user), class: "btn btn-light btn-sm"%>
-                <% end %>
-                <button type="button" class="btn btn-light btn-sm dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"></button>
-                  <ul class="dropdown-menu" style="min-width: 300px;">
-                    <% @caretakers.each do |caretaker| %>
-                      <%= link_to set_caretaker_path(@trip, caretaker, date: date), data: { turbo_method: :post } do %>
-                        <li><%= cl_image_tag caretaker.photo.key, style: "width:30px;", class: "rounded-circle mx-2 py-2" %><span><%= "#{caretaker.first_name} #{caretaker.last_name}" %></span></li>
+          <% dates.each_with_index do |date, i| %>
+              <div class="col" <%= date %>" data-slide-index="<%= slide_index %>" data-start-date="<%= @trip.start_date %>" data-end-date="<%= @trip.end_date %>">
+                <div class="card h-100">
+                  <div class="card-body" style="min-height: 20vw; padding: 30px 25px;">
+                    <% if @tasks.where(date: date).present? %>
+                      <% if @tasks.where(date: date).first.user.photo.attached? %>
+                        <%= cl_image_tag @tasks.where(date: date).first.user.photo.key, class: "taskuseravatar" %>
+                      <% else %>
+                        <%= image_tag "noPicAvatar.png", class: "taskuseravatar" %>
                       <% end %>
-                  <% end %>
-                  </ul>
+                    <% end %>
+                    <% if @dates.count <= 10 %>
+                      <h6 class="card-title mb-2">Day <%= (date - @trip.start_date).to_i  %></h5>
+                      <h6 class="card-subtitle mb-2 text-muted"><%= date.to_s %></h6>
+                    <% else %>
+                      <h5 class="card-title mb-2"><%= date.strftime("%a, %B %d") %></h5>
+                      <h6 class="card-subtitle mb-2 text-muted">Day <%= (date - @trip.start_date).to_i %></h6>
+                    <% end %>
+                    <hr class="horizontalLine">
+            <%# <span class="badge bg-secondary rounded-pill"><%= task.category.name </span> %>
+                    <div class="task-list accordion mt-2" id="accordionPanelsStayOpenExample" style="margin: 10px 0;">
+                      <% if  @tasks.where(date: date).count == 0 %>
+                        <p class="mb-2 text-muted">No tasks today...</p>
+                      <% else %>
+                        <%= render "trips/task", tasks: @tasks.where(date: date), day: i+1 %>
+                      <% end %>
+                    </div>
+                  </div>
+                  <div class="card-footer mt-2 d-flex justify-content-end bg-light">
+                    <% if @tasks.where(date: date).first %>
+                      <div class="btn-group btn-group-sm" role="group">
+                        <% if @tasks.where(date: date).first %>
+                          <%=link_to @tasks.where(date: date).first.user.first_name, user_profile_path(@tasks.where(date: date).first.user), class: "btn btn-light btn-sm"%>
+                        <% end %>
+                        <button type="button" class="btn btn-light btn-sm dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"></button>
+                        <ul class="dropdown-menu" style="min-width: 300px;">
+                          <% @caretakers.each do |caretaker| %>
+                            <%= link_to set_caretaker_path(@trip, caretaker, date: date), data: { turbo_method: :post } do %>
+                              <li><%= cl_image_tag caretaker.photo.key, style: "width:30px;", class: "rounded-circle mx-2 py-2" %><span><%= "#{caretaker.first_name} #{caretaker.last_name}" %></span></li>
+                            <% end %>
+                          <% end %>
+                        </ul>
+                      </div>
+                    <% elsif %>
+                      <span style="padding-top: 6px;">&nbsp;</span>
+                    <% end %>
+                  </div>
+                </div>
               </div>
-              <% elsif %>
-                <span style="padding-top: 6px;">&nbsp;</span>
-              <% end %>
-            </div>
-          </div>
-          </div>
-        <% end %>
+            <% end %>
         </div>
       </div>
-
     </div>
-    <% end %>
-  </div>
+  <% end %>
+</div>
 
   <!-- If we need pagination -->
   <div class="swiper-pagination"></div>
@@ -113,21 +130,22 @@
 </div>
 
 
-      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 my-3 border-bottom">
-        <h1 class="h2">Caretakers</h1>
-        <div class="btn-toolbar mb-2 mb-md-0">
-          <button type="button" class="btn btn-primary my-2" <%# data-bs-toggle="modal" data-bs-target="#newModal" %>>
-            Add a new caretaker
-          </button>
-        </div>
+      <div class="d-flex align-items-center border-bottom" style="margin-top: 0; ">
+        <h1 class="h2" style="margin-bottom:15px; margin-right:10px">Caretakers</h1>
+
+        <% if current_user.role == "homeowner" %>
+            <%= link_to edit_trip_path(@trip) do %>
+              <i class="fa-solid fa-plus" style="margin-bottom:15px"></i>
+            <% end  %>
+          <% end %>
       </div>
 
-      <div class="d-flex justify-content-start px-0">
+      <div class="d-flex justify-content-center px-0">
         <% @caretakers.each do |caretaker| %>
           <div class="caretaker-item mx-4 d-flex flex-column">
             <div class="caretaker-pic d-flex justify-content-center">
               <%= link_to user_profile_path(caretaker) do %>
-                <%= cl_image_tag caretaker.photo.key, style: "width: 100px;", class: "rounded-circle" %>
+                <%= cl_image_tag caretaker.photo.key, style: "width: 50px; font-size:12px", class: "rounded-circle" %>
               <% end %>
             </div>
             <div class="caretaker-name mt-2 ">
@@ -140,55 +158,5 @@
         <% end %>
       </div>
     </div>
-
-
-
-   <!-- <div class="col-md-4">
-      <div class="position-sticky">
-        <div class="p-4 mb-3 bg-white rounded">
-          <div id="calendar">
-            <h4 class="fst-italic">Calendar</h4>
-            <%= month_calendar do |date| %>
-              <%= link_to trip_path(@trip, dates: date), class: "text-decoration-none link-dark" do %>
-                <%= date.strftime('%d') %>
-              <% end %>
-            <% end %>
-          </div>
-          <div id="chat" class="my-4 rounded">
-            <div class="card">
-              <div class="card-header">
-                Chat
-              </div>
-              <div class="card-body flex">
-                <div class="mb-4 justify-self-end text-end">
-                  <div class="text-bg-secondary p-3 justify-self-end rounded">
-                  Hey, thanks for agreeing to stop by!
-                  </div>
-                  <span class="badge rounded text-bg-secondary">Me</span>
-                  <small>16:30</small>
-                </div>
-                <div class="my-4 justify-self-end text-start">
-                  <div class="text-bg-light p-3 justify-self-start rounded">
-                  No problem!
-                  </div>
-                  <span class="badge rounded text-bg-light">Loreta</span>
-                  <small>16:34</small>
-                </div>
-                <div class="mb-4 justify-self-end text-end">
-                  <div class="text-bg-secondary p-3 justify-self-end rounded">
-                  Did you scrub the floorboards?
-                  </div>
-                  <span class="badge rounded text-bg-secondary">Me</span>
-                  <small>16:38</small>
-                </div>
-                <div class="input-group mt-4">
-                  <input type="text" class="form-control" placeholder="New Message" aria-label="Message" aria-describedby="button-addon2">
-                  <button class="btn btn-outline-primary" type="button" id="button-addon2"><i class="fa-regular fa-paper-plane"></i></button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> -->
   </div>
+</div>

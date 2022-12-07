@@ -45,7 +45,9 @@
 <!-- SIDEBAR -->
 
 <div class="sidebar">
-  <nav style="margin-top: 72px;">
+  <nav style="margin-top: 30px; display: flex; flex-direction: column; align-items: center;">
+
+    <%= image_tag "logoExtended1.png", class: "logosidebar" %>
 
     <%= link_to root_path, class: "sidebutton", style:"margin-top: 72px;" do %>
       <i class="fa-solid fa-house-chimney sidebaricon"></i>
@@ -60,11 +62,11 @@
     <% end %>
 
     <%= link_to root_path(anchor: "aboutus"), class: "sidebutton" do %>
-      <i class="fa-solid fa-info sidebaricon"></i>
+      <i class="fa-solid fa-circle-info sidebaricon"></i>
     <% end %>
 
     <%= link_to destroy_user_session_path, class: "sidebutton", data: {turbo_method: :delete} do %>
-      <i class="fa-solid fa-arrow-right-from-bracket sidebaricon"></i>
+      <i class="fa-solid fa-right-from-bracket sidebaricon"></i>
     <% end %>
 
     <!-- <button type="button" class="sidebutton">
