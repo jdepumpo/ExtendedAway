@@ -3,7 +3,7 @@ module AvatarHelper
     if user.photo.attached?
       cl_image_path user.photo.key
     else
-      image_tag "noPicAvatar.png"
+      "http://i.pravatar.cc/500?img=7"
     end
   end
 
