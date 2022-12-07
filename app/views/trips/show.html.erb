@@ -2,6 +2,7 @@
 <div data-controller="flatpickr" data-start-date="<%= @trip.start_date %>" data-end-date="<%= @trip.end_date %>">
 
 <%= render "shared/modals/new_modal", modal: "task", model: [@trip, @task], categories: @categories, trip: @trip %>
+
 <div class="row g-4">
   <div class="col-8" style="padding: 0 20px;">
     <div class="card px-0">
@@ -43,16 +44,16 @@
 
 <%# ---------------------------NEW CODE HERE ---------------------------------------------- %>
 
-    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 my-3">
-        <div class="btn mb-md-0" style="display: flex; height: 63px">
-        <h1 class="h2">Tasks</h1>
-        <% if current_user.role == "homeowner" %>
-          <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#newModal">
-            <i class="fa-solid fa-plus"></i>
-          </button>
-          <% end  %>
-        </div>
-      </div>
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 my-3">
+  <div class="btn mb-md-0" style="display: flex; height: 63px">
+    <h1 class="h2">Tasks</h1>
+    <% if current_user.role == "homeowner" %>
+      <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#newModal">
+        <i class="fa-solid fa-plus"></i>
+      </button>
+    <% end  %>
+  </div>
+</div>
 
 <%# --------------------------- PAST CODE HERE ---------------------------------------------- %>
 
@@ -60,6 +61,7 @@
   <!-- Additional required wrapper -->
   <div class="swiper-wrapper">
     <!-- Slides -->
+
   <% slide_index = 0 %>
   <% @dates.in_groups_of(4, false) do |dates| %>
     <div class="swiper-slide">
@@ -104,21 +106,36 @@
                       <%= link_to set_caretaker_path(@trip, caretaker, date: date), data: { turbo_method: :post } do %>
                         <li><%= cl_image_tag caretaker.photo.key, style: "width:30px;", class: "rounded-circle mx-2 py-2" %><span><%= "#{caretaker.first_name} #{caretaker.last_name}" %></span></li>
                       <% end %>
-                  <% end %>
-                  </ul>
-              </div>
-              <% elsif %>
-                <span style="padding-top: 6px;">&nbsp;</span>
-              <% end %>
-            </div>
-          </div>
-          </div>
-        <% end %>
-        <% slide_index += 1 %>
-        </div>
-      </div>
+                    </div>
 
-    </div>
+                  </div>
+                  <div class="card-footer mt-2 d-flex justify-content-end bg-light">
+                    <% if @tasks.where(date: date).first %>
+                      <div class="btn-group btn-group-sm" role="group">
+                        <% if @tasks.where(date: date).first %>
+                          <%=link_to @tasks.where(date: date).first.user.first_name, user_profile_path(@tasks.where(date: date).first.user), class: "btn btn-light btn-sm"%>
+                        <% end %>
+                        <button type="button" class="btn btn-light btn-sm dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"></button>
+                        <ul class="dropdown-menu" style="min-width: 300px;">
+                          <% @caretakers.each do |caretaker| %>
+                            <%= link_to set_caretaker_path(@trip, caretaker, date: date), data: { turbo_method: :post } do %>
+                              <li><%= cl_image_tag caretaker.photo.key, style: "width:30px;", class: "rounded-circle mx-2 py-2" %><span><%= "#{caretaker.first_name} #{caretaker.last_name}" %></span></li>
+                            <% end %>
+                          <% end %>
+                        </ul>
+                      </div>
+                    <% elsif %>
+                      <span style="padding-top: 6px;">&nbsp;</span>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+            <% slide_index += 1 %>
+          </div>
+        </div>
+
+      </div>
     <% end %>
   </div>
 
@@ -132,8 +149,9 @@
 
 
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 my-3 border-bottom">
-        <h1 class="h2">Caretakers</h1>
+        <h1 class="h2">Caretakers for this Trip</h1>
         <div class="btn-toolbar mb-2 mb-md-0">
+
         <% if current_user.role == "homeowner" %>
           <button type="button" class="btn btn-primary my-2" <%# data-bs-toggle="modal" data-bs-target="#newModal" %>>
             Add a new caretaker
@@ -150,7 +168,7 @@
                 <%= cl_image_tag caretaker.photo.key, style: "width: 100px;", class: "rounded-circle" %>
               <% end %>
             </div>
-            <div class="caretaker-name mt-2 ">
+            <div class="caretaker-name mt-2">
               <%= link_to user_profile_path(caretaker) do %>
                 <%= caretaker.first_name %>
                 <%= caretaker.last_name %>

@@ -4,7 +4,7 @@
       <div class="card-body p-0">
         <div class="card-header py-3 d-flex align-items-center">
           <div class="flex-grow-1">
-            <h5><strong>My Profile</strong></h5>
+            <h5><strong><%= @user.first_name + " " + @user.last_name %></strong></h5>
           </div>
           <div>
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal">
