@@ -42,7 +42,7 @@
   <div class="swiper-wrapper">
     <!-- Slides -->
 
-  <% @dates.in_groups_of(9) do |dates| %>
+  <% @dates.in_groups_of(9, false) do |dates| %>
     <div class="swiper-slide">
 
       <div class="card-deck mx-5 mb-5">
@@ -55,7 +55,7 @@
                 <h5 class="card-title mb-2">Day <%= i + 1 %></h5>
                 <h6 class="card-subtitle mb-2 text-muted"><%= date.to_s %></h6>
               <% else %>
-                <h5 class="card-title mb-2"><%#= date.strftime("%a, %B %d") %></h5>
+                <h5 class="card-title mb-2"><%= date.strftime("%a, %B %d") %></h5>
                 <h6 class="card-subtitle mb-2 text-muted">Day <%= i + 1 %></h6>
               <% end %>
                 <div class="task-list accordion mt-2" id="accordionPanelsStayOpenExample">
