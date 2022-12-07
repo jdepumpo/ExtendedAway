@@ -1,6 +1,6 @@
 <%# ------------------ Trip image and details------------------------ %>
 
-<div data-controller="flatpickr">
+<div data-controller="flatpickr" data-start-date="<%= @trip.start_date %>" data-end-date="<%= @trip.end_date %>">
 
 <%= render "shared/modals/new_modal", modal: "task", model: [@trip, @task], categories: @categories, trip: @trip %>
 <div class="row g-4">
@@ -38,8 +38,8 @@
 
 <%# CARDS %>
     <div class="col-md-5">
-      <div class="card d-flex justify-content-center align-content-center w-100 h-100">
-        <input placeholder="Select Dates" name="dates" data-flatpickr-target="calendarInput" class="" data-action="change->flatpickr#highlightTask">
+      <div class="d-flex justify-content-center align-content-center w-100 h-100">
+        <input placeholder="Select Dates" name="dates" data-flatpickr-target="calendarInput" class="d-none" data-action="change->flatpickr#highlightTask">
       </div>
     </div>
 
@@ -69,7 +69,7 @@
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
 
           <% dates.each_with_index do |date, i| %>
-              <div class="col" <%= date %>" data-slide-index="<%= slide_index %>" data-start-date="<%= @trip.start_date %>" data-end-date="<%= @trip.end_date %>">
+              <div class="col" id="<%= date %>" data-slide-index="<%= slide_index %>" data-start-date="<%= @trip.start_date %>" data-end-date="<%= @trip.end_date %>">
                 <div class="card h-100">
                   <div class="card-body" style="min-height: 20vw; padding: 30px 25px;">
                     <% if @tasks.where(date: date).present? %>
@@ -80,11 +80,11 @@
                       <% end %>
                     <% end %>
                     <% if @dates.count <= 10 %>
-                      <h6 class="card-title mb-2">Day <%= (date - @trip.start_date).to_i  %></h5>
+                      <h6 class="card-title mb-2">Day <%= (date - @trip.start_date).to_i + 1  %></h5>
                       <h6 class="card-subtitle mb-2 text-muted"><%= date.to_s %></h6>
                     <% else %>
                       <h5 class="card-title mb-2"><%= date.strftime("%a, %B %d") %></h5>
-                      <h6 class="card-subtitle mb-2 text-muted">Day <%= (date - @trip.start_date).to_i %></h6>
+                      <h6 class="card-subtitle mb-2 text-muted">Day <%= (date - @trip.start_date).to_i + 1 %></h6>
                     <% end %>
                     <hr class="horizontalLine">
 
@@ -120,7 +120,7 @@
                 </div>
               </div>
             <% end %>
-
+          <% slide_index += 1 %>
         </div>
       </div>
     </div>
