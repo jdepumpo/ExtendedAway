@@ -14,7 +14,7 @@
         <label for="imageUpload"></label>
       </div>
       <div class="avatar-preview">
-        <div id="imagePreview" style="background-image: url(http://i.pravatar.cc/500?img=7);">
+        <div id="imagePreview" style="background-image: url(<%= cloudinary_avatar(current_user) %>);">
         </div>
       </div>
     </div>
@@ -29,7 +29,7 @@
           <p style="font-size:26px; color:#008285;">|</p>
           <p style="margin-left: 5px;"><%= current_user.trips.count %></p>
           </div>
-          
+
       </div>
       <div class="col">
         <h6>Friends</h6>
@@ -47,7 +47,7 @@
               <p style="font-size:26px; color:#FC5757;">|</p>
               <% futuretrips = 0 %>
               <% current_user.trips.each do |trip| %>
-                <% if trip.start_date != Date.today %>
+                <% if trip.start_date >= Date.today %>
                   <% futuretrips =+ 1  %>
                 <% end %>
               <% end %>
@@ -75,9 +75,11 @@
     <div class="mostvaluablehelper d-flex flex-column align-items-center">
       <h5>Your most valuable helper</h5>
       <% users = current_user.tasks.pluck(:user_id) %>
-      <% friend = User.find(users.max_by {|i| users.count(i)}) %>
-      <p><%= friend.first_name %> helped you X times</p>
-      <%= image_tag 'helper.jpg', size: '69x69', class:"kingofhelpers" %>
+      <%  if users.present? %>
+        <% friend = User.find(users.max_by {|i| users.count(i)}) %>
+        <p><%= friend.first_name %> helped you <%= users.count(users.max_by {|i| users.count(i)}) %> times</p>
+        <%= friend_avatar(friend) %>
+      <% end %>
       <p style="font-size: 13px; color: rgba(51, 51, 51, 0.5); margin-top:10px;">A road to a friend’s house is never long.</p>
     </div>
     </div>
