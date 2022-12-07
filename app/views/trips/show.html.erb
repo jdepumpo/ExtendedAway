@@ -70,7 +70,7 @@
         <div class="col" id="<%= date %>" data-slide-index="<%= slide_index %>">
 
           <div class="card h-100">
-            <div class="card-body" style="height: 20vw; padding: 30px 25px;">
+            <div class="card-body" style="min-height: 20vw; padding: 30px 25px;">
               <% if @dates.count <= 10 %>
                 <h6 class="card-title mb-2">Day <%= (date - @trip.start_date).to_i + 1  %></h5>
                 <h6 class="card-subtitle mb-2 text-muted"><%= date.to_s %></h6>

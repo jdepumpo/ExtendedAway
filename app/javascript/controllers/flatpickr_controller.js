@@ -17,6 +17,10 @@ export default class extends Controller {
     this.#getSwiper()
   }
 
+  disconnect() {
+    flatpickr.clear()
+  }
+
   highlightTask() {
     const searchDate = this.calendarInputTarget.value
     console.log(searchDate)
