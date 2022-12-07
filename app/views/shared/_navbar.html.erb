@@ -62,7 +62,7 @@
       <i class="fa-solid fa-info sidebaricon"></i>
     <% end %>
 
-    <%= link_to destroy_user_session_path, class: "sidebutton" do %>
+    <%= link_to destroy_user_session_path, class: "sidebutton", data: {turbo_method: :delete} do %>
       <i class="fa-solid fa-arrow-right-from-bracket sidebaricon"></i>
     <% end %>
 
