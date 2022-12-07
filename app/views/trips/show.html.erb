@@ -128,18 +128,14 @@
   <div class="swiper-button-prev"></div>
   <div class="swiper-button-next"></div>
 </div>
-
-
       <div class="d-flex align-items-center border-bottom" style="margin-top: 0; ">
         <h1 class="h2" style="margin-bottom:15px; margin-right:10px">Caretakers</h1>
-
         <% if current_user.role == "homeowner" %>
             <%= link_to edit_trip_path(@trip) do %>
               <i class="fa-solid fa-plus" style="margin-bottom:15px"></i>
             <% end  %>
           <% end %>
       </div>
-
       <div class="d-flex justify-content-center px-0">
         <% @caretakers.each do |caretaker| %>
           <div class="caretaker-item mx-4 d-flex flex-column">
