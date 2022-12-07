@@ -25,5 +25,92 @@
   background-color: rgba(0, 130, 133, 1.0);
   color: white;
   border: solid;
-  
+
+}
+
+// ----------------------------NEW CARDS -----------------------------------------
+.title {
+  font-size: 1rem;
+  text-align: center;
+  letter-spacing: 0.2rem;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.column {
+  position: relative;
+  min-width: 250px;
+  height: 80vh;
+  padding: 10px 20px;
+  background-color: #fff;
+  border-radius: 20px;
+  flex: 1;
+  margin: 0 10px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  border: 2px solid #fff;
+  transition: 0.2s;
+  z-index: 1;
+}
+
+.cnt {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 5px;
+  right: 10px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 20px;
+  font-size: 0.7rem;
+  background-color: rgba(198, 198, 198, 0.36);
+  z-index: 200000;
+}
+
+.item {
+  width: 150px;
+  height: 66px;
+  line-height: 66px;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  border: 1px solid #eee;
+  box-shadow: 4px 4px 9px rgba(198, 198, 198, 0.36);
+  border-radius: 20px;
+  background: #f7f6f7;
+  vertical-align: middle;
+  color: #828282;
+  text-align: center;
+  cursor: grab;
+}
+
+.item:active {
+  cursor: grabbing;
+  border-radius: 20px;
+}
+
+.hold {
+  transform: translate(0, 0);
+  background: linear-gradient(90deg, #ff85e4 0%, #229efd 179.25%);
+  color: #000;
+}
+
+.hide {
+  border-radius: 20px;
+  opacity: 0;
+  /*   display: none; */
+}
+
+.start {
+  background: linear-gradient(90deg, #ff85e4 0%, #229efd 179.25%);
+}
+
+.entered {
+  border: 2px solid #bb9de9;
+}
+
+.done {
+  background: linear-gradient(90deg, #84fab0 0%, #8fd3f4 100%);
 }
