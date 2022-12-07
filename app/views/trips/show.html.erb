@@ -52,25 +52,25 @@
           <div class="card h-100">
             <div class="card-body">
               <% if @dates.count <= 10 %>
-                <h5 class="card-title mb-2">Day <%= i + 1 %></h5>
+                <h5 class="card-title mb-2">Day <%#=  %></h5>
                 <h6 class="card-subtitle mb-2 text-muted"><%= date.to_s %></h6>
               <% else %>
                 <h5 class="card-title mb-2"><%= date.strftime("%a, %B %d") %></h5>
                 <h6 class="card-subtitle mb-2 text-muted">Day <%= i + 1 %></h6>
               <% end %>
                 <div class="task-list accordion mt-2" id="accordionPanelsStayOpenExample">
-                  <% if  @trip.tasks.where(date: date).count == 0 %>
+                  <% if  @tasks.where(date: date).count == 0 %>
                     <p class="mb-2 text-muted">No tasks today...</p>
                   <% else %>
-                    <%= render "trips/task", tasks: @trip.tasks.where(date: date), day: i+1 %>
+                    <%= render "trips/task", tasks: @tasks.where(date: date), day: i+1 %>
                   <% end %>
                 </div>
             </div>
             <div class="card-footer mt-2 d-flex justify-content-end bg-light">
-              <% if @trip.tasks.where(date: date).first %>
+              <% if @tasks.where(date: date).first %>
               <div class="btn-group btn-group-sm" role="group">
-                <% if @trip.tasks.where(date: date).first %>
-                  <%=link_to @trip.tasks.where(date: date).first.user.first_name, user_profile_path(@trip.tasks.where(date: date).first.user), class: "btn btn-light btn-sm"%>
+                <% if @tasks.where(date: date).first %>
+                  <%=link_to @tasks.where(date: date).first.user.first_name, user_profile_path(@tasks.where(date: date).first.user), class: "btn btn-light btn-sm"%>
                 <% end %>
                 <button type="button" class="btn btn-light btn-sm dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"></button>
                   <ul class="dropdown-menu" style="min-width: 300px;">
