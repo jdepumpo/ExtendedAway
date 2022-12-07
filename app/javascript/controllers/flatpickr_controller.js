@@ -22,7 +22,7 @@ export default class extends Controller {
     console.log(swiperCard)
     const slideIndex = swiperCard.dataset.slideIndex
     console.log(slideIndex)
-    this.swiper.slideTo(parseInt(slideIndex) + 1)
+    this.swiper.slideTo(parseInt(slideIndex) + 1, 500, true)
 
   }
 
