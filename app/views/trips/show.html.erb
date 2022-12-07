@@ -30,11 +30,13 @@
 
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 my-3 border-bottom">
         <h1 class="h2">Tasks</h1>
-        <div class="btn-toolbar mb-2 mb-md-0">
-          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newModal">
-            Add a new task
-          </button>
-        </div>
+        <% if current_user.role == "homeowner" %>
+          <div class="btn-toolbar mb-2 mb-md-0">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newModal">
+              Add a new task
+            </button>
+          </div>
+        <% end %>
       </div>
 
 <div class="swiper" data-controller="swiper">
@@ -106,11 +108,13 @@
 
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 my-3 border-bottom">
         <h1 class="h2">Caretakers</h1>
-        <div class="btn-toolbar mb-2 mb-md-0">
-          <button type="button" class="btn btn-primary my-2" <%# data-bs-toggle="modal" data-bs-target="#newModal" %>>
-            Add a new caretaker
-          </button>
-        </div>
+        <% if current_user.role == "homeowner" %>
+          <div class="btn-toolbar mb-2 mb-md-0">
+            <button type="button" class="btn btn-primary my-2" <%# data-bs-toggle="modal" data-bs-target="#newModal" %>>
+              Add a new caretaker
+            </button>
+          </div>
+        <% end %>
       </div>
 
       <div class="d-flex justify-content-start px-0">
