@@ -1,5 +1,5 @@
 <%# ------------------ Trip image and details------------------------ %>
-<div data-controller="flatpickr">
+<div data-controller="flatpickr" data-start-date="<%= @trip.start_date %>" data-end-date="<%= @trip.end_date %>">
 
 <%= render "shared/modals/new_modal", modal: "task", model: [@trip, @task], categories: @categories, trip: @trip %>
 <div class="row g-4">
@@ -74,14 +74,14 @@
   <!-- Additional required wrapper -->
   <div class="swiper-wrapper">
     <!-- Slides -->
-<% slide_index = 0 %>
+  <% slide_index = 0 %>
   <% @dates.in_groups_of(4, false) do |dates| %>
     <div class="swiper-slide">
 
       <div class="card-deck mx-5 mb-5">
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
         <% dates.each_with_index do |date, i| %>
-        <div class="col" <%= date %>" data-slide-index="<%= slide_index %>" data-start-date="<%= @trip.start_date %>" data-end-date="<%= @trip.end_date %>">
+        <div class="col" id="<%= date %>" data-slide-index="<%= slide_index %>">
 
           <div class="card h-100">
             <div class="card-body" style="height: 20vw; padding: 30px 25px;">
@@ -128,6 +128,7 @@
           </div>
           </div>
         <% end %>
+        <% slide_index += 1 %>
         </div>
       </div>
 

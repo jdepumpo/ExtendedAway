@@ -9,6 +9,8 @@ export default class extends Controller {
   connect() {
     new flatpickr(this.calendarInputTarget, {
       inline: true,
+      minDate: this.element.dataset.startDate,
+      maxDate: this.element.dataset.endDate
       // more options available on the documentation!
     });
 
@@ -22,7 +24,7 @@ export default class extends Controller {
     console.log(swiperCard)
     const slideIndex = swiperCard.dataset.slideIndex
     console.log(slideIndex)
-    this.swiper.slideTo(parseInt(slideIndex) + 1, 500, true)
+    this.swiper.slideTo(parseInt(slideIndex), 500, true)
 
   }
 
