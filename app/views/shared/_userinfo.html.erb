@@ -6,7 +6,7 @@
   <div class="offcanvas-header">
   <div style="margin-left:15px;">
     <p style="margin-bottom:0; color: #333333">Hello,</p>
-    <p style="margin-bottom:0; font-weight:bold; color: #333333""><%= "#{current_user.first_name}" %></p>
+    <p style="margin-bottom:0; font-weight:bold; color: #333333"><%="#{current_user.first_name}" %></p>
   </div>
     <div class="avatar-upload">
       <div class="avatar-edit">
@@ -79,8 +79,10 @@
         <% friend = User.find(users.max_by {|i| users.count(i)}) %>
         <p><%= friend.first_name %> helped you <%= users.count(users.max_by {|i| users.count(i)}) %> times</p>
         <%= friend_avatar(friend) %>
+        <p style="font-size: 13px; color: rgba(51, 51, 51, 0.5); margin-top:10px;">A road to a friend’s house is never long.</p>
+      <% else %>
+        <p style="font-size: 13px; color: rgba(51, 51, 51, 0.5); margin-top:10px;">You have no friends yet <i class="fa-solid fa-face-sad-tear"></i></p>
       <% end %>
-      <p style="font-size: 13px; color: rgba(51, 51, 51, 0.5); margin-top:10px;">A road to a friend’s house is never long.</p>
     </div>
     </div>
   <div>
