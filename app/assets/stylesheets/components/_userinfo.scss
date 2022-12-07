@@ -15,7 +15,6 @@
   }
 }
 
-
 .userinfoavatar{
   width: 87px;
     border-radius: 50px;
@@ -94,46 +93,20 @@
   margin-bottom: 10px;
 }
 
+.fa-pen{
+  background-color: white;
+  padding: 10px;
+  border-radius: 21px;
+  position: absolute;
+  z-index: 1;
+  right: 15px;
+}
 
-.avatar-upload {
-  position: relative;
-  max-width: 205px;
-  margin: 1px 10px;
-  .avatar-edit {
-      position: absolute;
-      z-index: 1;
-      input {
-          display: none;
-          + label {
-              border-radius: 100%;
-              background: #FFFFFF;
-              border: 1px solid transparent;
-              box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
-              padding: 19px;
-              cursor: pointer;
-              font-weight: normal;
-              transition: all .2s ease-in-out;
-              display: flex;
-              position: absolute;
-              left: 70px;
-              &:hover {
-                  background: #f1f1f1;
-                  border-color: #d6d6d6;
-              }
-              &:after {
-                  content: "\f040";
-                  font-family: 'FontAwesome';
-                  color: #757575;
-                  position: absolute;
-                  top: 10px;
-                  left: 0;
-                  right: 0;
-                  text-align: center;
-                  margin: auto;
-              }
-          }
-      }
-  }
+.fa-pen:hover{
+  box-shadow: 0px 0px 22px -2px rgba(0,0,0,0.62);
+}
+
+
   .avatar-preview {
       width: 100px;
       height: 100px;
@@ -150,4 +123,3 @@
           background-position: center;
       }
   }
-}

@@ -9,9 +9,10 @@
     <p style="margin-bottom:0; font-weight:bold; color: #333333"><%="#{current_user.first_name}" %></p>
   </div>
     <div class="avatar-upload">
-      <div class="avatar-edit">
-        <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" />
-        <label for="imageUpload"></label>
+      <div>
+        <%= link_to edit_user_registration_path do %>
+          <i class="fa-solid fa-pen"></i>
+        <% end %>
       </div>
       <div class="avatar-preview">
         <div id="imagePreview" style="background-image: url(<%= cloudinary_avatar(current_user) %>);">

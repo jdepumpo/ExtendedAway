@@ -3,7 +3,7 @@ module AvatarHelper
     if user.photo.attached?
       cl_image_path user.photo.key
     else
-      "http://i.pravatar.cc/500?img=7"
+      asset_path("noPicAvatar.png")
     end
   end
 
