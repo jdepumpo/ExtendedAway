@@ -8,7 +8,7 @@
 <div class="row g-4">
   <div class="col-7">
 
-    <div class="card px-0">
+    <div class="card px-0" style="box-shadow: 0px 0px 23px -1px rgb(0 0 0 / 55%);">
       <div class="p-4 p-md-5 rounded-top text-bg-dark position-relative" style="background: center / cover no-repeat url('<%= (@trip.photo.key) ? (cl_image_path @trip.photo.key) : ('https://res.cloudinary.com/dxfg68ykv/image/upload/v1670496275/anthony-tan-PULWFiQi2aU-unsplash_gku5ka.jpg') %>');">
         <span class="position-absolute top-0 end-0 badge rounded-start">
           Starting in <%= (@trip.start_date - Date.today).to_i %> days
@@ -16,18 +16,18 @@
         <div class="col-md-8 px-0">
           <h2 class="display-4 fst-italic text-shadow"><%= @trip.name %></h2>
           <p class="lead my-3 text-shadow"><%= @trip.description %></p>
-        </div>
-      </div>
-      <div class="card-footer bg-white rounded-bottom d-flex" style="justify-content:space-between">
         <span class="lead">
-          <span class="badge" style="background-color:#A8CEC9">
+          <span class="badge" style="background-color: #333333; font-size: 15px;">
             <i class="fa-solid fa-calendar-days text-light"></i>
             <span class="px-2" style="font-size:12px;"><%= @trip.start_date.strftime('%a %d %b %Y') %> — <%= @trip.end_date.strftime('%a %d %b %Y') %></span>
           </span>
         </span>
-            <button type="button" class="btn btn-primary text-white" data-bs-toggle="modal" data-bs-target="#accessModal">
-              <i class="fa-solid fa-house-lock"></i> Location & Access
-            </button>
+        </div>
+      </div>
+      <div class="card-footer bg-white rounded-bottom d-flex" style="justify-content:space-between">
+        <button type="button" class="btn btn-primary text-white" data-bs-toggle="modal" data-bs-target="#accessModal">
+          <i class="fa-solid fa-house-lock"></i> Location & Access
+        </button>
         <div>
           <%= link_to edit_trip_path(@trip), class: "btn btn-white" do %>
             <i class="fa-solid fa-pen"></i>
