@@ -1,12 +1,11 @@
-<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-  <h1 class="h2 mb-0">My Trips</h1>
-  <div class="btn-toolbar mb-2 mb-md-0">
-    <%= link_to new_trip_path, class: "btn btn-primary" do %>
-      <strong>+</strong>
-    <% end %>
-  </div>
+<div class="d-flex">
+  <h1>My Trips</h1>
+  <%= link_to new_trip_path, class: "btn", style: "margin-top: 5px; margin-left: 2px;" do %>
+    <i class="fa-solid fa-plus"></i>
+  <% end %>
 </div>
 
+<<<<<<< HEAD
 <% if @trips.nil? %>
   <p>You have no trips available...</p>
 <% else %>
@@ -25,8 +24,25 @@
               <span class="px-2"><%= trip.start_date.strftime('%a %d %b %Y') %> — <%= trip.end_date.strftime('%a %d %b %Y') %></span>
             </span>
           </h3>
+=======
+<div class="tripscontainer" data-controller="tasks">
+  <div class="options">
+    <% @trips.each do |trip| %>
+      <div class="option <%= "active" if trip == @trips.first %>" style="background-image:url('<%= image_path @picture_array.sample %>');" data-action="click->tasks#showTrip" data-tasks-target="card">
+        <div class="shadow">
+          <div class="label">
+            <div class="icon">
+              <i class="fa-solid fa-plane-departure"></i>
+            </div>
+            <div class="info" style="position: relative;">
+              <div class="main" style="color: #333333;font-size: 17px;"><%= trip.name %></div>
+              <div style="font-size:12px; color: #333333;"><%= trip.start_date.strftime('%a %d %b %Y') %></div>
+              <%# <div class="sub"><%= trip.description </div>%>
+            </div>
+          </div>
+>>>>>>> 303294bff95602d45fecdb31db8da1f95b723d53
         </div>
       </div>
     <% end %>
-  <% end %>
-<% end %>
+  </div>
+</div>
