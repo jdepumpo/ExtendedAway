@@ -11,9 +11,7 @@
         <button class="accordion-button collapsed d-flex px-1 py-0" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse<%=task.id%>" aria-expanded="true" aria-controls="panelsStayOpen-collapse<%=task.id%>">
             <h5 class="flex-grow-1 m-0 text-secondary text-decoration-line-through"><%= task.name %></h5>
         </button>
-        <%= link_to task_path(task), class: "btn btn-body-color p-0", data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this task?" } do %>
-          <i class="fa-regular fa-trash-can"></i>
-        <% end %>
+
       <% else %>
         <%= link_to task_path(task), data: {turbo_method: :patch}, class: "" do %>
           <svg xmlns="http://www.w3.org/2000/svg" class="text-light checkmark-undone" style="width: 20px;" viewBox="0 0 20 20" fill="lightgrey">
@@ -26,9 +24,9 @@
       <% end %>
     </div>
     <div id="panelsStayOpen-collapse<%=task.id%>" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-heading<%=task.id%>">
-      <div class="accordion-body">
-        <%= task.description %>
-        <%= link_to task_path(task), class: "btn btn-body-color p-0", data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this task?" } do %>
+      <div class="accordion-body d-flex">
+        <p><%= task.description %></p>
+        <%= link_to task_path(task), class: "btn btn-body-color p-0 justify-self-end align-self-end", data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this task?" } do %>
           <i class="fa-regular fa-trash-can"></i>
         <% end %>
       </div>
