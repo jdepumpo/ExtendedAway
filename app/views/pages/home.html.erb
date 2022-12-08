@@ -2,15 +2,15 @@
   <div class="left-pannel bg-light">
      <%= image_tag "logo3.png", class: "homepagelogo" %>
       <div>
-        <p style="font-size: 16px; margin: 10px 62px 10px 55px;">Have peace of mind while you are away. Your trips, taken to new levels of tranquillity. Connecting Homeowners to Caretakers.</p>
+        <p style="font-size: 20px; margin: 10px 62px 10px 55px;">Have peace of mind while you are away. Your trips, taken to new levels of tranquillity. Connecting Homeowners to Caretakers.</p>
         <p style="font-size: 14px; margin: 0px 62px 3px 55px; text-decoration: underline;"><%= link_to "Learn more", root_path(anchor: "aboutus") %></p>
       </div>
       <div class="homepagebuttons">
         <% if current_user %>
           <%= link_to "My trips", trips_path, class:"btn loginlandingpage1" %>
         <% else %>
-          <%= link_to "Login", new_user_session_path, class: "btn loginlandingpage1" %>
-          <%= link_to "Sign up", new_user_registration_path, class: "btn loginlandingpage2" %>
+          <%= link_to "Get started!", new_user_session_path, class: "btn loginlandingpage1" %>
+          <!-- <%= link_to "Sign up", new_user_registration_path, class: "btn loginlandingpage2" %> -->
         <% end %>
       </div>
     </div>
