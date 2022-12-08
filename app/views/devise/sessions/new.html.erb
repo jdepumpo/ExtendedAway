@@ -1,19 +1,53 @@
 <div class="login_container" data-controller="login" id="login_container">
 	<div class="form-container sign-up-container">
 
-		<form class ="login-form"action="#">
-			<h1 style="display:flex; justify-content:center; color:black">Create Account</h1>
+		<!-- <form class="login-form" action="/users" id="new_user" method="post" data-turbo="false">
+			<input type="hidden" name="authenticity_token" value="rsXLwH4A2kh53HGeagaIwHlDtDkCT7KYrYNrkurEQjYJaEoKdFYXKmS9Caoz1gUlLS4dEpwYqR-cXGXeCiz_5Q" autocomplete="off">
+      <h1 style="display:flex; justify-content:center; color:black">Create Account</h1>
 			<div class="social-container" style="margin: 15px;">
         <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
 				<a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
 				<a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
 			</div>
-			<input class="sign_in_input" type="text" placeholder="First name" />
-      <input class="sign_in_input" type="text" placeholder="Last name" />
-			<input class="sign_in_input" type="email" placeholder="Email" />
-			<input class="sign_in_input" type="password" placeholder="Password" />
-			<center> <button  class="form_signin_button">Sign Up </button> </center>
-		</form>
+			<%# <input class="sign_in_input" type="text" placeholder="First name" name="first_name" id="first_name" /> %>
+      <input class="sign_in_input" placeholder="First name" autocomplete="First name" autofocus="autofocus" type="text" name="user[first_name]" id="user_first_name">
+      <%# <input class="sign_in_input" type="text" placeholder="Last name" name="last_name" id="last_name" /> %>
+      <input class="sign_in_input" placeholder="Last name" autocomplete="Last name" autofocus="autofocus" type="text" name="user[last_name]" id="user_last_name">
+			<%# <input class="sign_in_input" type="email" placeholder="Email" name="email" id="email"/> %>
+			<input class="sign_in_input" placeholder="Email" autocomplete="email" autofocus="autofocus" required="required" aria-required="true" aria-invalid="true" type="email" value="" name="user[email]" id="user_email">
+      <%# <input class="sign_in_input" type="password" placeholder="Password" name="password" id="password"/> %>
+			<input class="sign_in_input" placeholder="Password" autocomplete="new-password" required="required" aria-required="true" aria-invalid="true" type="password" name="user[password]" id="user_password">
+      <center> <input type="submit" class="form_signin_button" value="Sign Up"> </center>
+		</form> -->
+    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), data: { turbo: :false }) do |f| %>
+      <%= f.error_notification %>
+
+      <div class="form-inputs">
+        <%= f.input :first_name,
+                    required: false,
+                    autofocus: true,
+                    input_html: { autocomplete: "First name", class: "sign_in_input" } %>
+        <%= f.input :last_name,
+                    required: false,
+                    autofocus: true,
+                    input_html: { autocomplete: "Last name", class: "sign_in_input" } %>
+        <%= f.input :email,
+                    required: true,
+                    autofocus: true,
+                    input_html: { autocomplete: "email", class: "sign_in_input" }%>
+        <%= f.input :password,
+                    required: true,
+                    hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                    input_html: { autocomplete: "new-password", class: "sign_in_input" } %>
+        <!--<%= f.input :password_confirmation,
+                    required: true,
+                    input_html: { autocomplete: "new-password", class: "sign_in_input" } %>-->
+      </div>
+
+      <div class="form-actions">
+        <%= f.button :submit, "Sign up", class: "form_signin_button" %>
+      </div>
+    <% end %>
 	</div>
 
 

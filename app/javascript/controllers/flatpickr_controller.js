@@ -7,15 +7,18 @@ export default class extends Controller {
   static targets = ["calendarInput"]
 
   connect() {
+    if (!document.querySelector(".flatpickr-calendar")) {
     new flatpickr(this.calendarInputTarget, {
       inline: true,
       minDate: this.element.dataset.startDate,
       maxDate: this.element.dataset.endDate
       // more options available on the documentation!
     });
-    this.#getSwiper()
-    console.log("swiper")
   }
+    this.#getSwiper()
+  }
+
+
 
   highlightTask() {
     const searchDate = this.calendarInputTarget.value
