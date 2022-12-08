@@ -19,7 +19,7 @@
     <% else %>
       <%= render "shared/navbar" %>
       <%= render "shared/userinfo" if current_user %>
-      <main class="container" style="min-height: 65vh;">
+      <main class="container" style="min-height: 65vh; padding-bottom: 190px;">
         <%= yield %>
       </main>
     <% end %>
