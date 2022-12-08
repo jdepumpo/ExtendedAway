@@ -86,7 +86,7 @@
                     <% end %>
                     <% if @dates.count <= 10 %>
                       <h6 class="card-title mb-2">Day <%= (date - @trip.start_date).to_i + 1  %></h5>
-                      <h6 class="card-subtitle mb-2 text-muted"><%= date.to_s %></h6>
+                      <h6 class="card-subtitle mb-2 text-muted"><%= date.strftime("%a, %B %d") %></h6>
                     <% else %>
                       <h5 class="card-title mb-2"><%= date.strftime("%a, %B %d") %></h5>
                       <h6 class="card-subtitle mb-2 text-muted">Day <%= (date - @trip.start_date).to_i + 1 %></h6>
