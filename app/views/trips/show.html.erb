@@ -3,6 +3,8 @@
 <div data-controller="flatpickr" data-start-date="<%= @trip.start_date %>" data-end-date="<%= @trip.end_date %>">
 
 <%= render "shared/modals/new_modal", modal: "task", model: [@trip, @task], categories: @categories, trip: @trip %>
+<%= render "shared/modals/access_info", model: @trip %>
+
 <div class="row g-4">
   <div class="col-7">
 
@@ -17,15 +19,18 @@
         </div>
       </div>
       <div class="card-footer bg-white rounded-bottom d-flex" style="justify-content:space-between">
-        <h3 class="lead" style="margin: auto 2px;">
+        <span class="lead">
           <span class="badge" style="background-color:#A8CEC9">
             <i class="fa-solid fa-calendar-days text-light"></i>
             <span class="px-2" style="font-size:12px;"><%= @trip.start_date.strftime('%a %d %b %Y') %> — <%= @trip.end_date.strftime('%a %d %b %Y') %></span>
           </span>
-        </h3>
+        </span>
+            <button type="button" class="btn btn-primary text-white" data-bs-toggle="modal" data-bs-target="#accessModal">
+              <i class="fa-solid fa-house-lock"></i> Location & Access
+            </button>
         <div>
-          <%= link_to edit_trip_path(@trip) do %>
-          <i class="fa-solid fa-pen"></i>
+          <%= link_to edit_trip_path(@trip), class: "btn btn-white" do %>
+            <i class="fa-solid fa-pen"></i>
           <% end %>
           <%= link_to trip_path(@trip), class: "btn btn-white", data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this task?" } do %>
             <i class="fa-regular fa-trash-can"></i>
