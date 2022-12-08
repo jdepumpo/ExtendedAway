@@ -1,8 +1,10 @@
-<div class="d-flex">
-  <h1>My Trips</h1>
-  <%= link_to new_trip_path, class: "btn", style: "margin-top: 5px; margin-left: 2px;" do %>
-    <i class="fa-solid fa-plus"></i>
-  <% end %>
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+  <h1 class="h2 mb-0">My Trips</h1>
+  <div class="btn-toolbar mb-2 mb-md-0">
+    <%= link_to new_trip_path, class: "btn btn-primary" do %>
+      <strong>+</strong>
+    <% end %>
+  </div>
 </div>
 
 <div class="tripscontainer" data-controller="tasks">
@@ -23,5 +25,5 @@
         </div>
       </div>
     <% end %>
-  </div>
-</div>
+  <% end %>
+<% end %>

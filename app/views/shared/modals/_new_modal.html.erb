@@ -16,9 +16,13 @@
           <%= f.input :description %>
           <%= f.input :date, collection: @dates %>
           <%#= f.association :user %>
-          <%= f.button :submit, value: "Create Task", class: "btn-primary" %>
-          <!-- <%= f.button :button, 'Reset', type: :reset, class: 'btn btn-secundary' %> Reset button-->
+          <div class="d-flex">
+          <div class="justify-items-end">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
+          <%= f.button :submit, value: "Create Task", class: "btn-primary" %>
+          </div>
+          </div>
+          <!-- <%= f.button :button, 'Reset', type: :reset, class: 'btn btn-secundary' %> Reset button-->
         <% end %>
       <% when "trip" %>
           <%= simple_form_for model do |f| %>
