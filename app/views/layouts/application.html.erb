@@ -14,16 +14,20 @@
 
   <body style="min-height: 100vh; padding-top: 5px; position: relative">
     <%= render "shared/flashes" %>
-    <% if (params[:controller] == "pages" && params[:action] == "home") || (controller_name == "sessions" && action_name == "new") %>
+    <% if (controller_name == "sessions" && action_name == "new") %>
       <%= yield %>
+    <% elsif (params[:controller] == "pages" && params[:action] == "home") %>
+        <%= yield %>
+      <%= render "shared/flashes" %>
+      <%= render "shared/footer" %>
     <% else %>
       <%= render "shared/navbar" %>
       <%= render "shared/userinfo" if current_user %>
       <main class="container" style="min-height: 65vh; padding-bottom: 175px;">
         <%= yield %>
       </main>
+      <%= render "shared/flashes" %>
+      <%= render "shared/footer" %>
     <% end %>
-    <%= render "shared/flashes" %>
-    <%= render "shared/footer" %>
   </body>
 </html>
