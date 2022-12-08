@@ -3,10 +3,17 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="controller"
 export default class extends Controller {
 
-  connect() {
-    const option = document.getElementById('option');
-    options.addEventListener('click', () => {
-      option.add("active");
+  static targets = ["card"]
+
+  showTrip(event) {
+    const selectedCard = event.currentTarget
+
+    this.cardTargets.forEach(card => {
+      if (card === selectedCard)
+        card.classList.add("active")
+      else {
+        card.classList.remove("active")
+      }
     });
   }
 }

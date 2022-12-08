@@ -1,32 +1,26 @@
-<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-  <h1 class="h2 mb-0">My Trips</h1>
-  <div class="btn-toolbar mb-2 mb-md-0">
-    <%= link_to new_trip_path, class: "btn btn-primary" do %>
-      <strong>+</strong>
-    <% end %>
-  </div>
+<div class="d-flex">
+  <h1>My Trips</h1>
+  <%= link_to new_trip_path, class: "btn", style: "margin-top: 5px; margin-left: 2px;" do %>
+    <i class="fa-solid fa-plus"></i>
+  <% end %>
 </div>
 
-<% if @trips.nil? %>
-  <p>You have no trips available...</p>
-<% else %>
-  <% @trips.each do |trip| %>
-    <%= link_to trip_path(trip.id), class: "text-decoration-none text-reset" do %>
-      <div class="p-4 p-md-5 mb-5 rounded text-bg-dark position-relative" style="background: center / cover no-repeat url('<%= (trip.photo.key) ? (cl_image_path trip.photo.key) : ('https://res.cloudinary.com/dxfg68ykv/image/upload/v1670496275/anthony-tan-PULWFiQi2aU-unsplash_gku5ka.jpg') %>');">
-          <span class="position-absolute top-0 end-0 badge rounded-start bg-secondary">
-            Starting in <%= (trip.start_date - Date.today).to_i %> days
-          </span>
-        <div class="col-md-8 px-0">
-          <h2 class="display-4 fst-italic text-shadow"><%= trip.name %></h2>
-          <p class="lead my-3 text-shadow"><%= trip.description %></p>
-          <h3 class="mb-0 lead">
-            <span class="badge bg-secondary">
-              <i class="fa-solid fa-calendar-days text-light"></i>
-              <span class="px-2"><%= trip.start_date.strftime('%a %d %b %Y') %> — <%= trip.end_date.strftime('%a %d %b %Y') %></span>
-            </span>
-          </h3>
+<div class="tripscontainer" data-controller="tasks">
+  <div class="options">
+    <% @trips.each do |trip| %>
+      <div class="option <%= "active" if trip == @trips.first %>" style="background-image:url('<%= image_path @picture_array.sample %>');" data-action="click->tasks#showTrip" data-tasks-target="card">
+        <div class="shadow">
+          <div class="label">
+            <div class="icon">
+              <i class="fa-solid fa-plane-departure"></i>
+            </div>
+            <div class="info" style="position: relative;">
+              <div class="main" style="color: #333333;"><%= trip.name %></div>
+              <%# <div class="sub"><%= trip.description </div>%>
+            </div>
+          </div>
         </div>
       </div>
     <% end %>
-  <% end %>
-<% end %>
+  </div>
+</div>
