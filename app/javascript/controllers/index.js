@@ -4,8 +4,8 @@
 
 import { application } from "./application"
 
-import ControllerController from "./tasks_controller"
-application.register("controller", ControllerController)
+import TasksController from "./tasks_controller"
+application.register("tasks", TasksController)
 
 import FlatpickrController from "./flatpickr_controller"
 application.register("flatpickr", FlatpickrController)
@@ -21,5 +21,3 @@ application.register("swiper", SwiperController)
 
 import TaskDoneController from "./task_done_controller"
 application.register("task-done", TaskDoneController)
-
-
