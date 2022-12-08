@@ -14,7 +14,6 @@ export default class extends Controller {
       // more options available on the documentation!
     });
     this.#getSwiper()
-    console.log("swiper")
   }
 
   highlightTask() {

@@ -19,7 +19,7 @@
      <%= yield %>
     <% else %>
       <%= render "shared/navbar" %>
-      <%= render "shared/userinfo" if user_signed_in? %>
+      <%= render "shared/userinfo" if current_user %>
       <main class="container mb-4">
         <%= yield %>
       </main>
