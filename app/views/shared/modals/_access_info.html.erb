@@ -13,9 +13,7 @@
           <p>Access Type: <span class="text-bg-primary rounded text-white py-1 px-2"><i class="fa-solid fa-lock"></i> <%= @trip.entry_type %></span></p>
           <p>Access Code: <span class="text-bg-danger rounded text-white py-1 px-2"><i class="fa-solid fa-key"></i> <%= @trip.entry_key %></span><p>
           <p>Access Description:<br /> <em><%= @trip.entry_description %></em></p>
-          <% if @trip.entry_photo.key %>
-            <%= cl_image_tag @trip.entry_photo.key %>
-          <% end %>
+
       </div>
     </div>
   </div>
