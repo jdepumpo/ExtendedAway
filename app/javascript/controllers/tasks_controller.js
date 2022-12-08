@@ -9,8 +9,9 @@ export default class extends Controller {
     const selectedCard = event.currentTarget
 
     this.cardTargets.forEach(card => {
-      if (card === selectedCard)
+      if (card === selectedCard) {
         card.classList.add("active")
+     }
       else {
         card.classList.remove("active")
       }
