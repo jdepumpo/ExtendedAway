@@ -51,7 +51,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_07_183233) do
   create_table "tasks", force: :cascade do |t|
     t.string "name"
     t.text "description"
-    t.boolean "done"
+    t.boolean "done", default: false
     t.integer "repeat_every"
     t.bigint "trip_id", null: false
     t.bigint "user_id", null: false

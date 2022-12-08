@@ -38,7 +38,7 @@
 
 <%# CARDS %>
     <div class="col-md-5">
-      <div class="d-flex justify-content-center align-content-center w-100 h-100">
+      <div class="d-flex justify-content-center align-content-center w-100">
         <input placeholder="Select Dates" name="dates" data-flatpickr-target="calendarInput" class="d-none" data-action="change->flatpickr#highlightTask">
       </div>
     </div>
@@ -136,7 +136,7 @@
   <div class="swiper-button-next"></div>
 </div>
 
-      <div class="d-flex align-items-center border-bottom" style="margin-top: 0; ">
+      <div class="d-flex align-items-center border-bottom px-4" style="margin-top: 0; ">
         <h1 class="h2" style="margin-bottom:15px; margin-right:10px">Caretakers</h1>
         <% if current_user.role == "homeowner" %>
             <%= link_to edit_trip_path(@trip) do %>

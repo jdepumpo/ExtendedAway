@@ -12,13 +12,13 @@
       <input class="sign_in_input" type="text" placeholder="Last name" />
 			<input class="sign_in_input" type="email" placeholder="Email" />
 			<input class="sign_in_input" type="password" placeholder="Password" />
-			<center> <button  class="form_signin_button">Sign Up  </button> </center>
+			<center> <button  class="form_signin_button">Sign Up </button> </center>
 		</form>
 	</div>
 
 
 	<div class="form-container sign-in-container">
-    <h1>Sign in</h1>
+    <h1>Login</h1>
 			<div class="social-container">
       <%- if devise_mapping.omniauthable? %>
         <%- resource_class.omniauth_providers.each do |provider| %>
@@ -69,4 +69,3 @@
 </div>
 
 <%#= render "devise/shared/links" %>
-
