@@ -19,6 +19,18 @@
 }
 
 
+.form_signup_button{
+  border-radius: 20px;
+	border: 1px solid #008285;
+	background-color: #008285;
+	color: #FFFFFF;
+	font-size: 12px;
+	font-weight: bold;
+	padding: 12px 45px;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+}
+
 .form_signin_button {
 	border-radius: 20px;
 	border: 1px solid #008285;
@@ -65,6 +77,7 @@
 	margin: 8px 0;
 	width: 100%;
   border-radius: 19px;
+
 }
 
 .login_container {
@@ -73,12 +86,13 @@
   box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 	position: relative;
 	overflow: hidden;
-	width: 768px;
+  width: 860px;
 	max-width: 100%;
 	min-height: 480px;
   top: 30px;
   margin: auto;
   margin-bottom: 88px;
+  height: 600px;
 }
 
 .form-container {
@@ -98,6 +112,7 @@
   justify-content: center;
   display: flex;
   padding: 20px;
+  margin-top: 50px;
 }
 
 .login_container.right-panel-active .sign-in-container {
@@ -113,6 +128,7 @@
 	width: 50%;
 	opacity: 0;
 	z-index: 1;
+  padding: 23px;
 }
 
 .login_container.right-panel-active .sign-up-container {
