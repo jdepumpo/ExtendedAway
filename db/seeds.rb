@@ -61,21 +61,21 @@ puts "_______________________"
 puts "Stewing up some hot new trips!"
 
 def_trips = [
-  ["Paris Anniversary trip", "https://images.unsplash.com/photo-1507666664345-c49223375e33?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2074&q=80"],
-  ["Milwaukee Work trip", "https://images.unsplash.com/photo-1572854385804-33937a570b24?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2531&q=80"],
-  ["Madness in Madrid", "https://images.unsplash.com/photo-1539037116277-4db20889f2d4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"],
-  ["Climbing Mount Kilimanjaro", "https://images.unsplash.com/photo-1516616370751-86d6bd8b0651?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3840&q=80"],
-  ["Bridesmaid Bonanza", "https://images.unsplash.com/photo-1550005800-602985c66ed7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"],
-  ["Safari in Ghana", "https://images.unsplash.com/photo-1516426122078-c23e76319801?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2068&q=80"]
+  ["Paris Anniversary trip", "Anniversary of good old  ", "https://images.unsplash.com/photo-1507666664345-c49223375e33?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2074&q=80"],
+  ["Milwaukee Work trip", "", "https://images.unsplash.com/photo-1572854385804-33937a570b24?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2531&q=80"],
+  ["Madness in Madrid", "", "https://images.unsplash.com/photo-1539037116277-4db20889f2d4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"],
+  ["Climbing Mount Kilimanjaro", "", "https://images.unsplash.com/photo-1516616370751-86d6bd8b0651?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3840&q=80"],
+  ["Bridesmaid Bonanza", "", "https://images.unsplash.com/photo-1550005800-602985c66ed7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"],
+  ["Safari in Ghana", "", "https://images.unsplash.com/photo-1516426122078-c23e76319801?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2068&q=80"]
 ]
 
 trip_array = []
 6.times do |i|
-  city = Faker::Address.city
-  trip_pic = URI.open(def_trips[i][1].to_s)
+  # city = Faker::Address.city
+  trip_pic = URI.open(def_trips[i][2].to_s)
   trip = Trip.new({
                     name: def_trips[i][0].to_s,
-                    description: Faker::Lorem.sentences(number: 4).join(" "),
+                    description: def_trips[i][1].to_s,
                     start_date: Date.parse("2023-01-#{rand(24..27)}"),
                     end_date: Date.parse("2023-02-#{rand(1..5)}"),
                     location: Faker::Address.full_address,

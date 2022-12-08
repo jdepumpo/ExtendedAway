@@ -4,7 +4,7 @@
       <div class="card-body p-0">
         <div class="card-header py-3 d-flex align-items-center">
           <div class="flex-grow-1">
-            <h5><strong><%= @user.first_name + " " + @user.last_name %></strong></h5>
+            <h5><strong><%= "#{@user.first_name} #{@user.last_name}" %></strong></h5>
           </div>
           <div>
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal">
@@ -18,14 +18,14 @@
           <% else %>
             <%= image_tag "noPicAvatar.png", width: 100, crop: :fill, class: "img-thumbnail rounded-circle mb-2" %>
           <% end %>
-        <h5>
-          <strong>Email:</strong>
-          <p><%= @user.email %></p>
-          <strong>First Name:</strong>
-          <p><%= @user.first_name %></p>
-          <strong>Last Name:</strong>
-          <p><%= @user.last_name %></p>
-        </h5>
+          <h5>
+            <strong>Email:</strong>
+            <p><%= @user.email %></p>
+            <strong>First Name:</strong>
+            <p><%= @user.first_name %></p>
+            <strong>Last Name:</strong>
+            <p><%= @user.last_name %></p>
+          </h5>
         </div>
       </div>
     </div>
