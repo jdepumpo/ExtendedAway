@@ -19,6 +19,15 @@
 			<input class="sign_in_input" placeholder="Password" autocomplete="new-password" required="required" aria-required="true" aria-invalid="true" type="password" name="user[password]" id="user_password">
       <center> <input type="submit" class="form_signin_button" value="Sign Up"> </center>
 		</form> -->
+
+
+    <h1 style="display:flex; justify-content: center;"">Sign up</h1>
+			<div class="social-container">
+				<a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+				<a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+			</div>
+
+
     <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), data: { turbo: :false }) do |f| %>
       <%= f.error_notification %>
 
@@ -45,7 +54,7 @@
       </div>
 
       <div class="form-actions">
-        <%= f.button :submit, "Sign up", class: "form_signin_button" %>
+        <%= f.button :submit, "Sign up", class: "form_signup_button" %>
       </div>
     <% end %>
 	</div>

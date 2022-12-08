@@ -10,17 +10,16 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-
   </head>
 
-  <body>
+  <body style="min-height: 100vh; padding-top: 5px; position: relative">
     <%= render "shared/flashes" %>
     <% if (params[:controller] == "pages" && params[:action] == "home") || (controller_name == "sessions" && action_name == "new") %>
-        <%= yield %>
+      <%= yield %>
     <% else %>
       <%= render "shared/navbar" %>
       <%= render "shared/userinfo" if current_user %>
-      <main class="container mb-4" style="min-height: 67vh;">
+      <main class="container" style="min-height: 65vh;">
         <%= yield %>
       </main>
     <% end %>
