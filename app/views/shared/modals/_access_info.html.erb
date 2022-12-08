@@ -1,0 +1,20 @@
+<!-- new Modal -->
+<div class="modal fade" id="accessModal" tabindex="-1" aria-labelledby="accessModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="newModalLabel">Location & Access</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h5><strong>Location</strong></h5>
+        <p><%= @trip.location %></p>
+          <h5 class="mt-5"><strong>Secure Access</strong></h5>
+          <p>Access Type: <span class="text-bg-primary rounded text-white py-1 px-2"><i class="fa-solid fa-lock"></i> <%= @trip.entry_type %></span></p>
+          <p>Access Code: <span class="text-bg-danger rounded text-white py-1 px-2"><i class="fa-solid fa-key"></i> <%= @trip.entry_key %></span><p>
+          <p>Access Description:<br /> <em><%= @trip.entry_description %></em></p>
+
+      </div>
+    </div>
+  </div>
+</div>

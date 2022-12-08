@@ -53,8 +53,10 @@
       <i class="fa-solid fa-house-chimney sidebaricon"></i>
     <% end %>
 
-    <%= link_to user_profile_path(current_user), class: "sidebutton" do %>
-      <i class="fa-solid fa-user sidebaricon"></i>
+    <% if user_signed_in? %>
+      <%= link_to user_profile_path(current_user), class: "sidebutton" do %>
+        <i class="fa-solid fa-user sidebaricon"></i>
+      <% end %>
     <% end %>
 
     <%= link_to trips_path, class: "sidebutton" do %>

@@ -46,7 +46,7 @@ class TripsController < ApplicationController
     @trip = Trip.find(params[:id])
     @trip.update(trip_params)
     if @trip.save
-      redirect_to trips_path
+      redirect_to trip_path(@trip)
     else
       render :index, status: :unprocessable_entity
     end
@@ -74,6 +74,6 @@ class TripsController < ApplicationController
   private
 
   def trip_params
-    params.require(:trip).permit(:name, :description, :start_date, :end_date, :location, :entry_description, :entry_type, :entry_key)
+    params.require(:trip).permit(:name, :description, :start_date, :end_date, :location, :entry_description, :entry_type, :entry_key, :photo)
   end
 end

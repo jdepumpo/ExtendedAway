@@ -16,16 +16,15 @@
   <body>
     <%= render "shared/flashes" %>
     <% if (params[:controller] == "pages" && params[:action] == "home") || (controller_name == "sessions" && action_name == "new") %>
-     <%= yield %>
+        <%= yield %>
     <% else %>
       <%= render "shared/navbar" %>
-      <%= render "shared/userinfo" if user_signed_in? %>
-      <main class="container mb-4">
+      <%= render "shared/userinfo" if current_user %>
+      <main class="container mb-4" style="min-height: 67vh;">
         <%= yield %>
       </main>
     <% end %>
-
-    <%= render "shared/footer" %>
     <%= render "shared/flashes" %>
+    <%= render "shared/footer" %>
   </body>
 </html>

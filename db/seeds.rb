@@ -60,18 +60,28 @@ puts "_______________________"
 
 puts "Stewing up some hot new trips!"
 
+def_trips = [
+  ["Paris Anniversary trip", "Anniversary of good old Aunt Berta. Will arrive at noon.", "https://images.unsplash.com/photo-1507666664345-c49223375e33?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2074&q=80"],
+  ["Milwaukee Work trip", "Business trip. Meeting in Milwaukee to track the progress of all offshore projects.", "https://images.unsplash.com/photo-1572854385804-33937a570b24?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2531&q=80"],
+  ["Madness in Madrid", "Bachellor's party of an old friend. Going to be lit!", "https://images.unsplash.com/photo-1539037116277-4db20889f2d4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"],
+  ["Climbing Mount Kilimanjaro", "Climbing trip with some adventure buddies. Will be offline for the most of the journey.", "https://images.unsplash.com/photo-1516616370751-86d6bd8b0651?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3840&q=80"],
+  ["Bridesmaid Bonanza", "Family trip to spend some time away from everyday madness.", "https://images.unsplash.com/photo-1550005800-602985c66ed7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"],
+  ["Safari in Ghana", "Sightseeing in Africa. Rivers, mountains, beasts, got to see them all!", "https://images.unsplash.com/photo-1516426122078-c23e76319801?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2068&q=80"]
+]
+
 trip_array = []
-5.times do
-  city = Faker::Address.city
+6.times do |i|
+  trip_pic = URI.open(def_trips[i][2].to_s)
   trip = Trip.new({
-                    name: "#{city} #{Faker::Verb.ing_form} trip",
-                    description: Faker::Lorem.sentences(number: 3).join(" "),
+                    name: def_trips[i][0].to_s,
+                    description: def_trips[i][1].to_s,
                     start_date: Date.parse("2023-01-#{rand(24..27)}"),
                     end_date: Date.parse("2023-02-#{rand(1..5)}"),
                     location: Faker::Address.full_address,
                     entry_type: ["Lockbox", "Digital Lock", "Hidden Key", "Other"].sample
                   })
   trip.user = homeowner_array.sample
+  trip.photo.attach(io: trip_pic, filename: "trip#{i}.jpeg", content_type: "image/jpeg")
   trip.save!
   trip_array << trip
   puts "+++ #{trip.name}"
