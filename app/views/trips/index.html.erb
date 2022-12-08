@@ -8,21 +8,21 @@
 <div class="tripscontainer" data-controller="tasks">
   <div class="options">
     <% @trips.each do |trip| %>
-      <div id="<%= trip.id %>" class="option <%= "active" if trip == @trips.first %>" style="background-image:url('<%= image_path @picture_array.sample %>');" data-action="click->tasks#showTrip" data-tasks-target="card">
+      <div id="<%= trip.id %>" class="option <%= "active" if trip == @trips.first %>" style="background-image:url('<%= cl_image_path trip.photo.key %>');" data-action="click->tasks#showTrip" data-tasks-target="card" >
         <div class="shadow">
-              <%= link_to trip_path(trip.id), class: "text-decoration-none text-reset" do %>
-          <div class="label">
-            <div class="icon">
-                <i class="fa-solid fa-plane-departure"></i>
+          <%= link_to trip_path(trip.id), class: "text-decoration-none text-reset" do %>
+            <div class="label">
+              <div class="icon">
+                  <i class="fa-solid fa-plane-departure"></i>
+              </div>
+              <div class="info" style="position: relative;">
+                <div class="main" style="color: #333333;font-size: 17px;"><%= trip.name %></div>
+                <div style="font-size:12px; color: #333333;"><%= trip.start_date.strftime('%a %d %b %Y') %></div>
+                <div><%= image_tag "tripsmore.svg", style: "width: 22px; position: absolute; left: 455px; bottom: 13px;" %></div>
+                <%# <div class="sub"><%= trip.description </div>%>
+              </div>
             </div>
-            <div class="info" style="position: relative;">
-              <div class="main" style="color: #333333;font-size: 17px;"><%= trip.name %></div>
-              <div style="font-size:12px; color: #333333;"><%= trip.start_date.strftime('%a %d %b %Y') %></div>
-              <div><%= image_tag "tripsmore.svg", style: "width: 22px; position: absolute; left: 455px; bottom: 13px;" %></div>
-              <%# <div class="sub"><%= trip.description </div>%>
-            </div>
-          </div>
-              <% end %>
+          <% end %>
         </div>
       </div>
     <% end %>
