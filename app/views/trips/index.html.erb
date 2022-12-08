@@ -12,7 +12,7 @@
 <% else %>
   <% @trips.each do |trip| %>
     <%= link_to trip_path(trip.id), class: "text-decoration-none text-reset" do %>
-      <div class="p-4 p-md-5 mb-5 rounded text-bg-dark position-relative" style="background: center / cover no-repeat url('<%= image_path @picture_array.sample %>');">
+      <div class="p-4 p-md-5 mb-5 rounded text-bg-dark position-relative" style="background: center / cover no-repeat url('<%= (trip.photo.key) ? (cl_image_path trip.photo.key) : ('https://res.cloudinary.com/dxfg68ykv/image/upload/v1670496275/anthony-tan-PULWFiQi2aU-unsplash_gku5ka.jpg') %>');">
           <span class="position-absolute top-0 end-0 badge rounded-start bg-secondary">
             Starting in <%= (trip.start_date - Date.today).to_i %> days
           </span>
