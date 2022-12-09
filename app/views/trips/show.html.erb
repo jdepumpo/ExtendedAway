@@ -8,7 +8,7 @@
 <div class="row g-4">
   <div class="col-7">
 
-    <div class="card px-0" style="box-shadow: 0px 0px 23px -1px rgb(0 0 0 / 55%);">
+    <div class="card px-0">
       <div class="p-4 p-md-5 rounded-top text-bg-dark position-relative" style="background: center / cover no-repeat url('<%= (@trip.photo.key) ? (cl_image_path @trip.photo.key) : ('https://res.cloudinary.com/dxfg68ykv/image/upload/v1670496275/anthony-tan-PULWFiQi2aU-unsplash_gku5ka.jpg') %>');">
         <span class="position-absolute top-0 end-0 badge rounded-start">
           Starting in <%= (@trip.start_date - Date.today).to_i %> days
