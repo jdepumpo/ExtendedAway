@@ -37,6 +37,8 @@ bundle install && yarn build
 * Github: [@saraschoonover](https://github.com/saraschoonover)
 * LinkedIn: [@sara-schoonover](https://www.linkedin.com/in/sara-schoonover)
 
+<hr />
+
 👤 **Gerardo Wemans**
 
 * Github: [@gwemans](https://github.com/gwemans)
