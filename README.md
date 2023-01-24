@@ -44,6 +44,22 @@ bundle install && yarn build
 * Github: [@gwemans](https://github.com/gwemans)
 * LinkedIn: [@gerardo-wemans](https://www.linkedin.com/in/gerardo-wemans)
 
-## Show your support
+----
+#### The Trip page
+Show the details of your upcoming trip, a list of tasks by day, and the homesitter that is assigned to those tasks.
+![Screenshot of the main trip page of ExtendedAway, which shows upcoming tasks and which homesitters will be performing them.](https://joe.depumpo.com/images/ExtendedAway/TripShow.png)
 
-Give a ⭐️ if this project helped you!
+----
+#### Location and access information
+Ensure your homesitters can easily and securely access your home without needing to bother you with a text or call.
+![Screenshot of the location and access module which displays details to access the home securely, such as a lockbox code.](https://joe.depumpo.com/images/ExtendedAway/LockInfo.png)
+
+----
+#### Task details
+Make it easy for your homesitter and you with task details. Stay informed with completion status updates.
+![Screenshot of the tasks section which shows details of individual tasks.](https://joe.depumpo.com/images/ExtendedAway/TaskDetails.png)
+
+----
+#### Select your homesitter
+Last minute change of plans? No problem, simply assign a different homesitter to those tasks.
+![Screenshot of the homesitter assignment drop-down.](https://joe.depumpo.com/images/ExtendedAway/SelectHomesitter.png)
